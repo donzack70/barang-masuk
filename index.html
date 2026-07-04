@@ -577,7 +577,22 @@ function hideAc() {
 }
 
 function updateKetCell(idx) {
+  const active = document.activeElement;
+  const activeId = active ? active.id : null;
+  let selStart = null, selEnd = null;
+  if(active && typeof active.selectionStart === 'number') {
+    selStart = active.selectionStart; selEnd = active.selectionEnd;
+  }
   renderTable();
+  if(activeId) {
+    const el = document.getElementById(activeId);
+    if(el) {
+      el.focus();
+      if(selStart != null && el.setSelectionRange) {
+        try { el.setSelectionRange(selStart, selEnd); } catch(e) {}
+      }
+    }
+  }
 }
 
 // ===================== COPY TO GOOGLE SHEET =====================
