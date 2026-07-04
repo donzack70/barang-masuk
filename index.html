@@ -104,6 +104,22 @@ tr:hover td{background:#fafafe}
 .ac-item:hover,.ac-item.active{background:#eef6f0;color:#1e7a45}
 .ac-item .kat{font-size:10px;color:#bbb;margin-left:5px}
 .ac-wrap{position:relative}
+/* PREVIEW NOTA */
+.preview-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.preview-head .card-title{margin-bottom:0}
+.rot-btns{display:flex;gap:6px}
+.rot-btn{padding:6px 12px;background:#fff;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s}
+.rot-btn:hover{background:#f7f7f5;border-color:#bbb}
+.preview-box{position:relative;background:#efefed;border:1px solid #e8e8e6;border-radius:10px;height:460px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+.preview-box img{max-width:430px;max-height:430px;transition:transform .25s;user-select:none}
+.preview-hint{font-size:11px;color:#aaa;text-align:center;margin-top:6px}
+/* MODAL PERBESAR */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:16px}
+.modal.show{display:flex}
+.modal img{max-width:min(82vh,92vw);max-height:min(82vh,92vw);transition:transform .25s;user-select:none}
+.modal-btns{display:flex;gap:8px}
+.modal-btn{padding:8px 18px;background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;font-size:13px}
+.modal-btn:hover{background:rgba(255,255,255,.25)}
 </style>
 </head>
 <body>
@@ -150,11 +166,33 @@ tr:hover td{background:#fafafe}
   <div class="err-msg" id="extErr"></div>
 </div>
 
+<!-- PREVIEW NOTA -->
+<div class="card" id="previewCard" style="display:none">
+  <div class="preview-head">
+    <div class="card-title" id="previewTitle">🔍 Preview Nota</div>
+    <div class="rot-btns">
+      <button class="rot-btn" onclick="rotatePreview(-90)" title="Putar kiri">↺ Kiri</button>
+      <button class="rot-btn" onclick="rotatePreview(90)" title="Putar kanan">↻ Kanan</button>
+    </div>
+  </div>
+  <div class="preview-box" onclick="openModal()">
+    <img id="previewImg" src="" alt="Preview nota">
+  </div>
+  <div class="preview-hint">Klik gambar untuk memperbesar</div>
+</div>
+
 <!-- INFO NOTA -->
 <div class="card">
   <div class="card-title">📋 Info Nota Masuk <span id="notaCounter" style="font-weight:400;color:#aaa"></span></div>
   <div class="meta-grid">
-    <div class="field"><label>Tanggal</label><input type="date" id="tgl"></div>
+    <div class="field"><label>Tanggal (tahun tetap 2026)</label>
+      <div style="display:flex;gap:5px;align-items:center">
+        <input type="number" id="tglHari" min="1" max="31" placeholder="tgl" style="width:58px;text-align:center">
+        <span style="color:#bbb">/</span>
+        <input type="number" id="tglBulan" min="1" max="12" placeholder="bln" style="width:58px;text-align:center">
+        <span style="color:#666;font-weight:600;padding:0 4px;white-space:nowrap">/ 2026</span>
+      </div>
+    </div>
     <div class="field"><label>Nama supplier</label><input type="text" id="supplier" placeholder="Nama supplier / pabrik"></div>
     <div class="field"><label>Kota / negara asal</label><input type="text" id="kota" placeholder="Kota atau negara"></div>
   </div>
@@ -211,6 +249,16 @@ tr:hover td{background:#fafafe}
 <!-- AUTOCOMPLETE LIST (shared) -->
 <div class="ac-list" id="acList"></div>
 
+<!-- MODAL PERBESAR FOTO -->
+<div class="modal" id="imgModal" onclick="closeModal()">
+  <img id="modalImg" src="" alt="Nota diperbesar" onclick="event.stopPropagation()">
+  <div class="modal-btns" onclick="event.stopPropagation()">
+    <button class="modal-btn" onclick="rotatePreview(-90)">↺ Putar kiri</button>
+    <button class="modal-btn" onclick="rotatePreview(90)">↻ Putar kanan</button>
+    <button class="modal-btn" onclick="closeModal()">✕ Tutup</button>
+  </div>
+</div>
+
 <script>
 // ===================== MASTER DATA =====================
 const MASTER=[{"no":1,"nama":"NAPHTOL ASBS","kat":"Naphtol","sat":"kg"},{"no":2,"nama":"ASG DIAL","kat":"Naphtol","sat":"kg"},{"no":3,"nama":"ASG SHANGHAI","kat":"Naphtol","sat":"kg"},{"no":4,"nama":"AS","kat":"Naphtol","sat":"kg"},{"no":5,"nama":"ASOL","kat":"Naphtol","sat":"kg"},{"no":6,"nama":"ASD","kat":"Naphtol","sat":"kg"},{"no":7,"nama":"ASBR","kat":"Naphtol","sat":"kg"},{"no":8,"nama":"ASLB","kat":"Naphtol","sat":"kg"},{"no":9,"nama":"ASBO PUTIH","kat":"Naphtol","sat":"kg"},{"no":10,"nama":"ASBO 80% INDIA","kat":"Naphtol","sat":"kg"},{"no":11,"nama":"ASBO 100% INDIA","kat":"Naphtol","sat":"kg"},{"no":12,"nama":"ASBO 100% RRT","kat":"Naphtol","sat":"kg"},{"no":13,"nama":"ASBO HC INDIA","kat":"Naphtol","sat":"kg"},{"no":14,"nama":"ASBO 80% TONGLI","kat":"Naphtol","sat":"kg"},{"no":15,"nama":"REACTIVE YELLOW M4R","kat":"Reactive/Remazol","sat":"kg"},{"no":16,"nama":"REACTIVE YELLOW M4G","kat":"Reactive/Remazol","sat":"kg"},{"no":17,"nama":"REACTIVE YELLOW M8G","kat":"Reactive/Remazol","sat":"kg"},{"no":18,"nama":"REACTIVE YELLOW FG 100%","kat":"Reactive/Remazol","sat":"kg"},{"no":19,"nama":"REACTIVE GOLD YELLOW RNL","kat":"Reactive/Remazol","sat":"kg"},{"no":20,"nama":"REACTIVE YELLOW HD8G","kat":"Reactive/Remazol","sat":"kg"},{"no":21,"nama":"REACTIVE YELLOW HE-4R","kat":"Reactive/Remazol","sat":"kg"},{"no":22,"nama":"REACTIVE YELLOW HE-4G","kat":"Reactive/Remazol","sat":"kg"},{"no":23,"nama":"REACTIVE BLUE M2R H/C SUPRA","kat":"Reactive/Remazol","sat":"kg"},{"no":24,"nama":"REACTIVE BLUE M2R HA","kat":"Reactive/Remazol","sat":"kg"},{"no":25,"nama":"REACTIVE BLUE HE-GN","kat":"Reactive/Remazol","sat":"kg"},{"no":26,"nama":"REACTIVE BRILL BLUE R SPEC","kat":"Reactive/Remazol","sat":"kg"},{"no":27,"nama":"REACTIVE TURKIS BLUE","kat":"Reactive/Remazol","sat":"kg"},{"no":28,"nama":"REACTIVE NAVY BLUE HER","kat":"Reactive/Remazol","sat":"kg"},{"no":29,"nama":"REACTIVE BROWN RB","kat":"Reactive/Remazol","sat":"kg"},{"no":30,"nama":"REACTIVE BROWN GR","kat":"Reactive/Remazol","sat":"kg"},{"no":31,"nama":"REACTIVE RED RB","kat":"Reactive/Remazol","sat":"kg"},{"no":32,"nama":"REACTIVE RED K2BP","kat":"Reactive/Remazol","sat":"kg"},{"no":33,"nama":"REACTIVE RED M5B","kat":"Reactive/Remazol","sat":"kg"},{"no":34,"nama":"REACTIVE RED M8B","kat":"Reactive/Remazol","sat":"kg"},{"no":35,"nama":"REACTIVE RED HE-3B","kat":"Reactive/Remazol","sat":"kg"},{"no":36,"nama":"REACTIVE RED HE-7B","kat":"Reactive/Remazol","sat":"kg"},{"no":37,"nama":"REACTIVE MAGENTA","kat":"Reactive/Remazol","sat":"kg"},{"no":38,"nama":"REACTIVE BRILL VIOLET 5R","kat":"Reactive/Remazol","sat":"kg"},{"no":39,"nama":"REACTIVE ORANGE HER","kat":"Reactive/Remazol","sat":"kg"},{"no":40,"nama":"REACTIVE ORANGE M2R","kat":"Reactive/Remazol","sat":"kg"},{"no":41,"nama":"REACTIVE ORANGE 3R","kat":"Reactive/Remazol","sat":"kg"},{"no":42,"nama":"REACTIVE BLACK B","kat":"Reactive/Remazol","sat":"kg"},{"no":43,"nama":"REACTIVE BLACK KWNN","kat":"Reactive/Remazol","sat":"kg"},{"no":44,"nama":"REACTIVE BLACK HF-GR","kat":"Reactive/Remazol","sat":"kg"},{"no":45,"nama":"REACTIVE BLACK HD","kat":"Reactive/Remazol","sat":"kg"},{"no":46,"nama":"REACTIVE GREEN HE-4BD","kat":"Reactive/Remazol","sat":"kg"},{"no":47,"nama":"SYNOSOL ULTRA BLACK DR","kat":"Reactive/Remazol","sat":"kg"},{"no":48,"nama":"POLKATIVE BLUE PX-2R","kat":"Reactive/Remazol","sat":"kg"},{"no":49,"nama":"POLKATIVE VIOLET 2-BNH","kat":"Reactive/Remazol","sat":"kg"},{"no":50,"nama":"REMAZOL GOLD YELLOW RNL","kat":"Reactive/Remazol","sat":"kg"},{"no":51,"nama":"REMAZOL YELLOW FG (DYSTAR)","kat":"Reactive/Remazol","sat":"kg"},{"no":52,"nama":"REMAZOL RED RB (DYSTAR)","kat":"Reactive/Remazol","sat":"kg"},{"no":53,"nama":"REMAZOL TURKIS BLUE (DYSTAR)","kat":"Reactive/Remazol","sat":"kg"},{"no":54,"nama":"REMAZOL DEEP BLACK N","kat":"Reactive/Remazol","sat":"kg"},{"no":55,"nama":"POLKATIVE BROWN 3RD","kat":"Reactive/Remazol","sat":"kg"},{"no":56,"nama":"REACTIVE RED X3B","kat":"Reactive/Remazol","sat":"kg"},{"no":57,"nama":"REMAZOL YELLOW GL","kat":"Reactive/Remazol","sat":"kg"},{"no":58,"nama":"REMAZOL BLACK B (DYSTAR)","kat":"Reactive/Remazol","sat":"kg"},{"no":59,"nama":"DISPERSE YELLOW 4GN (Y211)","kat":"Disperse","sat":"kg"},{"no":60,"nama":"BLUE E2BLN (BLUE 56)","kat":"Disperse","sat":"kg"},{"no":61,"nama":"DARK BLUE 3RN (BLUE 148)","kat":"Disperse","sat":"kg"},{"no":62,"nama":"BLUE SE-BR (BLUE 183)","kat":"Disperse","sat":"kg"},{"no":63,"nama":"BRILL TURKIS BLUE SBG","kat":"Disperse","sat":"kg"},{"no":64,"nama":"NAVY BLUE SE-RF 400%","kat":"Disperse","sat":"kg"},{"no":65,"nama":"NAVY BLUE S-2GL (BLUE 79)","kat":"Disperse","sat":"kg"},{"no":66,"nama":"RED FBB (RED 60)","kat":"Disperse","sat":"kg"},{"no":67,"nama":"RED FTS","kat":"Disperse","sat":"kg"},{"no":68,"nama":"RUBINE RD-FLN (RED 73)","kat":"Disperse","sat":"kg"},{"no":69,"nama":"RUBINE 2GFL","kat":"Disperse","sat":"kg"},{"no":70,"nama":"VIOLET S3R (VIOLET 63)","kat":"Disperse","sat":"kg"},{"no":71,"nama":"SCARLET BRN","kat":"Disperse","sat":"kg"},{"no":72,"nama":"YELLOW 5SGN","kat":"Disperse","sat":"kg"},{"no":73,"nama":"YELLOW BROWN GLH","kat":"Disperse","sat":"kg"},{"no":74,"nama":"BLACK EX-SF","kat":"Disperse","sat":"kg"},{"no":75,"nama":"YELLOW 3GE (YELLOW 54)","kat":"Disperse","sat":"kg"},{"no":76,"nama":"BROWN 3RL","kat":"Disperse","sat":"kg"},{"no":77,"nama":"SULPHUR BRILL YELLOW","kat":"Sulphur","sat":"kg"},{"no":78,"nama":"SULPHUR DARK GREEN","kat":"Sulphur","sat":"kg"},{"no":79,"nama":"SULPHUR LIGHT GREEN","kat":"Sulphur","sat":"kg"},{"no":80,"nama":"SULPHUR BORDO 3B","kat":"Sulphur","sat":"kg"},{"no":81,"nama":"SULPHUR BLUE BRN","kat":"Sulphur","sat":"kg"},{"no":82,"nama":"SULPHUR BROWN GDR","kat":"Sulphur","sat":"kg"},{"no":83,"nama":"SULPHUR BROWN MR","kat":"Sulphur","sat":"kg"},{"no":84,"nama":"SULPHUR YELLOW BROWN 5G","kat":"Sulphur","sat":"kg"},{"no":85,"nama":"SULPHUR OLIVE 2200","kat":"Sulphur","sat":"kg"},{"no":86,"nama":"SULPHUR OLIVE GREEN G","kat":"Sulphur","sat":"kg"},{"no":87,"nama":"SULPHUR BLACK B 300% (T)","kat":"Sulphur","sat":"kg"},{"no":88,"nama":"SULPHUR BLACK B 200% (IC)","kat":"Sulphur","sat":"kg"},{"no":89,"nama":"SULPHUR BLACK B 200% SUPER A","kat":"Sulphur","sat":"kg"},{"no":90,"nama":"SULPHUR BLACK B 200% (MTK)B","kat":"Sulphur","sat":"kg"},{"no":91,"nama":"SULPHUR YELLOW GC","kat":"Sulphur","sat":"kg"},{"no":92,"nama":"SULPHUR BROWN M6R","kat":"Sulphur","sat":"kg"},{"no":93,"nama":"SULPHUR BROWN FGR","kat":"Sulphur","sat":"kg"},{"no":94,"nama":"INDANTHREN GREY M","kat":"Vat/Indanthren","sat":"kg"},{"no":95,"nama":"GOLD ORANGE G","kat":"Vat/Indanthren","sat":"kg"},{"no":96,"nama":"BLACK MD","kat":"Vat/Indanthren","sat":"kg"},{"no":97,"nama":"OLIVE T","kat":"Vat/Indanthren","sat":"kg"},{"no":98,"nama":"PINK RS","kat":"Vat/Indanthren","sat":"kg"},{"no":99,"nama":"DARK BLUE BOA","kat":"Vat/Indanthren","sat":"kg"},{"no":100,"nama":"OLIVE GREEN B","kat":"Vat/Indanthren","sat":"kg"},{"no":101,"nama":"GREEN B / FFB","kat":"Vat/Indanthren","sat":"kg"},{"no":102,"nama":"GREEN XBN (YUNITA)","kat":"Vat/Indanthren","sat":"kg"},{"no":103,"nama":"GREEN XBN H/C GRANIS","kat":"Vat/Indanthren","sat":"kg"},{"no":104,"nama":"BROWN BR (YUNITA)","kat":"Vat/Indanthren","sat":"kg"},{"no":105,"nama":"BROWN BR (MTK)","kat":"Vat/Indanthren","sat":"kg"},{"no":106,"nama":"BLUE RSN (MTK)","kat":"Vat/Indanthren","sat":"kg"},{"no":107,"nama":"BLUE RSN GRANIS","kat":"Vat/Indanthren","sat":"kg"},{"no":108,"nama":"BLUE RSN Y","kat":"Vat/Indanthren","sat":"kg"},{"no":109,"nama":"BLUE RSN 200%","kat":"Vat/Indanthren","sat":"kg"},{"no":110,"nama":"YELLOW GCN (MTK)","kat":"Vat/Indanthren","sat":"kg"},{"no":111,"nama":"YELLOW GCN 130%","kat":"Vat/Indanthren","sat":"kg"},{"no":112,"nama":"VIOLET RR 100%","kat":"Vat/Indanthren","sat":"kg"},{"no":113,"nama":"VIOLET 200% (Y)","kat":"Vat/Indanthren","sat":"kg"},{"no":114,"nama":"VIOLET RR 150%","kat":"Vat/Indanthren","sat":"kg"},{"no":115,"nama":"VIOLET RR (MTK) 2","kat":"Vat/Indanthren","sat":"kg"},{"no":116,"nama":"RED R","kat":"Vat/Indanthren","sat":"kg"},{"no":117,"nama":"INDIGO BLUE","kat":"Vat/Indanthren","sat":"kg"},{"no":118,"nama":"BROWN BR (WI)","kat":"Vat/Indanthren","sat":"kg"},{"no":119,"nama":"BROWN BR (HA)","kat":"Vat/Indanthren","sat":"kg"},{"no":120,"nama":"BASIS METHELENE BLUE","kat":"Basis","sat":"kg"},{"no":121,"nama":"MAGENTA PUDER","kat":"Basis","sat":"kg"},{"no":122,"nama":"MALACHITE GREEN","kat":"Basis","sat":"kg"},{"no":123,"nama":"BRILL GREEN CRYSTAL","kat":"Basis","sat":"kg"},{"no":124,"nama":"AURAMINE INDIA","kat":"Basis","sat":"kg"},{"no":125,"nama":"AURAMINE RRT","kat":"Basis","sat":"kg"},{"no":126,"nama":"AURAMINE JERMAN","kat":"Basis","sat":"kg"},{"no":127,"nama":"RODHAMINE","kat":"Basis","sat":"kg"},{"no":128,"nama":"BISMARK BROWN","kat":"Basis","sat":"kg"},{"no":129,"nama":"DIRECT BROWN M INDIA","kat":"Direct","sat":"kg"},{"no":130,"nama":"BROWN M RRT","kat":"Direct","sat":"kg"},{"no":131,"nama":"BROWN MN RRT","kat":"Direct","sat":"kg"},{"no":132,"nama":"BROWN MM 125%","kat":"Direct","sat":"kg"},{"no":133,"nama":"BROWN GG","kat":"Direct","sat":"kg"},{"no":134,"nama":"CONGGO RED (YUNITA)","kat":"Direct","sat":"kg"},{"no":135,"nama":"CONGGO RED (WI)","kat":"Direct","sat":"kg"},{"no":136,"nama":"CONGGO RED (MTK)","kat":"Direct","sat":"kg"},{"no":137,"nama":"COPPER BLUE","kat":"Direct","sat":"kg"},{"no":138,"nama":"IJO MUDA GCN","kat":"Direct","sat":"kg"},{"no":139,"nama":"SCARLET 4BS","kat":"Direct","sat":"kg"},{"no":140,"nama":"SKY BLUE","kat":"Direct","sat":"kg"},{"no":141,"nama":"RED 12 B","kat":"Direct","sat":"kg"},{"no":142,"nama":"KUNING MAS / GOLD GXA","kat":"Direct","sat":"kg"},{"no":143,"nama":"DIRECT CHRYSHOPENIN G 100%","kat":"Direct","sat":"kg"},{"no":144,"nama":"DIRECT CHRYSHOPENIN G 80%","kat":"Direct","sat":"kg"},{"no":145,"nama":"KUNING G H/C (MTK)","kat":"Direct","sat":"kg"},{"no":146,"nama":"BLACK G","kat":"Direct","sat":"kg"},{"no":147,"nama":"BLACK EX 170%","kat":"Direct","sat":"kg"},{"no":148,"nama":"BLACK EX 200%","kat":"Direct","sat":"kg"},{"no":149,"nama":"BLACK EX 300%","kat":"Direct","sat":"kg"},{"no":150,"nama":"BLACK VSF","kat":"Direct","sat":"kg"},{"no":151,"nama":"ORANGE S","kat":"Direct","sat":"kg"},{"no":152,"nama":"GREY VGR","kat":"Direct","sat":"kg"},{"no":153,"nama":"BORDO B RRT","kat":"Direct","sat":"kg"},{"no":154,"nama":"VIOLET 5BL","kat":"Direct","sat":"kg"},{"no":155,"nama":"BLUE 2B","kat":"Direct","sat":"kg"},{"no":156,"nama":"IJO B /DARK GREEN B","kat":"Direct","sat":"kg"},{"no":157,"nama":"TURQIS BLUE (WI)","kat":"Direct","sat":"kg"},{"no":158,"nama":"TURKIS BLUE (MTK)","kat":"Direct","sat":"kg"},{"no":159,"nama":"PINK","kat":"Direct","sat":"kg"},{"no":160,"nama":"GARAM BIRU B 27% LUTA","kat":"Garam","sat":"kg"},{"no":161,"nama":"GARAM BIRU B 27% WARIN","kat":"Garam","sat":"kg"},{"no":162,"nama":"GARAM BIRU B WI (MTK)","kat":"Garam","sat":"kg"},{"no":163,"nama":"GARAM BIRU B H/C","kat":"Garam","sat":"kg"},{"no":164,"nama":"GARAM BIRU B JP INDIA","kat":"Garam","sat":"kg"},{"no":165,"nama":"GARAM BIRU B JP","kat":"Garam","sat":"kg"},{"no":166,"nama":"GARAM BIRU B GOLD","kat":"Garam","sat":"kg"},{"no":167,"nama":"GARAM BIRU BB JP","kat":"Garam","sat":"kg"},{"no":168,"nama":"GARAM BIRU B BASE","kat":"Garam","sat":"kg"},{"no":169,"nama":"GARAM MERAH B BASE","kat":"Garam","sat":"kg"},{"no":170,"nama":"GARAM MERAH B 15%","kat":"Garam","sat":"kg"},{"no":171,"nama":"GARAM MERAH B 27% LUTA","kat":"Garam","sat":"kg"},{"no":172,"nama":"GARAM MERAH B 27% WARIN","kat":"Garam","sat":"kg"},{"no":173,"nama":"GARAM MERAH B WI (MTK)","kat":"Garam","sat":"kg"},{"no":174,"nama":"GARAM MERAH B H/C","kat":"Garam","sat":"kg"},{"no":175,"nama":"GARAM MERAH B JP","kat":"Garam","sat":"kg"},{"no":176,"nama":"GARAM MERAH B GOLD","kat":"Garam","sat":"kg"},{"no":177,"nama":"GARAM MERAH B JP INDIA","kat":"Garam","sat":"kg"},{"no":178,"nama":"GARAM R 15%","kat":"Garam","sat":"kg"},{"no":179,"nama":"GARAM R 27% LUTA","kat":"Garam","sat":"kg"},{"no":180,"nama":"GARAM R 27% WARIN","kat":"Garam","sat":"kg"},{"no":181,"nama":"GARAM R 27% WI (MTK)","kat":"Garam","sat":"kg"},{"no":182,"nama":"GARAM R JP INDIA","kat":"Garam","sat":"kg"},{"no":183,"nama":"GARAM R JP","kat":"Garam","sat":"kg"},{"no":184,"nama":"GARAM R H/C","kat":"Garam","sat":"kg"},{"no":185,"nama":"GARAM GG H/C","kat":"Garam","sat":"kg"},{"no":186,"nama":"GARAM GG JP","kat":"Garam","sat":"kg"},{"no":187,"nama":"GARAM GG STD JP","kat":"Garam","sat":"kg"},{"no":188,"nama":"GARAM BORDO GP JP","kat":"Garam","sat":"kg"},{"no":189,"nama":"GARAM BORDO GP BASE","kat":"Garam","sat":"kg"},{"no":190,"nama":"GARAM BORDO GP H/C","kat":"Garam","sat":"kg"},{"no":191,"nama":"GARAM BORDO GP STD JP","kat":"Garam","sat":"kg"},{"no":192,"nama":"GARAM GARNAT GBC","kat":"Garam","sat":"kg"},{"no":193,"nama":"GARAM GARNAT GBC SUPER","kat":"Garam","sat":"kg"},{"no":194,"nama":"GARAM RC BASE","kat":"Garam","sat":"kg"},{"no":195,"nama":"GARAM RED 3GL JP","kat":"Garam","sat":"kg"},{"no":196,"nama":"GARAM YELLOW GC JP","kat":"Garam","sat":"kg"},{"no":197,"nama":"GARAM ORANGE GC BASE","kat":"Garam","sat":"kg"},{"no":198,"nama":"GARAM ORANGE GC STD JP","kat":"Garam","sat":"kg"},{"no":199,"nama":"GARAM HITAM B INDIA (YUNITA)","kat":"Garam","sat":"kg"},{"no":200,"nama":"GARAM HITAM B JP (MTK)","kat":"Garam","sat":"kg"},{"no":201,"nama":"SOL IJO IB","kat":"Sol","sat":"kg"},{"no":202,"nama":"SOL YELLOW","kat":"Sol","sat":"kg"},{"no":203,"nama":"SOL BLUE","kat":"Sol","sat":"kg"},{"no":204,"nama":"SOL ORANGE HR","kat":"Sol","sat":"kg"},{"no":205,"nama":"SOL VIOLET BL","kat":"Sol","sat":"kg"},{"no":206,"nama":"SOL GREY IBL","kat":"Sol","sat":"kg"},{"no":207,"nama":"SOL BROWN IRRD","kat":"Sol","sat":"kg"},{"no":208,"nama":"SOL PINK IR","kat":"Sol","sat":"kg"},{"no":209,"nama":"SN MERAH","kat":"Campuran","sat":"kg"},{"no":210,"nama":"SN KUNING","kat":"Campuran","sat":"kg"},{"no":211,"nama":"SODIUM NITRITE","kat":"Campuran","sat":"kg"},{"no":212,"nama":"SODIUM SULPHATE","kat":"Campuran","sat":"kg"},{"no":213,"nama":"KAPORITE","kat":"Campuran","sat":"kg"},{"no":214,"nama":"UVITEX CID","kat":"Campuran","sat":"kg"},{"no":215,"nama":"HAKKOL","kat":"Campuran","sat":"kg"},{"no":216,"nama":"ACID BLACK ATT","kat":"Campuran","sat":"kg"},{"no":217,"nama":"ACID ORANGE II","kat":"Campuran","sat":"kg"},{"no":218,"nama":"SODA ASH","kat":"Campuran","sat":"kg"},{"no":219,"nama":"CUKA","kat":"Campuran","sat":"kg"},{"no":220,"nama":"KUSTIK SODA","kat":"Campuran","sat":"kg"},{"no":221,"nama":"RAPID MERAH","kat":"Campuran","sat":"kg"},{"no":222,"nama":"HYDROSULPHITE BASF","kat":"Campuran","sat":"kg"},{"no":223,"nama":"HYDROSULPHITE RRT","kat":"Campuran","sat":"kg"},{"no":224,"nama":"RAPID HITAM","kat":"Campuran","sat":"kg"},{"no":225,"nama":"TRO POWDER","kat":"Campuran","sat":"kg"},{"no":226,"nama":"MANOTEX","kat":"Campuran","sat":"kg"},{"no":227,"nama":"PERSOFTAL FLAKE","kat":"Campuran","sat":"kg"},{"no":228,"nama":"SOGA 91","kat":"Campuran","sat":"kg"},{"no":229,"nama":"SUPER GLOW","kat":"Campuran","sat":"kg"},{"no":230,"nama":"KENFIX","kat":"Campuran","sat":"kg"},{"no":231,"nama":"SODA KUE","kat":"Campuran","sat":"kg"},{"no":232,"nama":"TUNJUNG","kat":"Campuran","sat":"kg"},{"no":233,"nama":"GUN 30","kat":"Campuran","sat":"pcs"},{"no":234,"nama":"GUN 26","kat":"Campuran","sat":"pcs"},{"no":235,"nama":"TEROPONG","kat":"Campuran","sat":"pcs"},{"no":236,"nama":"RELL GUN 140 CM","kat":"Campuran","sat":"pcs"},{"no":237,"nama":"RELL GUN 150 CM (BEKAS)","kat":"Campuran","sat":"pcs"},{"no":238,"nama":"RELL GUN 190 CM","kat":"Campuran","sat":"pcs"},{"no":239,"nama":"KARET TANGAN ENGGAL","kat":"Campuran","sat":"pcs"},{"no":240,"nama":"GLOVE B45 BLACK MTK","kat":"Campuran","sat":"pcs"},{"no":241,"nama":"GLOVE K1 WHITE MTK","kat":"Campuran","sat":"pcs"},{"no":242,"nama":"SILICON EMULSION","kat":"Campuran","sat":"kg"},{"no":243,"nama":"WHITENING CN","kat":"Campuran","sat":"kg"},{"no":244,"nama":"DISPERSING AGENT MF","kat":"Campuran","sat":"kg"},{"no":245,"nama":"DISPERSING AGENT NNO","kat":"Campuran","sat":"kg"},{"no":246,"nama":"TAWAS","kat":"Campuran","sat":"kg"},{"no":247,"nama":"WATERGLASS / WATER GLASS","kat":"Sablon/Campuran","sat":"kg"},{"no":248,"nama":"CALATAC / APPRETAN EM","kat":"Sablon/Campuran","sat":"kg"},{"no":249,"nama":"BORDO FR","kat":"Sablon/Campuran","sat":"kg"},{"no":250,"nama":"PINK SP","kat":"Sablon/Campuran","sat":"kg"},{"no":251,"nama":"NEGROSIN","kat":"Sablon/Campuran","sat":"kg"},{"no":252,"nama":"ORANGE TGR","kat":"Sablon/Campuran","sat":"kg"},{"no":253,"nama":"GREEN L5G","kat":"Sablon/Campuran","sat":"kg"},{"no":254,"nama":"YELLOW GSN","kat":"Sablon/Campuran","sat":"kg"},{"no":255,"nama":"BINDER MTB / HELICRON B","kat":"Sablon/Campuran","sat":"kg"},{"no":256,"nama":"SANDOFIX","kat":"Sablon/Campuran","sat":"kg"},{"no":257,"nama":"VIOLET BL","kat":"Sablon/Campuran","sat":"kg"},{"no":258,"nama":"SUPER WHITE IG","kat":"Sablon/Campuran","sat":"kg"},{"no":259,"nama":"BLUE SIN","kat":"Sablon/Campuran","sat":"kg"},{"no":260,"nama":"VIOLET SIN","kat":"Sablon/Campuran","sat":"kg"},{"no":261,"nama":"PINK SIN","kat":"Sablon/Campuran","sat":"kg"},{"no":262,"nama":"ORANGE SIN","kat":"Sablon/Campuran","sat":"kg"},{"no":263,"nama":"GREEN SIN","kat":"Sablon/Campuran","sat":"kg"},{"no":264,"nama":"LEMON SIN","kat":"Sablon/Campuran","sat":"kg"},{"no":265,"nama":"YELLOW SIN","kat":"Sablon/Campuran","sat":"kg"},{"no":266,"nama":"PIKER BAGUS","kat":"Sablon/Campuran","sat":"pcs"},{"no":267,"nama":"PIKER TIDAK BAGUS","kat":"Sablon/Campuran","sat":"kg"},{"no":268,"nama":"LADY GUESS / RULO","kat":"Sablon/Campuran","sat":"kg"},{"no":269,"nama":"CANTING NO. 0","kat":"Sablon/Campuran","sat":"pcs"},{"no":270,"nama":"CANTING NO. 1","kat":"Sablon/Campuran","sat":"pcs"},{"no":271,"nama":"CANTING NO. 2","kat":"Sablon/Campuran","sat":"pcs"},{"no":272,"nama":"CANTING NO. 3","kat":"Sablon/Campuran","sat":"pcs"},{"no":273,"nama":"CANTING NO. 4","kat":"Sablon/Campuran","sat":"pcs"},{"no":274,"nama":"CANTING NO. 5","kat":"Sablon/Campuran","sat":"pcs"},{"no":275,"nama":"CANTING NO. 6","kat":"Sablon/Campuran","sat":"pcs"},{"no":276,"nama":"CANTING NO. 7","kat":"Sablon/Campuran","sat":"pcs"},{"no":277,"nama":"CANTING NO. 8","kat":"Sablon/Campuran","sat":"pcs"},{"no":278,"nama":"CANTING LUBANG 2","kat":"Sablon/Campuran","sat":"pcs"},{"no":279,"nama":"CANTING LUBANG 3","kat":"Sablon/Campuran","sat":"pcs"},{"no":280,"nama":"TALI PUYUH","kat":"Sablon/Campuran","sat":"pcs"},{"no":281,"nama":"PALET KAYU","kat":"Sablon/Campuran","sat":"pcs"},{"no":282,"nama":"PALET KERTAS","kat":"Sablon/Campuran","sat":"pcs"},{"no":283,"nama":"KLOSAN","kat":"Sablon/Campuran","sat":"pcs"},{"no":284,"nama":"CARIER","kat":"Sablon/Campuran","sat":"pcs"},{"no":285,"nama":"PRIMA LEVEL","kat":"Sablon/Campuran","sat":"pcs"},{"no":286,"nama":"LEAVANT","kat":"Sablon/Campuran","sat":"kg"},{"no":287,"nama":"SCOT RUBINE","kat":"Sablon/Campuran","sat":"kg"},{"no":288,"nama":"RED FFG","kat":"Sablon/Campuran","sat":"kg"},{"no":289,"nama":"BROWN RR","kat":"Sablon/Campuran","sat":"kg"},{"no":290,"nama":"NAVY BLUE SABLON","kat":"Sablon/Campuran","sat":"kg"},{"no":291,"nama":"EVOSOFT","kat":"Sablon/Campuran","sat":"kg"},{"no":292,"nama":"SISIR 52","kat":"Sablon/Campuran","sat":"pcs"},{"no":293,"nama":"SISIR 60","kat":"Sablon/Campuran","sat":"pcs"},{"no":294,"nama":"SISIR 70","kat":"Sablon/Campuran","sat":"pcs"},{"no":295,"nama":"SISIR 80 140 CM","kat":"Sablon/Campuran","sat":"pcs"},{"no":296,"nama":"SISIR 80 160 CM","kat":"Sablon/Campuran","sat":"pcs"},{"no":297,"nama":"SISIR 90 140 CM","kat":"Sablon/Campuran","sat":"pcs"},{"no":298,"nama":"EMULSIFIER","kat":"Sablon/Campuran","sat":"kg"},{"no":299,"nama":"BLACK K SABLON","kat":"Sablon/Campuran","sat":"kg"},{"no":300,"nama":"YELLOW IR SABLON","kat":"Sablon/Campuran","sat":"kg"},{"no":301,"nama":"BLUE FBL SABLON","kat":"Sablon/Campuran","sat":"kg"},{"no":302,"nama":"GREEN LXB SABLON","kat":"Sablon/Campuran","sat":"kg"},{"no":303,"nama":"RED KG3R SABLON","kat":"Sablon/Campuran","sat":"kg"}];
@@ -218,7 +266,18 @@ const MASTER=[{"no":1,"nama":"NAPHTOL ASBS","kat":"Naphtol","sat":"kg"},{"no":2,
 // ===================== STATE =====================
 const IDR = v => 'Rp ' + Math.round(v).toLocaleString('id-ID');
 const USD = v => '$' + (Math.round(v*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-const fmtTgl = d => { if(!d) return ''; const p=d.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; };
+const pad2 = n => String(n).padStart(2,'0');
+function getTglStr() {
+  const h = parseInt(document.getElementById('tglHari').value) || 0;
+  const b = parseInt(document.getElementById('tglBulan').value) || 0;
+  if(!h || !b) return '';
+  return pad2(h) + '/' + pad2(b) + '/2026';
+}
+function setTglToday() {
+  const now = new Date();
+  document.getElementById('tglHari').value = now.getDate();
+  document.getElementById('tglBulan').value = now.getMonth() + 1;
+}
 let queue = [];       // [{file, data(base64), done}]
 let queueIdx = -1;
 let rows = [];        // {id, nama, qty, sat, usd, harga(Rp), raw}
@@ -265,7 +324,7 @@ function addToQueue(inp) {
   [...inp.files].forEach(f => {
     const r = new FileReader();
     r.onload = e => {
-      queue.push({file:f, data:e.target.result, done:false});
+      queue.push({file:f, data:e.target.result, done:false, rot:0});
       renderQueue();
     };
     r.readAsDataURL(f);
@@ -293,7 +352,37 @@ function renderQueue() {
     pw.style.display = 'none';
   }
   updateExtBtn();
+  renderPreview();
 }
+
+// ===================== PREVIEW & ROTATE =====================
+function renderPreview() {
+  const card = document.getElementById('previewCard');
+  if(queueIdx < 0 || !queue[queueIdx]) { card.style.display = 'none'; return; }
+  card.style.display = 'block';
+  const q = queue[queueIdx];
+  const deg = q.rot || 0;
+  const pi = document.getElementById('previewImg');
+  const mi = document.getElementById('modalImg');
+  pi.src = q.data; pi.style.transform = `rotate(${deg}deg)`;
+  mi.src = q.data; mi.style.transform = `rotate(${deg}deg)`;
+  document.getElementById('previewTitle').textContent = `🔍 Preview Nota ${queueIdx+1} dari ${queue.length}`;
+}
+
+function rotatePreview(d) {
+  if(queueIdx < 0 || !queue[queueIdx]) return;
+  queue[queueIdx].rot = ((queue[queueIdx].rot || 0) + d + 360) % 360;
+  renderPreview();
+}
+
+function openModal() {
+  if(queueIdx < 0 || !queue[queueIdx]) return;
+  document.getElementById('imgModal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('imgModal').classList.remove('show');
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 
 function removeFromQueue(i) {
   queue.splice(i, 1);
@@ -390,7 +479,13 @@ async function extractCurrent() {
     if(e2 < 0) throw new Error("JSON tidak lengkap");
     const parsed = JSON.parse(cleaned.substring(s, e2+1));
 
-    if(parsed.tanggal) document.getElementById('tgl').value = parsed.tanggal;
+    if(parsed.tanggal) {
+      const p = String(parsed.tanggal).split('-');
+      if(p.length === 3) {
+        document.getElementById('tglHari').value = parseInt(p[2]) || '';
+        document.getElementById('tglBulan').value = parseInt(p[1]) || '';
+      }
+    }
     if(parsed.supplier) document.getElementById('supplier').value = parsed.supplier;
     if(parsed.kota) document.getElementById('kota').value = parsed.kota;
     if(parsed.no_nota) document.getElementById('noNota').value = parsed.no_nota;
@@ -580,7 +675,7 @@ function hideAc() {
 
 // ===================== COPY TO GOOGLE SHEET =====================
 function copyToClipboard() {
-  const tgl = document.getElementById('tgl').value;
+  const tglStr = getTglStr();
   const sup = document.getElementById('supplier').value.trim();
   const kota = document.getElementById('kota').value.trim();
   const noNota = document.getElementById('noNota').value.trim();
@@ -596,7 +691,7 @@ function copyToClipboard() {
     const sub = (parseFloat(r.qty)||0) * rp;
     const ketRow = getKet(r);
     return [
-      fmtTgl(tgl),
+      tglStr,
       sup,
       kota,
       noNota,
@@ -633,7 +728,7 @@ function copyToClipboard() {
 
 // ===================== RESET =====================
 function resetForm() {
-  document.getElementById('tgl').value = new Date().toISOString().split('T')[0];
+  setTglToday();
   document.getElementById('supplier').value = '';
   document.getElementById('kota').value = '';
   document.getElementById('noNota').value = '';
@@ -649,7 +744,7 @@ function resetForm() {
 }
 
 // ===================== INIT =====================
-document.getElementById('tgl').value = new Date().toISOString().split('T')[0];
+setTglToday();
 addRow();
 renderQueue();
 </script>
