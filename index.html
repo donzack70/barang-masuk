@@ -11,7 +11,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .topbar h1{font-size:15px;font-weight:600;flex:1}
 .topbar .sub{font-size:11px;color:#999}
 .badge{font-size:11px;background:#fdeee5;color:#b5541a;padding:2px 8px;border-radius:20px;font-weight:500}
-.main{max-width:1080px;margin:0 auto;padding:16px 14px 60px}
+.main{max-width:1240px;margin:0 auto;padding:16px 14px 60px}
+.layout{display:flex;gap:14px;align-items:flex-start}
+.form-col{flex:1;min-width:0}
+.photo-col{width:320px;flex-shrink:0;position:sticky;top:64px}
+@media (max-width:900px){.layout{flex-direction:column}.photo-col{width:100%;position:static}}
 .card{background:#fff;border:1px solid #e8e8e6;border-radius:12px;padding:14px 18px;margin-bottom:12px}
 .card-title{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
 /* API KEY */
@@ -21,8 +25,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .key-hint{font-size:11px;color:#bbb;margin-top:5px}
 .key-hint a{color:#b5541a}
 /* QUEUE */
-.queue-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.queue-count{font-size:12px;color:#666;background:#f0f0ee;padding:3px 10px;border-radius:20px}
 .queue-thumbs{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .thumb{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:2px solid #e8e8e6;cursor:pointer;flex-shrink:0}
 .thumb img{width:100%;height:100%;object-fit:cover}
@@ -30,7 +32,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .thumb.active{border-color:#b5541a}
 .thumb.done{border-color:#2d8a4e}
 .thumb.done::after{content:'✓';position:absolute;top:2px;right:4px;color:#2d8a4e;font-size:14px;font-weight:700;text-shadow:0 0 3px #fff}
-.thumb.processing{border-color:#f0a500}
 .thumb .del-th{position:absolute;top:-1px;right:-1px;background:#fff;border:1px solid #ddd;border-radius:50%;width:16px;height:16px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#999}
 .upload-zone{border:2px dashed #ddd;border-radius:10px;padding:22px 16px;text-align:center;cursor:pointer;transition:all .15s;background:#fafafa}
 .upload-zone:hover{background:#f0f0ee;border-color:#bbb}
@@ -54,8 +55,8 @@ input[type=file]{display:none}
 .meta-grid{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;margin-bottom:8px}
 .meta-grid-2{display:grid;grid-template-columns:1fr 2fr;gap:8px}
 .field label{font-size:11px;color:#888;display:block;margin-bottom:3px;font-weight:500}
-.field input{width:100%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;background:#fafafa}
-.field input:focus{outline:none;border-color:#b5541a;background:#fff}
+.field input,.field select{width:100%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;background:#fafafa}
+.field input:focus,.field select:focus{outline:none;border-color:#b5541a;background:#fff}
 /* TABLE */
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
@@ -63,18 +64,14 @@ th{text-align:left;padding:7px 8px;border-bottom:1.5px solid #e8e8e6;color:#888;
 td{padding:6px 7px;border-bottom:1px solid #f0f0ee;vertical-align:top}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#fafafe}
-/* CUSTOM DATALIST INPUT */
 .nama-wrap{position:relative}
 .nama-inp{width:100%;padding:5px 7px;border:1px solid #ddd;border-radius:6px;font-size:12px;background:#fafafa;min-width:170px}
 .nama-inp:focus{outline:none;border-color:#b5541a;background:#fff}
 .nama-inp.warn{border-color:#e6a817;background:#fffbf0}
 .nama-inp.ok{border-color:#2d8a4e}
-/* NUMBER INPUTS */
 .num{width:72px;padding:5px 6px;border:1px solid #ddd;border-radius:6px;font-size:12px;text-align:right;background:#fafafa}
 .num:focus{outline:none;border-color:#b5541a;background:#fff}
 .num.price-diff{border-color:#e6a817;background:#fffbf0}
-.num.auto{background:#eef6f0}
-/* CELLS */
 .sub-cell{font-weight:600;text-align:right;white-space:nowrap}
 .master-price{font-size:11px;color:#888;white-space:nowrap}
 .master-price.diff{color:#e6a817;font-weight:600}
@@ -95,17 +92,22 @@ tr:hover td{background:#fafafe}
 .btn-next:disabled{background:#bbb;cursor:not-allowed}
 .btn-reset{padding:9px 14px;background:none;color:#888;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer}
 .btn-reset:hover{background:#f7f7f5}
-/* MESSAGES */
 .ok-msg{background:#f0faf4;border:1px solid #b2dfc5;border-radius:8px;padding:8px 12px;font-size:12px;color:#2d8a4e;margin-top:8px;display:none}
 .err-msg{background:#fdf5f5;border:1px solid #f5c6c6;border-radius:8px;padding:8px 12px;font-size:12px;color:#c0392b;margin-top:8px;display:none}
-/* AUTOCOMPLETE DROPDOWN */
-.ac-wrap{position:relative}
 .ac-list{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ddd;border-radius:7px;box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:200;max-height:180px;overflow-y:auto;display:none}
 .ac-list.show{display:block}
 .ac-item{padding:6px 10px;cursor:pointer;font-size:12px;border-bottom:1px solid #f5f5f5}
 .ac-item:last-child{border-bottom:none}
 .ac-item:hover,.ac-item.active{background:#fdeee5;color:#b5541a}
 .ac-item .kat{font-size:10px;color:#bbb;margin-left:5px}
+/* PHOTO PREVIEW */
+.photo-frame{border:1px solid #e8e8e6;border-radius:10px;overflow:hidden;background:#fafafa}
+.photo-frame img{width:100%;display:block;cursor:zoom-in}
+.photo-empty{font-size:12px;color:#bbb;text-align:center;padding:40px 10px}
+.photo-caption{font-size:11px;color:#999;margin-top:6px;text-align:center}
+.zoom-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;align-items:center;justify-content:center;cursor:zoom-out;padding:20px}
+.zoom-overlay.show{display:flex}
+.zoom-overlay img{max-width:100%;max-height:100%;border-radius:6px}
 </style>
 </head>
 <body>
@@ -119,6 +121,9 @@ tr:hover td{background:#fafafe}
 </div>
 
 <div class="main">
+<div class="layout">
+
+<div class="form-col">
 
 <!-- API KEY -->
 <div class="card">
@@ -158,8 +163,8 @@ tr:hover td{background:#fafafe}
   <div class="meta-grid">
     <div class="field"><label>Tanggal (tgl / bln — tahun 2026)</label>
       <div style="display:flex;gap:4px">
-        <input type="number" id="tglHari" min="1" max="31" placeholder="Tgl" style="width:50%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;background:#fafafa">
-        <select id="tglBulan" style="width:50%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;background:#fafafa">
+        <input type="number" id="tglHari" min="1" max="31" placeholder="Tgl">
+        <select id="tglBulan">
           <option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option><option value="04">Apr</option><option value="05">Mei</option><option value="06">Jun</option><option value="07">Jul</option><option value="08">Agu</option><option value="09">Sep</option><option value="10">Okt</option><option value="11">Nov</option><option value="12">Des</option>
         </select>
       </div>
@@ -168,13 +173,10 @@ tr:hover td{background:#fafafe}
     <div class="field"><label>No. Faktur / PO</label><input type="text" id="noFaktur" placeholder="INV-001/VI/2026"></div>
   </div>
   <div class="meta-grid-2">
-    <div class="field">
-      <label>Kurs default (Rp / USD)</label>
-      <input type="number" id="kursDefault" placeholder="cth: 16300" oninput="updateExtBtn()">
-    </div>
+    <div class="field"><label>Kurs default (Rp / USD)</label><input type="number" id="kursDefault" placeholder="cth: 16300" oninput="updateExtBtn()"></div>
     <div class="field"><label>Keterangan (opsional)</label><input type="text" id="ket" placeholder="Catatan tambahan"></div>
   </div>
-  <div class="key-hint">Isi kurs default jika faktur pakai harga USD — kurs ini otomatis dipakai tiap baris baru (bisa diedit per baris juga).</div>
+  <div class="key-hint">Isi kurs default jika faktur pakai harga USD — otomatis dipakai tiap baris baru (tetap bisa diedit per baris).</div>
 </div>
 
 <!-- TABEL BARANG -->
@@ -203,6 +205,21 @@ tr:hover td{background:#fafafe}
   <button class="add-row-btn" onclick="addRow()">+ Tambah baris</button>
 </div>
 
+</div><!-- end form-col -->
+
+<div class="photo-col">
+  <div class="card">
+    <div class="card-title">🖼️ Foto Nota Aktif</div>
+    <div class="photo-frame" id="photoFrame">
+      <div class="photo-empty" id="photoEmpty">Belum ada foto dipilih.<br>Upload foto di sebelah kiri.</div>
+      <img id="photoImg" style="display:none" onclick="openZoom()">
+    </div>
+    <div class="photo-caption" id="photoCaption"></div>
+  </div>
+</div>
+
+</div><!-- end layout -->
+
 <!-- FOOTER -->
 <div class="footer-card">
   <div>
@@ -220,8 +237,8 @@ tr:hover td{background:#fafafe}
 
 </div><!-- end main -->
 
-<!-- AUTOCOMPLETE LIST (shared) -->
 <div class="ac-list" id="acList"></div>
+<div class="zoom-overlay" id="zoomOverlay" onclick="closeZoom()"><img id="zoomImg"></div>
 
 <script>
 // ===================== MASTER DATA =====================
@@ -230,22 +247,22 @@ const MASTER=[{"no":1,"nama":"NAPHTOL ASBS","kat":"Naphtol","sat":"kg","harga":2
 // ===================== STATE =====================
 const IDR = v => 'Rp ' + Math.round(v).toLocaleString('id-ID');
 const fmtTgl = d => { if(!d) return ''; const p=d.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; };
-let queue = [];       // [{file, data(base64)}]
-let queueIdx = -1;   // index yang sedang aktif
+let queue = [];
+let queueIdx = -1;
 let rows = [];
 let rowCounter = 0;
 let keyVis = false;
 let activeAcRow = null;
 
+function findMaster(nama) {
+  if(!nama) return null;
+  return MASTER.find(m => m.nama.toLowerCase() === nama.trim().toLowerCase()) || null;
+}
+
 function getTgl() {
   const h = String(document.getElementById('tglHari').value || '1').padStart(2,'0');
   const b = document.getElementById('tglBulan').value || '01';
   return `2026-${b}-${h}`;
-}
-
-function findMaster(nama) {
-  if(!nama) return null;
-  return MASTER.find(m => m.nama.toLowerCase() === nama.trim().toLowerCase()) || null;
 }
 
 // ===================== KEY =====================
@@ -262,12 +279,13 @@ function checkKey() {
   updateExtBtn();
 }
 
-// ===================== QUEUE =====================
+// ===================== QUEUE + PHOTO PREVIEW =====================
 function addToQueue(inp) {
   [...inp.files].forEach(f => {
     const r = new FileReader();
     r.onload = e => {
       queue.push({file:f, data:e.target.result, done:false});
+      if(queueIdx < 0) queueIdx = queue.length - 1;
       renderQueue();
     };
     r.readAsDataURL(f);
@@ -294,7 +312,34 @@ function renderQueue() {
   } else {
     pw.style.display = 'none';
   }
+  updatePhotoPreview();
   updateExtBtn();
+}
+
+function updatePhotoPreview() {
+  const img = document.getElementById('photoImg');
+  const empty = document.getElementById('photoEmpty');
+  const cap = document.getElementById('photoCaption');
+  if(queueIdx >= 0 && queue[queueIdx]) {
+    img.src = queue[queueIdx].data;
+    img.style.display = 'block';
+    empty.style.display = 'none';
+    cap.textContent = `Nota ${queueIdx+1} dari ${queue.length} — klik foto untuk perbesar`;
+  } else {
+    img.style.display = 'none';
+    empty.style.display = 'block';
+    cap.textContent = '';
+  }
+}
+
+function openZoom() {
+  const img = document.getElementById('photoImg');
+  if(!img.src) return;
+  document.getElementById('zoomImg').src = img.src;
+  document.getElementById('zoomOverlay').classList.add('show');
+}
+function closeZoom() {
+  document.getElementById('zoomOverlay').classList.remove('show');
 }
 
 function removeFromQueue(i) {
@@ -305,11 +350,9 @@ function removeFromQueue(i) {
 
 function jumpTo(i) {
   if(i === queueIdx) return;
-  if(!queue[i].done) {
-    queueIdx = i;
-    renderQueue();
-    resetForm();
-  }
+  queueIdx = i;
+  renderQueue();
+  if(!queue[i].done) resetForm();
 }
 
 function updateExtBtn() {
@@ -438,8 +481,8 @@ Aturan:
 - nama_master harus persis dari master list (case-insensitive)
 - Jika tidak ada padanan, isi nama_master dengan string kosong ""
 - qty adalah angka
-- Jika harga di nota tertulis dalam USD/dollar, isi harga_usd dan kurs (jika kurs tertera di nota). Kosongkan (0) field "harga" jika hanya ada USD.
-- Jika harga di nota tertulis dalam Rupiah langsung, isi field "harga" (per satuan/pcs), kosongkan (0) harga_usd dan kurs.
+- Jika harga di nota tertulis dalam USD/dollar, isi harga_usd dan kurs (jika kurs tertera). Kosongkan (0) field "harga" jika hanya ada USD.
+- Jika harga tertulis dalam Rupiah langsung, isi field "harga" (per satuan/pcs), kosongkan (0) harga_usd dan kurs.
 - kurs di level nota (top-level "kurs") isi jika ada 1 kurs berlaku untuk seluruh nota
 - Balas HANYA JSON tanpa penjelasan tanpa markdown
 
@@ -541,6 +584,7 @@ function renderTable() {
 // ===================== AUTOCOMPLETE =====================
 function onNamaInput(idx, inp) {
   activeAcRow = idx;
+  rows[idx].nama = inp.value;
   const val = inp.value.trim().toLowerCase();
   const list = document.getElementById('acList');
 
@@ -548,25 +592,28 @@ function onNamaInput(idx, inp) {
     ? MASTER.slice(0,30)
     : MASTER.filter(m => m.nama.toLowerCase().includes(val)).slice(0,20);
 
-  if(matches.length === 0) { list.classList.remove('show'); return; }
+  if(matches.length === 0) {
+    list.classList.remove('show');
+  } else {
+    const rect = inp.getBoundingClientRect();
+    list.style.position = 'fixed';
+    list.style.top = (rect.bottom+2)+'px';
+    list.style.left = rect.left+'px';
+    list.style.width = Math.max(rect.width,220)+'px';
+    list.innerHTML = matches.map(m=>
+      `<div class="ac-item" onmousedown="selectAc(${idx},'${m.nama.replace(/'/g,"\\'")}')">
+        ${m.nama}<span class="kat">${m.kat}</span>
+      </div>`).join('');
+    list.classList.add('show');
+  }
 
-  const rect = inp.getBoundingClientRect();
-  list.style.position = 'fixed';
-  list.style.top = (rect.bottom+2)+'px';
-  list.style.left = rect.left+'px';
-  list.style.width = Math.max(rect.width,220)+'px';
-  list.innerHTML = matches.map(m=>
-    `<div class="ac-item" onmousedown="selectAc(${idx},'${m.nama.replace(/'/g,"\\'")}')">
-      ${m.nama}<span class="kat">${m.kat}</span>
-    </div>`).join('');
-  list.classList.add('show');
-
-  rows[idx].nama = inp.value;
   updateKetCell(idx);
 }
 
 function selectAc(idx, nama) {
   rows[idx].nama = nama;
+  const m = findMaster(nama);
+  if(m) { rows[idx].harga = m.harga; rows[idx].sat = m.sat; }
   document.getElementById('acList').classList.remove('show');
   renderTable();
   setTimeout(()=>{ const el=document.getElementById(`nama_${rows[idx]?.id}`); if(el) el.blur(); },50);
