@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Input Nota — CV Warna Indah Chemical</title>
+<title>Input Barang Masuk — CV Warna Indah Chemical</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;background:#f5f5f3;color:#1a1a1a;min-height:100vh}
 .topbar{background:#fff;border-bottom:1px solid #e5e5e3;padding:11px 20px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 .topbar h1{font-size:15px;font-weight:600;flex:1}
 .topbar .sub{font-size:11px;color:#999}
-.badge{font-size:11px;background:#e8f4fd;color:#1a6fb5;padding:2px 8px;border-radius:20px;font-weight:500}
-.main{max-width:980px;margin:0 auto;padding:16px 14px 60px}
+.badge{font-size:11px;background:#fdeee5;color:#b5541a;padding:2px 8px;border-radius:20px;font-weight:500}
+.main{max-width:1080px;margin:0 auto;padding:16px 14px 60px}
 .card{background:#fff;border:1px solid #e8e8e6;border-radius:12px;padding:14px 18px;margin-bottom:12px}
 .card-title{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
 /* API KEY */
 .key-row{display:flex;align-items:center;gap:8px}
 .key-row input{flex:1;padding:7px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:monospace;background:#fafafa}
-.key-row input:focus{outline:none;border-color:#1a6fb5}
+.key-row input:focus{outline:none;border-color:#b5541a}
 .key-hint{font-size:11px;color:#bbb;margin-top:5px}
-.key-hint a{color:#1a6fb5}
+.key-hint a{color:#b5541a}
 /* QUEUE */
 .queue-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
 .queue-count{font-size:12px;color:#666;background:#f0f0ee;padding:3px 10px;border-radius:20px}
@@ -27,7 +27,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-siz
 .thumb{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:2px solid #e8e8e6;cursor:pointer;flex-shrink:0}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .thumb .num{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);color:#fff;font-size:10px;text-align:center;padding:2px 0}
-.thumb.active{border-color:#1a6fb5}
+.thumb.active{border-color:#b5541a}
 .thumb.done{border-color:#2d8a4e}
 .thumb.done::after{content:'✓';position:absolute;top:2px;right:4px;color:#2d8a4e;font-size:14px;font-weight:700;text-shadow:0 0 3px #fff}
 .thumb.processing{border-color:#f0a500}
@@ -40,7 +40,7 @@ input[type=file]{display:none}
 /* PROGRESS */
 .progress-wrap{margin-top:10px;display:none}
 .progress-bar{height:4px;background:#e8e8e6;border-radius:4px;overflow:hidden}
-.progress-fill{height:100%;background:#1a6fb5;transition:width .3s}
+.progress-fill{height:100%;background:#b5541a;transition:width .3s}
 .progress-label{font-size:11px;color:#888;margin-top:4px;text-align:center}
 /* EXTRACT BTN */
 .ext-btn{width:100%;padding:9px;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;background:#fff;color:#333;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;transition:all .15s}
@@ -51,11 +51,11 @@ input[type=file]{display:none}
 .spinner{width:13px;height:13px;border:2px solid #ddd;border-top-color:#555;border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
 /* META */
-.meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.meta-grid{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;margin-bottom:8px}
 .meta-grid-2{display:grid;grid-template-columns:1fr 2fr;gap:8px}
 .field label{font-size:11px;color:#888;display:block;margin-bottom:3px;font-weight:500}
 .field input{width:100%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;background:#fafafa}
-.field input:focus{outline:none;border-color:#1a6fb5;background:#fff}
+.field input:focus{outline:none;border-color:#b5541a;background:#fff}
 /* TABLE */
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
@@ -65,14 +65,15 @@ tr:last-child td{border-bottom:none}
 tr:hover td{background:#fafafe}
 /* CUSTOM DATALIST INPUT */
 .nama-wrap{position:relative}
-.nama-inp{width:100%;padding:5px 7px;border:1px solid #ddd;border-radius:6px;font-size:12px;background:#fafafa;min-width:180px}
-.nama-inp:focus{outline:none;border-color:#1a6fb5;background:#fff}
+.nama-inp{width:100%;padding:5px 7px;border:1px solid #ddd;border-radius:6px;font-size:12px;background:#fafafa;min-width:170px}
+.nama-inp:focus{outline:none;border-color:#b5541a;background:#fff}
 .nama-inp.warn{border-color:#e6a817;background:#fffbf0}
 .nama-inp.ok{border-color:#2d8a4e}
 /* NUMBER INPUTS */
 .num{width:72px;padding:5px 6px;border:1px solid #ddd;border-radius:6px;font-size:12px;text-align:right;background:#fafafa}
-.num:focus{outline:none;border-color:#1a6fb5;background:#fff}
+.num:focus{outline:none;border-color:#b5541a;background:#fff}
 .num.price-diff{border-color:#e6a817;background:#fffbf0}
+.num.auto{background:#eef6f0}
 /* CELLS */
 .sub-cell{font-weight:600;text-align:right;white-space:nowrap}
 .master-price{font-size:11px;color:#888;white-space:nowrap}
@@ -87,8 +88,8 @@ tr:hover td{background:#fafafe}
 .total-lbl{font-size:11px;color:#888;margin-bottom:2px}
 .total-val{font-size:20px;font-weight:700}
 .btn-group{display:flex;gap:8px;flex-wrap:wrap}
-.btn-copy{padding:9px 18px;background:#1a6fb5;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s}
-.btn-copy:hover{background:#155fa0}
+.btn-copy{padding:9px 18px;background:#b5541a;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s}
+.btn-copy:hover{background:#96450f}
 .btn-next{padding:9px 18px;background:#2d8a4e;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s}
 .btn-next:hover{background:#256b3d}
 .btn-next:disabled{background:#bbb;cursor:not-allowed}
@@ -103,7 +104,7 @@ tr:hover td{background:#fafafe}
 .ac-list.show{display:block}
 .ac-item{padding:6px 10px;cursor:pointer;font-size:12px;border-bottom:1px solid #f5f5f5}
 .ac-item:last-child{border-bottom:none}
-.ac-item:hover,.ac-item.active{background:#e8f4fd;color:#1a6fb5}
+.ac-item:hover,.ac-item.active{background:#fdeee5;color:#b5541a}
 .ac-item .kat{font-size:10px;color:#bbb;margin-left:5px}
 </style>
 </head>
@@ -111,7 +112,7 @@ tr:hover td{background:#fafafe}
 
 <div class="topbar">
   <div style="flex:1">
-    <div style="font-size:15px;font-weight:600">Input Nota Penjualan</div>
+    <div style="font-size:15px;font-weight:600">Input Barang Masuk (Pembelian)</div>
     <div class="sub">CV Warna Indah Chemical — Surabaya</div>
   </div>
   <span class="badge" id="queueBadge">0 foto</span>
@@ -132,10 +133,10 @@ tr:hover td{background:#fafafe}
 
 <!-- UPLOAD & QUEUE -->
 <div class="card">
-  <div class="card-title">📸 Antrian Foto Nota</div>
+  <div class="card-title">📥 Antrian Foto Nota / Faktur Supplier</div>
   <div class="upload-zone" onclick="document.getElementById('imgInput').click()">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-    <p>Klik atau drag foto nota di sini</p>
+    <p>Klik atau drag foto nota/faktur supplier di sini</p>
     <p class="sub">Bisa pilih puluhan foto sekaligus — diproses satu per satu</p>
     <input type="file" id="imgInput" accept="image/*" multiple onchange="addToQueue(this)">
   </div>
@@ -153,31 +154,44 @@ tr:hover td{background:#fafafe}
 
 <!-- INFO NOTA -->
 <div class="card">
-  <div class="card-title">📋 Info Nota <span id="notaCounter" style="font-weight:400;color:#aaa"></span></div>
+  <div class="card-title">📋 Info Nota Masuk <span id="notaCounter" style="font-weight:400;color:#aaa"></span></div>
   <div class="meta-grid">
-    <div class="field"><label>Tanggal</label><input type="date" id="tgl"></div>
-    <div class="field"><label>Nama pelanggan</label><input type="text" id="pelanggan" placeholder="Nama toko / pembeli"></div>
-    <div class="field"><label>Kota asal</label><input type="text" id="kota" placeholder="Kota"></div>
+    <div class="field"><label>Tanggal (tgl / bln — tahun 2026)</label>
+      <div style="display:flex;gap:4px">
+        <input type="number" id="tglHari" min="1" max="31" placeholder="Tgl" style="width:50%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;background:#fafafa">
+        <select id="tglBulan" style="width:50%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;background:#fafafa">
+          <option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option><option value="04">Apr</option><option value="05">Mei</option><option value="06">Jun</option><option value="07">Jul</option><option value="08">Agu</option><option value="09">Sep</option><option value="10">Okt</option><option value="11">Nov</option><option value="12">Des</option>
+        </select>
+      </div>
+    </div>
+    <div class="field"><label>Nama Supplier</label><input type="text" id="supplier" placeholder="Nama supplier / pabrik"></div>
+    <div class="field"><label>No. Faktur / PO</label><input type="text" id="noFaktur" placeholder="INV-001/VI/2026"></div>
   </div>
   <div class="meta-grid-2">
-    <div class="field"><label>No. nota</label><input type="text" id="noNota" placeholder="001/VI/2026"></div>
+    <div class="field">
+      <label>Kurs default (Rp / USD)</label>
+      <input type="number" id="kursDefault" placeholder="cth: 16300" oninput="updateExtBtn()">
+    </div>
     <div class="field"><label>Keterangan (opsional)</label><input type="text" id="ket" placeholder="Catatan tambahan"></div>
   </div>
+  <div class="key-hint">Isi kurs default jika faktur pakai harga USD — kurs ini otomatis dipakai tiap baris baru (bisa diedit per baris juga).</div>
 </div>
 
 <!-- TABEL BARANG -->
 <div class="card">
-  <div class="card-title">🧾 Daftar Barang</div>
+  <div class="card-title">🧾 Daftar Barang Masuk</div>
   <div class="tbl-wrap">
     <table>
       <thead>
         <tr>
           <th style="width:24px">#</th>
-          <th style="min-width:190px">Nama Barang</th>
-          <th style="width:70px;text-align:right">Qty</th>
-          <th style="width:55px">Sat</th>
-          <th style="width:105px;text-align:right">Harga Nota</th>
-          <th style="width:105px;text-align:right">Harga Master</th>
+          <th style="min-width:180px">Nama Barang</th>
+          <th style="width:65px;text-align:right">Qty</th>
+          <th style="width:50px">Sat</th>
+          <th style="width:90px;text-align:right">Harga USD</th>
+          <th style="width:80px;text-align:right">Kurs</th>
+          <th style="width:100px;text-align:right">Harga Rp/pcs</th>
+          <th style="width:100px;text-align:right">Harga Master</th>
           <th style="width:110px;text-align:right">Subtotal</th>
           <th style="width:120px">Keterangan</th>
           <th style="width:28px"></th>
@@ -192,7 +206,7 @@ tr:hover td{background:#fafafe}
 <!-- FOOTER -->
 <div class="footer-card">
   <div>
-    <div class="total-lbl">Total nota</div>
+    <div class="total-lbl">Total nota masuk</div>
     <div class="total-val" id="grandTotal">Rp 0</div>
   </div>
   <div class="btn-group">
@@ -223,15 +237,15 @@ let rowCounter = 0;
 let keyVis = false;
 let activeAcRow = null;
 
+function getTgl() {
+  const h = String(document.getElementById('tglHari').value || '1').padStart(2,'0');
+  const b = document.getElementById('tglBulan').value || '01';
+  return `2026-${b}-${h}`;
+}
+
 function findMaster(nama) {
   if(!nama) return null;
   return MASTER.find(m => m.nama.toLowerCase() === nama.trim().toLowerCase()) || null;
-}
-function fuzzyMatch(nama) {
-  // Return master jika nama mirip (contained)
-  if(!nama || nama.trim().length < 2) return null;
-  const n = nama.trim().toLowerCase();
-  return MASTER.find(m => m.nama.toLowerCase().includes(n) || n.includes(m.nama.toLowerCase())) || null;
 }
 
 // ===================== KEY =====================
@@ -378,15 +392,28 @@ async function extractCurrent() {
     if(e2 < 0) throw new Error("JSON tidak lengkap");
     const parsed = JSON.parse(cleaned.substring(s, e2+1));
 
-    if(parsed.tanggal) document.getElementById('tgl').value = parsed.tanggal;
-    if(parsed.pelanggan) document.getElementById('pelanggan').value = parsed.pelanggan;
-    if(parsed.kota) document.getElementById('kota').value = parsed.kota;
-    if(parsed.no_nota) document.getElementById('noNota').value = parsed.no_nota;
+    if(parsed.tanggal) {
+      const tp = parsed.tanggal.split('-');
+      if(tp.length===3) {
+        document.getElementById('tglBulan').value = tp[1];
+        document.getElementById('tglHari').value = parseInt(tp[2],10);
+      }
+    }
+    if(parsed.supplier) document.getElementById('supplier').value = parsed.supplier;
+    if(parsed.no_faktur) document.getElementById('noFaktur').value = parsed.no_faktur;
+    if(parsed.kurs) document.getElementById('kursDefault').value = parsed.kurs;
+
+    const kursDefault = parseFloat(document.getElementById('kursDefault').value) || 0;
 
     rows = []; rowCounter = 0;
     (parsed.items||[]).forEach(item => {
       const m = findMaster(item.nama_master) || findMaster(item.nama_nota);
-      addRow(m?m.nama:item.nama_nota||'', item.qty||'', item.harga||(m?m.harga:0), item.satuan||'kg', item.nama_nota||'');
+      const kursItem = item.kurs || kursDefault || 0;
+      let harga = item.harga || 0;
+      const usd = item.harga_usd || 0;
+      if(!harga && usd && kursItem) harga = Math.round(usd*kursItem);
+      if(!harga && m) harga = m.harga;
+      addRow(m?m.nama:item.nama_nota||'', item.qty||'', harga, item.satuan||'kg', item.nama_nota||'', usd, kursItem);
     });
 
     btn.className = 'ext-btn success'; icon.textContent = '✔';
@@ -401,7 +428,7 @@ async function extractCurrent() {
 
 function buildPrompt() {
   const masterNames = MASTER.map(m=>`${m.nama}|${m.kat}`).join('\n');
-  return `Kamu adalah asisten OCR nota penjualan pewarna tekstil Indonesia.
+  return `Kamu adalah asisten OCR nota/faktur pembelian bahan kimia pewarna tekstil dari supplier ke perusahaan (barang masuk).
 Baca gambar nota dan ekstrak data berikut dalam format JSON.
 
 MASTER PRODUK:
@@ -410,10 +437,13 @@ ${masterNames}
 Aturan:
 - nama_master harus persis dari master list (case-insensitive)
 - Jika tidak ada padanan, isi nama_master dengan string kosong ""
-- qty adalah angka, harga adalah integer (0 jika tidak tertulis)
+- qty adalah angka
+- Jika harga di nota tertulis dalam USD/dollar, isi harga_usd dan kurs (jika kurs tertera di nota). Kosongkan (0) field "harga" jika hanya ada USD.
+- Jika harga di nota tertulis dalam Rupiah langsung, isi field "harga" (per satuan/pcs), kosongkan (0) harga_usd dan kurs.
+- kurs di level nota (top-level "kurs") isi jika ada 1 kurs berlaku untuk seluruh nota
 - Balas HANYA JSON tanpa penjelasan tanpa markdown
 
-{"tanggal":"YYYY-MM-DD","pelanggan":"","kota":"","no_nota":"","items":[{"nama_nota":"","nama_master":"","qty":0,"satuan":"kg","harga":0}]}`;
+{"tanggal":"YYYY-MM-DD","supplier":"","no_faktur":"","kurs":0,"items":[{"nama_nota":"","nama_master":"","qty":0,"satuan":"kg","harga_usd":0,"kurs":0,"harga":0}]}`;
 }
 
 // ===================== NEXT NOTA =====================
@@ -432,11 +462,25 @@ function goNext() {
 }
 
 // ===================== ROWS =====================
-function addRow(nama='', qty='', harga='', sat='kg', raw='') {
+function addRow(nama='', qty='', harga='', sat='kg', raw='', usd='', kurs='') {
   const id = ++rowCounter;
   const m = findMaster(nama);
-  const h = harga!=='' ? parseFloat(harga)||0 : (m?m.harga:0);
-  rows.push({id, nama:m?m.nama:nama, qty, harga:h, sat:sat||(m?m.sat:'kg'), raw});
+  const kursDefault = parseFloat(document.getElementById('kursDefault')?.value) || 0;
+  const kursVal = kurs !== '' ? kurs : kursDefault;
+  let h = harga!=='' ? parseFloat(harga)||0 : (m?m.harga:0);
+  const usdVal = usd || '';
+  if(!h && usdVal && kursVal) h = Math.round(parseFloat(usdVal)*parseFloat(kursVal));
+  rows.push({id, nama:m?m.nama:nama, qty, harga:h, sat:sat||(m?m.sat:'kg'), raw, usd:usdVal, kurs:kursVal||''});
+  renderTable();
+}
+
+function recalcRow(i) {
+  const r = rows[i];
+  const usd = parseFloat(r.usd)||0;
+  const kurs = parseFloat(r.kurs)||0;
+  if(usd>0 && kurs>0) {
+    r.harga = Math.round(usd*kurs);
+  }
   renderTable();
 }
 
@@ -477,8 +521,10 @@ function renderTable() {
         </div>
       </td>
       <td><input class="num" type="number" min="0" step="0.25" value="${r.qty}" oninput="rows[${i}].qty=this.value;renderTable()" placeholder="0"></td>
-      <td><input style="width:52px;padding:4px 5px;border:1px solid #ddd;border-radius:6px;font-size:12px" value="${r.sat}" oninput="rows[${i}].sat=this.value"></td>
-      <td><input class="num${hargaDiff?' price-diff':''}" type="number" min="0" step="500" value="${r.harga}" oninput="rows[${i}].harga=this.value;renderTable()" placeholder="0" style="width:100px"></td>
+      <td><input style="width:48px;padding:4px 5px;border:1px solid #ddd;border-radius:6px;font-size:12px" value="${r.sat}" oninput="rows[${i}].sat=this.value"></td>
+      <td><input class="num" type="number" min="0" step="0.01" value="${r.usd}" oninput="rows[${i}].usd=this.value;recalcRow(${i})" placeholder="—" style="width:80px"></td>
+      <td><input class="num" type="number" min="0" step="1" value="${r.kurs}" oninput="rows[${i}].kurs=this.value;recalcRow(${i})" placeholder="—" style="width:70px"></td>
+      <td><input class="num${hargaDiff?' price-diff':''}" type="number" min="0" step="500" value="${r.harga}" oninput="rows[${i}].harga=this.value;renderTable()" placeholder="0" style="width:95px"></td>
       <td class="master-price${hargaDiff?' diff':''}">
         ${masterHarga>0 ? IDR(masterHarga) : (m?'<span style="color:#bbb">-</span>':'<span style="color:#ccc">tidak ada</span>')}
         ${hargaDiff?'⚠':''}
@@ -515,17 +561,12 @@ function onNamaInput(idx, inp) {
     </div>`).join('');
   list.classList.add('show');
 
-  // Update row nama langsung saat ketik
   rows[idx].nama = inp.value;
-  const exactM = findMaster(inp.value);
-  if(exactM) { rows[idx].harga = exactM.harga; rows[idx].sat = exactM.sat; }
   updateKetCell(idx);
 }
 
 function selectAc(idx, nama) {
   rows[idx].nama = nama;
-  const m = findMaster(nama);
-  if(m) { rows[idx].harga = m.harga; rows[idx].sat = m.sat; }
   document.getElementById('acList').classList.remove('show');
   renderTable();
   setTimeout(()=>{ const el=document.getElementById(`nama_${rows[idx]?.id}`); if(el) el.blur(); },50);
@@ -536,21 +577,18 @@ function hideAc() {
 }
 
 function updateKetCell(idx) {
-  // lightweight update without full re-render
   renderTable();
 }
 
 // ===================== COPY TO GOOGLE SHEET =====================
 function copyToClipboard() {
-  const tgl = document.getElementById('tgl').value;
-  const pel = document.getElementById('pelanggan').value.trim();
-  const kota = document.getElementById('kota').value.trim();
-  const noNota = document.getElementById('noNota').value.trim();
+  const tgl = getTgl();
+  const supplier = document.getElementById('supplier').value.trim();
+  const noFaktur = document.getElementById('noFaktur').value.trim();
   const ket = document.getElementById('ket').value.trim();
   const valid = rows.filter(r=>r.nama && r.qty);
   if(!valid.length) { alert('Tidak ada data barang.'); return; }
 
-  // Format: Tanggal \t Pelanggan \t Kota \t No.Nota \t Nama Barang \t Qty \t Sat \t Harga \t Subtotal \t Harga Master \t Keterangan
   const lines = valid.map(r => {
     const sub = (parseFloat(r.qty)||0)*(parseFloat(r.harga)||0);
     const m = findMaster(r.nama);
@@ -558,12 +596,13 @@ function copyToClipboard() {
     const ketRow = getKet(r);
     return [
       fmtTgl(tgl),
-      pel,
-      kota,
-      noNota,
+      supplier,
+      noFaktur,
       r.nama,
       r.qty,
       r.sat,
+      r.usd||'',
+      r.kurs||'',
       parseFloat(r.harga)||0,
       Math.round(sub),
       masterH||'',
@@ -571,8 +610,7 @@ function copyToClipboard() {
     ].join('\t');
   });
 
-  // Header row
-  const header = ['Tanggal','Pelanggan','Kota','No.Nota','Nama Barang','Qty','Sat','Harga','Subtotal','Harga Master','Keterangan'].join('\t');
+  const header = ['Tanggal','Supplier','No.Faktur','Nama Barang','Qty','Sat','Harga USD','Kurs','Harga Rp','Subtotal','Harga Master','Keterangan'].join('\t');
   const tsv = header + '\n' + lines.join('\n');
 
   navigator.clipboard.writeText(tsv).then(() => {
@@ -580,7 +618,6 @@ function copyToClipboard() {
     ok.style.display = 'block';
     setTimeout(()=>ok.style.display='none', 3000);
   }).catch(() => {
-    // Fallback
     const ta = document.createElement('textarea');
     ta.value = tsv; ta.style.position='fixed'; ta.style.opacity='0';
     document.body.appendChild(ta); ta.select();
@@ -593,10 +630,12 @@ function copyToClipboard() {
 
 // ===================== RESET =====================
 function resetForm() {
-  document.getElementById('tgl').value = new Date().toISOString().split('T')[0];
-  document.getElementById('pelanggan').value = '';
-  document.getElementById('kota').value = '';
-  document.getElementById('noNota').value = '';
+  const now = new Date();
+  document.getElementById('tglHari').value = now.getDate();
+  document.getElementById('tglBulan').value = String(now.getMonth()+1).padStart(2,'0');
+  document.getElementById('supplier').value = '';
+  document.getElementById('noFaktur').value = '';
+  document.getElementById('kursDefault').value = '';
   document.getElementById('ket').value = '';
   rows = []; rowCounter = 0;
   renderTable();
@@ -608,7 +647,11 @@ function resetForm() {
 }
 
 // ===================== INIT =====================
-document.getElementById('tgl').value = new Date().toISOString().split('T')[0];
+(function initTgl(){
+  const now = new Date();
+  document.getElementById('tglHari').value = now.getDate();
+  document.getElementById('tglBulan').value = String(now.getMonth()+1).padStart(2,'0');
+})();
 addRow();
 renderQueue();
 </script>
