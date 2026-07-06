@@ -3,51 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Input Nota Penjualan & Barang Masuk — CV Warna Indah Chemical</title>
+<title>Input Nota Barang Masuk — CV Warna Indah Chemical</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;background:#f5f5f3;color:#1a1a1a;min-height:100vh}
 .topbar{background:#fff;border-bottom:1px solid #e5e5e3;padding:11px 20px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,.04)}
 .topbar h1{font-size:15px;font-weight:600;flex:1}
 .topbar .sub{font-size:11px;color:#999}
-.badge{font-size:11px;background:#e8f4fd;color:#1a6fb5;padding:2px 8px;border-radius:20px;font-weight:500}
-.main{max-width:1400px;margin:0 auto;padding:16px 14px 60px}
-.main-layout{display:flex;gap:16px;align-items:flex-start}
-.main-form{flex:1;min-width:0}
-.preview-panel{width:420px;flex-shrink:0;position:sticky;top:60px;max-height:calc(100vh - 76px);display:none;flex-direction:column;background:#fff;border:1px solid #e8e8e6;border-radius:12px;overflow:hidden}
-.preview-panel.show{display:flex}
-.preview-header{padding:10px 14px;border-bottom:1px solid #f0f0ee;display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap}
-.preview-header span.ttl{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.06em;flex:1}
-.preview-nav{display:flex;align-items:center;gap:6px}
-.preview-nav button{padding:3px 8px;border:1px solid #ddd;border-radius:6px;background:#fafafa;cursor:pointer;font-size:12px;color:#555}
-.preview-nav button:hover{background:#e8e8e6}
-.preview-nav .pg{font-size:11px;color:#999;min-width:40px;text-align:center}
-.preview-img-wrap{flex:1;overflow:hidden;background:#888;display:flex;align-items:center;justify-content:center;padding:8px;min-height:220px}
-.preview-img-wrap img{max-width:100%;max-height:100%;border-radius:4px;cursor:zoom-in;transition:transform .25s;user-select:none}
-.preview-zoom{padding:8px 14px;border-top:1px solid #f0f0ee;display:flex;gap:6px;justify-content:center;flex-shrink:0;flex-wrap:wrap}
-.preview-zoom button{padding:4px 12px;border:1px solid #ddd;border-radius:6px;background:#fafafa;cursor:pointer;font-size:13px}
-.preview-zoom button:hover{background:#e8e8e6}
-.preview-hint{font-size:10px;color:#aaa;text-align:center;padding:0 10px 8px}
-@media(max-width:900px){.main-layout{flex-direction:column}.preview-panel{width:100%;position:relative;top:auto;max-height:60vh}.preview-img-wrap{min-height:300px}}
+.badge{font-size:11px;background:#eef6f0;color:#1e7a45;padding:2px 8px;border-radius:20px;font-weight:500}
+.main{max-width:1080px;margin:0 auto;padding:16px 14px 60px}
 .card{background:#fff;border:1px solid #e8e8e6;border-radius:12px;padding:14px 18px;margin-bottom:12px}
 .card-title{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
 /* API KEY */
 .key-row{display:flex;align-items:center;gap:8px}
 .key-row input{flex:1;padding:7px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:monospace;background:#fafafa}
-.key-row input:focus{outline:none;border-color:#1a6fb5}
+.key-row input:focus{outline:none;border-color:#1e7a45}
 .key-hint{font-size:11px;color:#bbb;margin-top:5px}
-.key-hint a{color:#1a6fb5}
+.key-hint a{color:#1e7a45}
 /* QUEUE */
-.queue-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.queue-count{font-size:12px;color:#666;background:#f0f0ee;padding:3px 10px;border-radius:20px}
 .queue-thumbs{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .thumb{position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:2px solid #e8e8e6;cursor:pointer;flex-shrink:0}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .thumb .num{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);color:#fff;font-size:10px;text-align:center;padding:2px 0}
-.thumb.active{border-color:#1a6fb5}
+.thumb.active{border-color:#1e7a45}
 .thumb.done{border-color:#2d8a4e}
 .thumb.done::after{content:'✓';position:absolute;top:2px;right:4px;color:#2d8a4e;font-size:14px;font-weight:700;text-shadow:0 0 3px #fff}
-.thumb.processing{border-color:#f0a500}
 .thumb .del-th{position:absolute;top:-1px;right:-1px;background:#fff;border:1px solid #ddd;border-radius:50%;width:16px;height:16px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#999}
 .upload-zone{border:2px dashed #ddd;border-radius:10px;padding:22px 16px;text-align:center;cursor:pointer;transition:all .15s;background:#fafafa}
 .upload-zone:hover{background:#f0f0ee;border-color:#bbb}
@@ -57,7 +37,7 @@ input[type=file]{display:none}
 /* PROGRESS */
 .progress-wrap{margin-top:10px;display:none}
 .progress-bar{height:4px;background:#e8e8e6;border-radius:4px;overflow:hidden}
-.progress-fill{height:100%;background:#1a6fb5;transition:width .3s}
+.progress-fill{height:100%;background:#1e7a45;transition:width .3s}
 .progress-label{font-size:11px;color:#888;margin-top:4px;text-align:center}
 /* EXTRACT BTN */
 .ext-btn{width:100%;padding:9px;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;background:#fff;color:#333;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;transition:all .15s}
@@ -69,10 +49,11 @@ input[type=file]{display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 /* META */
 .meta-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
-.meta-grid-2{display:grid;grid-template-columns:1fr 2fr;gap:8px}
+.meta-grid-3{display:grid;grid-template-columns:1fr 1fr 2fr;gap:8px}
 .field label{font-size:11px;color:#888;display:block;margin-bottom:3px;font-weight:500}
 .field input{width:100%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;background:#fafafa}
-.field input:focus{outline:none;border-color:#1a6fb5;background:#fff}
+.field input:focus{outline:none;border-color:#1e7a45;background:#fff}
+.field input.kurs-inp{font-weight:600;background:#f5faf7;border-color:#c9e5d4}
 /* TABLE */
 .tbl-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
@@ -83,21 +64,22 @@ tr:hover td{background:#fafafe}
 /* CUSTOM DATALIST INPUT */
 .nama-wrap{position:relative}
 .nama-inp{width:100%;padding:5px 7px;border:1px solid #ddd;border-radius:6px;font-size:12px;background:#fafafa;min-width:180px}
-.nama-inp:focus{outline:none;border-color:#1a6fb5;background:#fff}
-.nama-inp.warn{border-color:#b7600a;background:#fffbf0}
+.nama-inp:focus{outline:none;border-color:#1e7a45;background:#fff}
+.nama-inp.warn{border-color:#e6a817;background:#fffbf0}
 .nama-inp.ok{border-color:#2d8a4e}
 /* NUMBER INPUTS */
 .num{width:72px;padding:5px 6px;border:1px solid #ddd;border-radius:6px;font-size:12px;text-align:right;background:#fafafa}
-.num:focus{outline:none;border-color:#1a6fb5;background:#fff}
-.num.price-diff{border-color:#b7600a;background:#fffbf0}
+.num:focus{outline:none;border-color:#1e7a45;background:#fff}
+.num.usd-inp{background:#f4f8fd;border-color:#c7dcf0}
+.num.rp-auto{background:#f5faf7;border-color:#c9e5d4}
 /* CELLS */
 .sub-cell{font-weight:600;text-align:right;white-space:nowrap}
-.master-price{font-size:11px;color:#888;white-space:nowrap}
-.master-price.diff{color:#b7600a;font-weight:600}
-.ket-cell{font-size:11px;color:#c0392b;max-width:140px}
-
-.ket-cell .tag-fuzzy{color:#7d3c98;font-weight:600}
-.ket-cell .tag-harga{color:#1a5276;font-weight:600}
+.jual-cell{font-size:11px;color:#888;text-align:right;white-space:nowrap}
+.jual-cell.rugi{color:#c0392b;font-weight:600}
+.jual-margin{font-size:10px;color:#8fb8a0;display:block;margin-top:2px}
+.jual-margin.rugi{color:#c0392b}
+.rp-hint{font-size:10px;color:#8fb8a0;white-space:nowrap;display:block;text-align:right;margin-top:2px}
+.ket-cell{font-size:11px;color:#e6a817;max-width:120px}
 .del-btn{background:none;border:none;cursor:pointer;color:#ccc;padding:3px 5px;border-radius:5px;font-size:14px}
 .del-btn:hover{color:#c0392b;background:#fdf5f5}
 .add-row-btn{width:100%;padding:7px;border:1px dashed #ddd;border-radius:8px;background:none;font-size:12px;cursor:pointer;color:#888;margin-top:8px;transition:all .15s}
@@ -106,91 +88,53 @@ tr:hover td{background:#fafafe}
 .footer-card{background:#fff;border:1px solid #e8e8e6;border-radius:12px;padding:14px 18px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .total-lbl{font-size:11px;color:#888;margin-bottom:2px}
 .total-val{font-size:20px;font-weight:700}
+.total-usd{font-size:12px;color:#1a6fb5;font-weight:600;margin-top:2px}
 .btn-group{display:flex;gap:8px;flex-wrap:wrap}
-.btn-copy{padding:9px 18px;background:#1a6fb5;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s}
-.btn-copy:hover{background:#155fa0}
-.btn-next{padding:9px 18px;background:#2d8a4e;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s}
-.btn-next:hover{background:#256b3d}
+.btn-copy{padding:9px 18px;background:#1e7a45;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s}
+.btn-copy:hover{background:#186338}
+.btn-next{padding:9px 18px;background:#1a6fb5;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background .15s}
+.btn-next:hover{background:#155fa0}
 .btn-next:disabled{background:#bbb;cursor:not-allowed}
 .btn-reset{padding:9px 14px;background:none;color:#888;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer}
 .btn-reset:hover{background:#f7f7f5}
-/* PIUTANG */
-.piutang-row{display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 12px;border:1px solid #e8e8e6;border-radius:8px;background:#fafafa;cursor:pointer;user-select:none;transition:all .15s}
-.piutang-row:hover{background:#f0f0ee}
-.piutang-row.on{background:#fdf6ec;border-color:#e6b566}
-.piutang-row input{width:16px;height:16px;accent-color:#b7600a;cursor:pointer}
-.piutang-lbl{font-size:13px;font-weight:600;color:#555}
-.piutang-row.on .piutang-lbl{color:#b7600a}
-.piutang-hint{font-size:11px;color:#aaa}
-.badge-piutang{font-size:11px;background:#fdf6ec;color:#b7600a;border:1px solid #e6b566;padding:2px 10px;border-radius:20px;font-weight:600;display:none}
-.badge-piutang.show{display:inline-block}
 /* MESSAGES */
 .ok-msg{background:#f0faf4;border:1px solid #b2dfc5;border-radius:8px;padding:8px 12px;font-size:12px;color:#2d8a4e;margin-top:8px;display:none}
 .err-msg{background:#fdf5f5;border:1px solid #f5c6c6;border-radius:8px;padding:8px 12px;font-size:12px;color:#c0392b;margin-top:8px;display:none}
 /* AUTOCOMPLETE DROPDOWN */
-.ac-wrap{position:relative}
-.ac-list{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ddd;border-radius:7px;box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:200;max-height:260px;overflow-y:auto;display:none}
+.ac-list{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ddd;border-radius:7px;box-shadow:0 4px 12px rgba(0,0,0,.1);z-index:200;max-height:180px;overflow-y:auto;display:none}
 .ac-list.show{display:block}
 .ac-item{padding:6px 10px;cursor:pointer;font-size:12px;border-bottom:1px solid #f5f5f5}
 .ac-item:last-child{border-bottom:none}
-.ac-item:hover,.ac-item.active{background:#e8f4fd;color:#1a6fb5}
+.ac-item:hover,.ac-item.active{background:#eef6f0;color:#1e7a45}
 .ac-item .kat{font-size:10px;color:#bbb;margin-left:5px}
-/* MODAL PERBESAR FOTO */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:16px}
-.modal.show{display:flex}
-.modal img{max-width:min(80vh,92vw);max-height:min(80vh,92vw);transition:transform .15s;user-select:none;cursor:grab;touch-action:none}
-.modal img.dragging{cursor:grabbing;transition:none}
-.modal-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.modal-btn{padding:8px 16px;background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;font-size:13px}
-.modal-btn:hover{background:rgba(255,255,255,.25)}
-
-/* ===== TAB BAR ===== */
-.tabbar{max-width:1400px;margin:0 auto;padding:12px 14px 0;display:flex;gap:8px}
-.tab-btn{padding:9px 22px;border:1px solid #ddd;border-bottom:none;border-radius:10px 10px 0 0;background:#ececea;color:#888;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
-.tab-btn:hover{background:#f3f3f1}
-.tab-btn.active{background:#fff;color:#1a1a1a;border-color:#c9c9c7;box-shadow:0 -2px 6px rgba(0,0,0,.04)}
-.tab-btn.active.tab-jual{border-top:3px solid #1a6fb5}
-.tab-btn.active.tab-bm{border-top:3px solid #1e7a45}
-/* ===== KHUSUS BARANG MASUK ===== */
-.badge-bm{background:#eef6f0;color:#1e7a45}
-.fill-bm{background:#1e7a45}
-.thumb.active-bm{border-color:#1e7a45}
-.btn-copy-bm{background:#1e7a45}
-.btn-copy-bm:hover{background:#186338}
-.btn-next-bm{background:#1a6fb5}
-.btn-next-bm:hover{background:#155fa0}
-.btn-next-bm:disabled{background:#bbb}
-.ket-cell-bm{color:#e6a817}
-.meta-grid-3{display:grid;grid-template-columns:1fr 1fr 2fr;gap:8px}
-.kurs-inp{font-weight:600;background:#f5faf7 !important;border-color:#c9e5d4 !important}
-.num.usd-inp{background:#f4f8fd;border-color:#c7dcf0}
-.num.rp-auto{background:#f5faf7;border-color:#c9e5d4}
-.jual-cell{font-size:11px;color:#888;text-align:right;white-space:nowrap}
-.jual-margin{font-size:10px;color:#8fb8a0;display:block;margin-top:2px}
-.jual-margin.rugi{color:#c0392b}
-.rp-hint{font-size:10px;color:#8fb8a0;white-space:nowrap;display:block;text-align:right;margin-top:2px}
-.total-usd{font-size:12px;color:#1a6fb5;font-weight:600;margin-top:2px}
+.ac-wrap{position:relative}
+/* PREVIEW NOTA */
 .preview-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.preview-head .card-title{margin-bottom:0}
 .rot-btns{display:flex;gap:6px}
 .rot-btn{padding:6px 12px;background:#fff;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;transition:all .15s}
 .rot-btn:hover{background:#f7f7f5;border-color:#bbb}
 .preview-box{position:relative;background:#efefed;border:1px solid #e8e8e6;border-radius:10px;height:460px;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
 .preview-box img{max-width:430px;max-height:430px;transition:transform .25s;user-select:none}
+.preview-hint{font-size:11px;color:#aaa;text-align:center;margin-top:6px}
+/* MODAL PERBESAR */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:500;display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:16px}
+.modal.show{display:flex}
+.modal img{max-width:min(82vh,92vw);max-height:min(82vh,92vw);transition:transform .15s;user-select:none;cursor:grab;touch-action:none}
+.modal img.dragging{cursor:grabbing;transition:none}
+.modal-btns{display:flex;gap:8px}
+.modal-btn{padding:8px 18px;background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;cursor:pointer;font-size:13px}
+.modal-btn:hover{background:rgba(255,255,255,.25)}
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div style="flex:1">
-    <div style="font-size:15px;font-weight:600" id="appTitle">Input Nota Penjualan</div>
+    <div style="font-size:15px;font-weight:600">Input Nota Barang Masuk</div>
     <div class="sub">CV Warna Indah Chemical — Surabaya</div>
   </div>
   <span class="badge" id="queueBadge">0 foto</span>
-</div>
-
-<div class="tabbar">
-  <button id="tabBtnJual" class="tab-btn tab-jual active" onclick="switchTab('jual')">🧾 Penjualan</button>
-  <button id="tabBtnBM" class="tab-btn tab-bm" onclick="switchTab('bm')">📦 Barang Masuk</button>
 </div>
 
 <div class="main">
@@ -199,23 +143,19 @@ tr:hover td{background:#fafafe}
 <div class="card">
   <div class="card-title">🔑 Google Gemini API Key</div>
   <div class="key-row">
-    <input type="password" id="apiKey" placeholder="Paste API key di sini..." oninput="checkKey()" onpaste="setTimeout(checkKey,50)" onchange="checkKey()" onkeyup="checkKey()">
+    <input type="password" id="apiKey" placeholder="Paste API key di sini..." oninput="checkKey()">
     <button class="btn-reset" onclick="toggleKey()" id="eyeBtn">👁</button>
     <span id="keyStatus" style="font-size:12px;white-space:nowrap;padding:0 6px;color:#bbb">⬤ Belum diisi</span>
   </div>
   <div class="key-hint">Gratis di <a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a></div>
 </div>
 
-<div id="tabPenjualan">
-<div class="main-layout">
-<div class="main-form">
-
 <!-- UPLOAD & QUEUE -->
 <div class="card">
-  <div class="card-title">📸 Antrian Foto Nota</div>
+  <div class="card-title">📸 Antrian Foto Nota / Surat Jalan</div>
   <div class="upload-zone" onclick="document.getElementById('imgInput').click()">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-    <p>Klik atau drag foto nota di sini</p>
+    <p>Klik atau drag foto nota / surat jalan di sini</p>
     <p class="sub">Bisa pilih puluhan foto sekaligus — diproses satu per satu</p>
     <input type="file" id="imgInput" accept="image/*" multiple onchange="addToQueue(this)">
   </div>
@@ -231,166 +171,45 @@ tr:hover td{background:#fafafe}
   <div class="err-msg" id="extErr"></div>
 </div>
 
-<!-- INFO NOTA -->
-<div class="card">
-  <div class="card-title">📋 Info Nota <span id="notaCounter" style="font-weight:400;color:#aaa"></span></div>
-  <div class="meta-grid">
-    <div class="field"><label>Tanggal</label>
-  <div style="display:flex;align-items:center;gap:6px">
-    <input type="number" id="tglTgl" min="1" max="31" placeholder="DD" 
-      style="width:60px;padding:6px 8px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center"
-      oninput="syncTgl()">
-    <span style="color:#999">/</span>
-    <input type="number" id="tglBln" min="1" max="12" placeholder="MM"
-      style="width:60px;padding:6px 8px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center"
-      oninput="syncTgl()">
-    <span style="color:#bbb;font-size:13px">/ 2026</span>
-    <input type="hidden" id="tgl">
-  </div>
-</div>
-    <div class="field"><label>Nama pelanggan</label><input type="text" id="pelanggan" placeholder="Nama toko / pembeli"></div>
-    <div class="field"><label>Kota asal</label><input type="text" id="kota" placeholder="Kota"></div>
-  </div>
-  <div class="meta-grid-2">
-    <div class="field"><label>No. nota</label><input type="text" id="noNota" placeholder="001/VI/2026"></div>
-    <div class="field"><label>Keterangan (opsional)</label><input type="text" id="ket" placeholder="Catatan tambahan"></div>
-  </div>
-  <label class="piutang-row" id="piutangRow">
-    <input type="checkbox" id="piutang" onchange="onPiutangChange()">
-    <span class="piutang-lbl">💳 Piutang</span>
-    <span class="piutang-hint">— centang jika nota ini belum dibayar (hutang pelanggan)</span>
-  </label>
-</div>
-
-<!-- TABEL BARANG -->
-<div class="card">
-  <div class="card-title">🧾 Daftar Barang</div>
-  <div class="tbl-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th style="width:24px">#</th>
-          <th style="min-width:190px">Nama Barang</th>
-          <th style="width:70px;text-align:right">Qty</th>
-          <th style="width:55px">Sat</th>
-          <th style="width:105px;text-align:right">Harga Nota</th>
-          <th style="width:105px;text-align:right">Harga Master</th>
-          <th style="width:110px;text-align:right">Subtotal</th>
-          <th style="width:120px">Keterangan</th>
-          <th style="width:28px"></th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
-  <button class="add-row-btn" onclick="addRow()">+ Tambah baris</button>
-</div>
-
-<!-- FOOTER -->
-<div class="footer-card">
-  <div>
-    <div class="total-lbl">Total nota <span class="badge-piutang" id="badgePiutang">💳 PIUTANG</span></div>
-    <div class="total-val" id="grandTotal">Rp 0</div>
-  </div>
-  <div class="btn-group">
-    <button class="btn-reset" onclick="resetForm()">🔄 Reset form</button>
-    <button class="btn-copy" onclick="copyToClipboard()" id="btnCopy">📋 Copy ke Google Sheet</button>
-    <button class="btn-next" onclick="goNext()" id="btnNext" disabled>Nota berikutnya →</button>
-  </div>
-</div>
-<div class="ok-msg" id="copyOk">✔ Berhasil dicopy! Langsung paste (Ctrl+V) di Google Sheet.</div>
-<div class="err-msg" id="saveErr"></div>
-
-</div><!-- /main-form -->
-
-<!-- PREVIEW PANEL -->
-<div class="preview-panel" id="previewPanel">
-  <div class="preview-header">
-    <span class="ttl">📷 Preview Nota</span>
-    <div class="preview-nav">
-      <button onclick="previewNav(-1)">&#8249;</button>
-      <span class="pg" id="previewPg">-</span>
-      <button onclick="previewNav(+1)">&#8250;</button>
+<!-- PREVIEW NOTA -->
+<div class="card" id="previewCard" style="display:none">
+  <div class="preview-head">
+    <div class="card-title" id="previewTitle">🔍 Preview Nota</div>
+    <div class="rot-btns">
+      <button class="rot-btn" onclick="rotatePreview(-90)" title="Putar kiri">↺ Kiri</button>
+      <button class="rot-btn" onclick="rotatePreview(90)" title="Putar kanan">↻ Kanan</button>
     </div>
-    <button onclick="closePreview()" style="font-size:11px;padding:3px 8px;border:1px solid #ddd;border-radius:6px;background:#fafafa;cursor:pointer;color:#999">&#x2715;</button>
   </div>
-  <div class="preview-img-wrap" id="previewImgWrap">
-    <img id="previewImg" src="" alt="Preview nota" onclick="openModal()">
-  </div>
-  <div class="preview-zoom">
-    <button onclick="rotatePreview(-90)" title="Putar kiri">↺ Kiri</button>
-    <button onclick="rotatePreview(90)" title="Putar kanan">↻ Kanan</button>
-    <button onclick="openModal()" title="Perbesar penuh">🔍 Perbesar</button>
+  <div class="preview-box" onclick="openModal()">
+    <img id="previewImg" src="" alt="Preview nota">
   </div>
   <div class="preview-hint">Klik gambar untuk memperbesar — bisa zoom (scroll / cubit / tombol +−) dan digeser</div>
 </div>
 
-</div><!-- /main-layout -->
-</div><!-- /tabPenjualan -->
-
-<!-- ============ TAB BARANG MASUK ============ -->
-<div id="tabBM" style="display:none">
-
-<!-- UPLOAD & QUEUE BM -->
+<!-- INFO NOTA -->
 <div class="card">
-  <div class="card-title">📸 Antrian Foto Nota / Surat Jalan <span class="badge badge-bm" id="bmQueueBadge">0 foto</span></div>
-  <div class="upload-zone" onclick="document.getElementById('bmImgInput').click()">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-    <p>Klik atau drag foto nota / surat jalan di sini</p>
-    <p class="sub">Bisa pilih puluhan foto sekaligus — diproses satu per satu</p>
-    <input type="file" id="bmImgInput" accept="image/*" multiple onchange="bmAddToQueue(this)">
-  </div>
-  <div class="queue-thumbs" id="bmQueueThumbs"></div>
-  <div class="progress-wrap" id="bmProgressWrap">
-    <div class="progress-bar"><div class="progress-fill fill-bm" id="bmProgressFill" style="width:0%"></div></div>
-    <div class="progress-label" id="bmProgressLabel"></div>
-  </div>
-  <button class="ext-btn" id="bmExtBtn" onclick="bmProcessNext()" disabled>
-    <span id="bmExtIcon">✨</span>
-    <span id="bmExtLabel">Upload foto dulu</span>
-  </button>
-  <div class="err-msg" id="bmExtErr"></div>
-</div>
-
-<!-- PREVIEW NOTA BM -->
-<div class="card" id="bmPreviewCard" style="display:none">
-  <div class="preview-head">
-    <div class="card-title" id="bmPreviewTitle" style="margin-bottom:0">🔍 Preview Nota</div>
-    <div class="rot-btns">
-      <button class="rot-btn" onclick="bmRotatePreview(-90)" title="Putar kiri">↺ Kiri</button>
-      <button class="rot-btn" onclick="bmRotatePreview(90)" title="Putar kanan">↻ Kanan</button>
-    </div>
-  </div>
-  <div class="preview-box" onclick="bmOpenModal()">
-    <img id="bmPreviewImg" src="" alt="Preview nota">
-  </div>
-  <div class="preview-hint" style="padding:0">Klik gambar untuk memperbesar — bisa zoom (scroll / cubit / tombol +−) dan digeser</div>
-</div>
-
-<!-- INFO NOTA BM -->
-<div class="card">
-  <div class="card-title">📋 Info Nota Masuk <span id="bmNotaCounter" style="font-weight:400;color:#aaa"></span></div>
+  <div class="card-title">📋 Info Nota Masuk <span id="notaCounter" style="font-weight:400;color:#aaa"></span></div>
   <div class="meta-grid">
     <div class="field"><label>Tanggal (tahun tetap 2026)</label>
       <div style="display:flex;gap:5px;align-items:center">
-        <input type="number" id="bmTglHari" min="1" max="31" placeholder="tgl" style="width:58px;text-align:center">
+        <input type="number" id="tglHari" min="1" max="31" placeholder="tgl" style="width:58px;text-align:center">
         <span style="color:#bbb">/</span>
-        <input type="number" id="bmTglBulan" min="1" max="12" placeholder="bln" style="width:58px;text-align:center">
+        <input type="number" id="tglBulan" min="1" max="12" placeholder="bln" style="width:58px;text-align:center">
         <span style="color:#666;font-weight:600;padding:0 4px;white-space:nowrap">/ 2026</span>
       </div>
     </div>
-    <div class="field"><label>Nama supplier</label><input type="text" id="bmSupplier" placeholder="Nama supplier / pabrik"></div>
-    <div class="field"><label>Kota / negara asal</label><input type="text" id="bmKota" placeholder="Kota atau negara"></div>
+    <div class="field"><label>Nama supplier</label><input type="text" id="supplier" placeholder="Nama supplier / pabrik"></div>
+    <div class="field"><label>Kota / negara asal</label><input type="text" id="kota" placeholder="Kota atau negara"></div>
   </div>
   <div class="meta-grid-3">
-    <div class="field"><label>No. nota / surat jalan</label><input type="text" id="bmNoNota" placeholder="001/VI/2026"></div>
-    <div class="field"><label>Kurs USD → Rp</label><input type="number" id="bmKurs" class="kurs-inp" min="0" step="50" placeholder="cth: 16300" oninput="bmOnKursChange()"></div>
-    <div class="field"><label>Keterangan (opsional)</label><input type="text" id="bmKet" placeholder="Catatan tambahan"></div>
+    <div class="field"><label>No. nota / surat jalan</label><input type="text" id="noNota" placeholder="001/VI/2026"></div>
+    <div class="field"><label>Kurs USD → Rp</label><input type="number" id="kurs" class="kurs-inp" min="0" step="50" placeholder="cth: 16300" oninput="onKursChange()"></div>
+    <div class="field"><label>Keterangan (opsional)</label><input type="text" id="ket" placeholder="Catatan tambahan"></div>
   </div>
   <div style="font-size:11px;color:#aaa;margin-top:4px">💡 Isi kurs jika nota dalam USD — Harga Rp per barang akan dihitung otomatis (USD × kurs). Untuk pembelian lokal, biarkan kurs kosong dan isi Harga Rp langsung.</div>
 </div>
 
-<!-- TABEL BARANG BM -->
+<!-- TABEL BARANG -->
 <div class="card">
   <div class="card-title">📦 Daftar Barang Masuk</div>
   <div class="tbl-wrap">
@@ -409,44 +228,27 @@ tr:hover td{background:#fafafe}
           <th style="width:28px"></th>
         </tr>
       </thead>
-      <tbody id="bmTbody"></tbody>
+      <tbody id="tbody"></tbody>
     </table>
   </div>
-  <button class="add-row-btn" onclick="bmAddRow()">+ Tambah baris</button>
+  <button class="add-row-btn" onclick="addRow()">+ Tambah baris</button>
 </div>
 
-<!-- FOOTER BM -->
+<!-- FOOTER -->
 <div class="footer-card">
   <div>
     <div class="total-lbl">Total nota masuk</div>
-    <div class="total-val" id="bmGrandTotal">Rp 0</div>
-    <div class="total-usd" id="bmGrandTotalUsd" style="display:none"></div>
+    <div class="total-val" id="grandTotal">Rp 0</div>
+    <div class="total-usd" id="grandTotalUsd" style="display:none"></div>
   </div>
   <div class="btn-group">
-    <button class="btn-reset" onclick="bmResetForm()">🔄 Reset form</button>
-    <button class="btn-copy btn-copy-bm" onclick="bmCopyToClipboard()" id="bmBtnCopy">📋 Copy ke Google Sheet</button>
-    <button class="btn-next btn-next-bm" onclick="bmGoNext()" id="bmBtnNext" disabled>Nota berikutnya →</button>
+    <button class="btn-reset" onclick="resetForm()">🔄 Reset form</button>
+    <button class="btn-copy" onclick="copyToClipboard()" id="btnCopy">📋 Copy ke Google Sheet</button>
+    <button class="btn-next" onclick="goNext()" id="btnNext" disabled>Nota berikutnya →</button>
   </div>
 </div>
-<div class="ok-msg" id="bmCopyOk">✔ Berhasil dicopy! Langsung paste (Ctrl+V) di Google Sheet.</div>
-
-</div><!-- /tabBM -->
-
-<!-- AUTOCOMPLETE LIST BM -->
-<div class="ac-list" id="bmAcList"></div>
-
-<!-- MODAL PERBESAR FOTO BM -->
-<div class="modal" id="bmImgModal" onclick="bmCloseModal()">
-  <img id="bmModalImg" src="" alt="Nota diperbesar" onclick="event.stopPropagation()">
-  <div class="modal-btns" onclick="event.stopPropagation()">
-    <button class="modal-btn" onclick="bmZoomModal(1.3)">🔍 Zoom +</button>
-    <button class="modal-btn" onclick="bmZoomModal(1/1.3)">🔍 Zoom −</button>
-    <button class="modal-btn" id="bmZoomLbl" onclick="bmResetZoom()" title="Klik untuk reset zoom">100%</button>
-    <button class="modal-btn" onclick="bmRotatePreview(-90)">↺ Kiri</button>
-    <button class="modal-btn" onclick="bmRotatePreview(90)">↻ Kanan</button>
-    <button class="modal-btn" onclick="bmCloseModal()">✕ Tutup</button>
-  </div>
-</div>
+<div class="ok-msg" id="copyOk">✔ Berhasil dicopy! Langsung paste (Ctrl+V) di Google Sheet.</div>
+<div class="err-msg" id="saveErr"></div>
 
 </div><!-- end main -->
 
@@ -468,511 +270,128 @@ tr:hover td{background:#fafafe}
 
 <script>
 // ===================== MASTER DATA =====================
-const MASTER = [
-  // ===== Naphtol =====
-  {"no":1,"nama":"NAPHTOL ASBS","kat":"Naphtol","sat":"kg","harga":205000,"total":183.0},
-  {"no":2,"nama":"ASG DIAL","kat":"Naphtol","sat":"kg","harga":150000,"total":355.0},
-  {"no":3,"nama":"ASG SHANGHAI","kat":"Naphtol","sat":"kg","harga":275000,"total":455.0},
-  {"no":4,"nama":"AS","kat":"Naphtol","sat":"kg","harga":140000,"total":67.0},
-  {"no":5,"nama":"ASOL","kat":"Naphtol","sat":"kg","harga":155000,"total":114.0},
-  {"no":6,"nama":"ASD","kat":"Naphtol","sat":"kg","harga":140000,"total":205.0},
-  {"no":7,"nama":"ASBR","kat":"Naphtol","sat":"kg","harga":150000,"total":10.0},
-  {"no":8,"nama":"ASLB","kat":"Naphtol","sat":"kg","harga":950000,"total":7.0},
-  {"no":9,"nama":"ASBO PUTIH","kat":"Naphtol","sat":"kg","harga":150000,"total":91.0},
-  {"no":10,"nama":"ASBO 80% INDIA","kat":"Naphtol","sat":"kg","harga":160000,"total":80.0},
-  {"no":11,"nama":"ASBO 100% INDIA","kat":"Naphtol","sat":"kg","harga":200000,"total":122.0},
-  {"no":12,"nama":"ASBO 100% RRT","kat":"Naphtol","sat":"kg","harga":200000,"total":186.0},
-  {"no":13,"nama":"ASBO HC INDIA","kat":"Naphtol","sat":"kg","harga":165000,"total":30.0},
-  {"no":14,"nama":"ASBO 80% TONGLI","kat":"Naphtol","sat":"kg","harga":160000,"total":719.0},
-
-  // ===== Reactive/Remazol =====
-  {"no":15,"nama":"REACTIVE YELLOW M4R","kat":"Reactive/Remazol","sat":"kg","harga":100000,"total":176.0},
-  {"no":16,"nama":"REACTIVE YELLOW M4G","kat":"Reactive/Remazol","sat":"kg","harga":95000,"total":69.0},
-  {"no":17,"nama":"REACTIVE YELLOW M8G","kat":"Reactive/Remazol","sat":"kg","harga":110000,"total":142.0},
-  {"no":18,"nama":"REACTIVE YELLOW FG 100%","kat":"Reactive/Remazol","sat":"kg","harga":85000,"total":211.0},
-  {"no":19,"nama":"REACTIVE GOLD YELLOW RNL","kat":"Reactive/Remazol","sat":"kg","harga":130000,"total":137.0},
-  {"no":20,"nama":"REACTIVE YELLOW HD8G","kat":"Reactive/Remazol","sat":"kg","harga":95000,"total":470.0},
-  {"no":21,"nama":"REACTIVE YELLOW HE-4R","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":95.0},
-  {"no":22,"nama":"REACTIVE YELLOW HE-4G","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":270.0},
-  {"no":23,"nama":"REACTIVE BLUE M2R H/C SUPRA","kat":"Reactive/Remazol","sat":"kg","harga":165000,"total":80.0},
-  {"no":24,"nama":"REACTIVE BLUE M2R HA","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":48.0},
-  {"no":25,"nama":"REACTIVE BLUE HE-GN","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":5.0},
-  {"no":26,"nama":"REACTIVE BRILL BLUE R SPEC","kat":"Reactive/Remazol","sat":"kg","harga":425000,"total":144.0},
-  {"no":27,"nama":"REACTIVE TURKIS BLUE","kat":"Reactive/Remazol","sat":"kg","harga":100000,"total":51.0},
-  {"no":28,"nama":"REACTIVE NAVY BLUE HER","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":72.0},
-  {"no":29,"nama":"REACTIVE BROWN RB","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":0.0},
-  {"no":30,"nama":"REACTIVE BROWN GR","kat":"Reactive/Remazol","sat":"kg","harga":115000,"total":187.0},
-  {"no":31,"nama":"REACTIVE RED RB","kat":"Reactive/Remazol","sat":"kg","harga":125000,"total":33.0},
-  {"no":32,"nama":"REACTIVE RED K2BP","kat":"Reactive/Remazol","sat":"kg","harga":125000,"total":113.0},
-  {"no":33,"nama":"REACTIVE RED M5B","kat":"Reactive/Remazol","sat":"kg","harga":100000,"total":68.0},
-  {"no":34,"nama":"REACTIVE RED M8B","kat":"Reactive/Remazol","sat":"kg","harga":110000,"total":50.0},
-  {"no":35,"nama":"REACTIVE RED HE-3B","kat":"Reactive/Remazol","sat":"kg","harga":130000,"total":39.0},
-  {"no":36,"nama":"REACTIVE RED HE-7B","kat":"Reactive/Remazol","sat":"kg","harga":100000,"total":5.0},
-  {"no":37,"nama":"REACTIVE MAGENTA","kat":"Reactive/Remazol","sat":"kg","harga":100000,"total":14.0},
-  {"no":38,"nama":"REACTIVE BRILL VIOLET 5R","kat":"Reactive/Remazol","sat":"kg","harga":135000,"total":165.0},
-  {"no":39,"nama":"REACTIVE ORANGE HER","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":138.0},
-  {"no":40,"nama":"REACTIVE ORANGE M2R","kat":"Reactive/Remazol","sat":"kg","harga":120000,"total":326.0},
-  {"no":41,"nama":"REACTIVE ORANGE 3R","kat":"Reactive/Remazol","sat":"kg","harga":300000,"total":11.0},
-  {"no":42,"nama":"REACTIVE BLACK B","kat":"Reactive/Remazol","sat":"kg","harga":110000,"total":61.0},
-  {"no":43,"nama":"REACTIVE BLACK KWNN","kat":"Reactive/Remazol","sat":"kg","harga":105000,"total":66.0},
-  {"no":44,"nama":"REACTIVE BLACK HF-GR","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":0.0},
-  {"no":45,"nama":"REACTIVE BLACK HD","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":0.0},
-  {"no":46,"nama":"REACTIVE GREEN HE-4BD","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":21.0},
-  {"no":47,"nama":"SYNOSOL ULTRA BLACK DR","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":0.0},
-  {"no":48,"nama":"POLKATIVE BLUE PX-2R","kat":"Reactive/Remazol","sat":"kg","harga":145000,"total":0.0},
-  {"no":49,"nama":"POLKATIVE VIOLET 2-BNH","kat":"Reactive/Remazol","sat":"kg","harga":155000,"total":17.0},
-  {"no":50,"nama":"REMAZOL GOLD YELLOW RNL","kat":"Reactive/Remazol","sat":"kg","harga":170000,"total":32.0},
-  {"no":51,"nama":"REMAZOL YELLOW FG (DYSTAR)","kat":"Reactive/Remazol","sat":"kg","harga":185000,"total":41.0},
-  {"no":52,"nama":"REMAZOL RED RB (DYSTAR)","kat":"Reactive/Remazol","sat":"kg","harga":185000,"total":37.0},
-  {"no":53,"nama":"REMAZOL TURKIS BLUE (DYSTAR)","kat":"Reactive/Remazol","sat":"kg","harga":145000,"total":100.0},
-  {"no":54,"nama":"REMAZOL DEEP BLACK N","kat":"Reactive/Remazol","sat":"kg","harga":170000,"total":47.0},
-  {"no":55,"nama":"POLKATIVE BROWN 3RD","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":25.0},
-  {"no":56,"nama":"REACTIVE RED X3B","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":9.0},
-  {"no":57,"nama":"REMAZOL YELLOW GL","kat":"Reactive/Remazol","sat":"kg","harga":0,"total":4.0},
-  {"no":58,"nama":"REMAZOL BLACK B (DYSTAR)","kat":"Reactive/Remazol","sat":"kg","harga":150000,"total":77.0},
-
-  // ===== Disperse =====
-  {"no":59,"nama":"DISPERSE YELLOW 4GN (Y211)","kat":"Disperse","sat":"kg","harga":0,"total":75.0},
-  {"no":60,"nama":"BLUE E2BLN (BLUE 56)","kat":"Disperse","sat":"kg","harga":250000,"total":123.0},
-  {"no":61,"nama":"DARK BLUE 3RN (BLUE 148)","kat":"Disperse","sat":"kg","harga":200000,"total":147.0},
-  {"no":62,"nama":"BLUE SE-BR (BLUE 183)","kat":"Disperse","sat":"kg","harga":250000,"total":0.0},
-  {"no":63,"nama":"BRILL TURKIS BLUE SBG","kat":"Disperse","sat":"kg","harga":0,"total":15.0},
-  {"no":64,"nama":"NAVY BLUE SE-RF 400%","kat":"Disperse","sat":"kg","harga":125000,"total":179.0},
-  {"no":65,"nama":"NAVY BLUE S-2GL (BLUE 79)","kat":"Disperse","sat":"kg","harga":0,"total":7.0},
-  {"no":66,"nama":"RED FBB (RED 60)","kat":"Disperse","sat":"kg","harga":275000,"total":75.0},
-  {"no":67,"nama":"RED FTS","kat":"Disperse","sat":"kg","harga":0,"total":0.0},
-  {"no":68,"nama":"RUBINE RD-FLN (RED 73)","kat":"Disperse","sat":"kg","harga":190000,"total":49.0},
-  {"no":69,"nama":"RUBINE 2GFL","kat":"Disperse","sat":"kg","harga":0,"total":18.0},
-  {"no":70,"nama":"VIOLET S3R (VIOLET 63)","kat":"Disperse","sat":"kg","harga":200000,"total":43.0},
-  {"no":71,"nama":"SCARLET BRN","kat":"Disperse","sat":"kg","harga":140000,"total":0.0},
-  {"no":72,"nama":"YELLOW 5SGN","kat":"Disperse","sat":"kg","harga":0,"total":0.0},
-  {"no":73,"nama":"YELLOW BROWN GLH","kat":"Disperse","sat":"kg","harga":150000,"total":23.0},
-  {"no":74,"nama":"BLACK EX-SF","kat":"Disperse","sat":"kg","harga":110000,"total":242.0},
-  {"no":75,"nama":"YELLOW 3GE (YELLOW 54)","kat":"Disperse","sat":"kg","harga":150000,"total":0.0},
-  {"no":76,"nama":"BROWN 3RL","kat":"Disperse","sat":"kg","harga":140000,"total":0.0},
-
-  // ===== Sulphur =====
-  {"no":77,"nama":"SULPHUR BRILL YELLOW","kat":"Sulphur","sat":"kg","harga":75000,"total":112.0},
-  {"no":78,"nama":"SULPHUR DARK GREEN","kat":"Sulphur","sat":"kg","harga":90000,"total":472.0},
-  {"no":79,"nama":"SULPHUR LIGHT GREEN","kat":"Sulphur","sat":"kg","harga":150000,"total":92.0},
-  {"no":80,"nama":"SULPHUR BORDO 3B","kat":"Sulphur","sat":"kg","harga":105000,"total":363.0},
-  {"no":81,"nama":"SULPHUR BLUE BRN","kat":"Sulphur","sat":"kg","harga":110000,"total":113.0},
-  {"no":82,"nama":"SULPHUR BROWN GDR","kat":"Sulphur","sat":"kg","harga":65000,"total":555.0},
-  {"no":83,"nama":"SULPHUR BROWN MR","kat":"Sulphur","sat":"kg","harga":115000,"total":122.0},
-  {"no":84,"nama":"SULPHUR YELLOW BROWN 5G","kat":"Sulphur","sat":"kg","harga":65000,"total":415.0},
-  {"no":85,"nama":"SULPHUR OLIVE 2200","kat":"Sulphur","sat":"kg","harga":0,"total":0.0},
-  {"no":86,"nama":"SULPHUR OLIVE GREEN G","kat":"Sulphur","sat":"kg","harga":70000,"total":45.0},
-  {"no":87,"nama":"SULPHUR BLACK B 300% (T)","kat":"Sulphur","sat":"kg","harga":25000,"total":550.0},
-  {"no":88,"nama":"SULPHUR BLACK B 200% (IC)","kat":"Sulphur","sat":"kg","harga":44000,"total":1312.0},
-  {"no":89,"nama":"SULPHUR BLACK B 200% SUPER A","kat":"Sulphur","sat":"kg","harga":58000,"total":167.0},
-  {"no":90,"nama":"SULPHUR BLACK B 200% (MTK)B","kat":"Sulphur","sat":"kg","harga":0,"total":0.0},
-  {"no":91,"nama":"SULPHUR YELLOW GC","kat":"Sulphur","sat":"kg","harga":65000,"total":20.0},
-  {"no":92,"nama":"SULPHUR BROWN M6R","kat":"Sulphur","sat":"kg","harga":105000,"total":12.0},
-  {"no":93,"nama":"SULPHUR BROWN FGR","kat":"Sulphur","sat":"kg","harga":105000,"total":13.0},
-
-  // ===== Vat/Indanthren =====
-  {"no":94,"nama":"INDANTHREN GREY M","kat":"Vat/Indanthren","sat":"kg","harga":320000,"total":14.0},
-  {"no":95,"nama":"GOLD ORANGE G","kat":"Vat/Indanthren","sat":"kg","harga":600000,"total":15.0},
-  {"no":96,"nama":"BLACK MD","kat":"Vat/Indanthren","sat":"kg","harga":375000,"total":18.0},
-  {"no":97,"nama":"OLIVE T","kat":"Vat/Indanthren","sat":"kg","harga":210000,"total":45.0},
-  {"no":98,"nama":"PINK RS","kat":"Vat/Indanthren","sat":"kg","harga":525000,"total":8.0},
-  {"no":99,"nama":"DARK BLUE BOA","kat":"Vat/Indanthren","sat":"kg","harga":290000,"total":64.0},
-  {"no":100,"nama":"OLIVE GREEN B","kat":"Vat/Indanthren","sat":"kg","harga":300000,"total":95.0},
-  {"no":101,"nama":"GREEN B / FFB","kat":"Vat/Indanthren","sat":"kg","harga":425000,"total":139.0},
-  {"no":102,"nama":"GREEN XBN (YUNITA)","kat":"Vat/Indanthren","sat":"kg","harga":455000,"total":89.0},
-  {"no":103,"nama":"GREEN XBN H/C GRANIS","kat":"Vat/Indanthren","sat":"kg","harga":350000,"total":30.0},
-  {"no":104,"nama":"BROWN BR (YUNITA)","kat":"Vat/Indanthren","sat":"kg","harga":370000,"total":53.0},
-  {"no":105,"nama":"BROWN BR (MTK)","kat":"Vat/Indanthren","sat":"kg","harga":500000,"total":56.0},
-  {"no":106,"nama":"BLUE RSN (MTK)","kat":"Vat/Indanthren","sat":"kg","harga":430000,"total":142.0},
-  {"no":107,"nama":"BLUE RSN GRANIS","kat":"Vat/Indanthren","sat":"kg","harga":350000,"total":80.0},
-  {"no":108,"nama":"BLUE RSN Y","kat":"Vat/Indanthren","sat":"kg","harga":190000,"total":42.0},
-  {"no":109,"nama":"BLUE RSN 200%","kat":"Vat/Indanthren","sat":"kg","harga":350000,"total":62.0},
-  {"no":110,"nama":"YELLOW GCN (MTK)","kat":"Vat/Indanthren","sat":"kg","harga":0,"total":20.0},
-  {"no":111,"nama":"YELLOW GCN 130%","kat":"Vat/Indanthren","sat":"kg","harga":290000,"total":94.0},
-  {"no":112,"nama":"VIOLET RR 100%","kat":"Vat/Indanthren","sat":"kg","harga":250000,"total":0.0},
-  {"no":113,"nama":"VIOLET 200% (Y)","kat":"Vat/Indanthren","sat":"kg","harga":440000,"total":36.0},
-  {"no":114,"nama":"VIOLET RR 150%","kat":"Vat/Indanthren","sat":"kg","harga":0,"total":8.0},
-  {"no":115,"nama":"VIOLET RR (MTK) 2","kat":"Vat/Indanthren","sat":"kg","harga":580000,"total":108.0},
-  {"no":116,"nama":"RED R","kat":"Vat/Indanthren","sat":"kg","harga":520000,"total":21.0},
-  {"no":117,"nama":"INDIGO BLUE","kat":"Vat/Indanthren","sat":"kg","harga":340000,"total":18.0},
-  {"no":118,"nama":"BROWN BR (WI)","kat":"Vat/Indanthren","sat":"kg","harga":260000,"total":74.0},
-  {"no":119,"nama":"BROWN BR (HA)","kat":"Vat/Indanthren","sat":"kg","harga":0,"total":20.0},
-  {"no":501,"nama":"BLUE RSN 130%","kat":"Vat/Indanthren","sat":"kg","harga":0,"total":55.0},
-  {"no":502,"nama":"YELLOW GCN 200%","kat":"Vat/Indanthren","sat":"kg","harga":480000,"total":118.0},
-
-  // ===== Basis =====
-  {"no":120,"nama":"BASIS METHELENE BLUE","kat":"Basis","sat":"kg","harga":260000,"total":120.0},
-  {"no":121,"nama":"MAGENTA PUDER","kat":"Basis","sat":"kg","harga":235000,"total":173.0},
-  {"no":122,"nama":"MALACHITE GREEN","kat":"Basis","sat":"kg","harga":180000,"total":140.0},
-  {"no":123,"nama":"BRILL GREEN CRYSTAL","kat":"Basis","sat":"kg","harga":330000,"total":153.0},
-  {"no":124,"nama":"AURAMINE INDIA","kat":"Basis","sat":"kg","harga":0,"total":0.0},
-  {"no":125,"nama":"AURAMINE RRT","kat":"Basis","sat":"kg","harga":95000,"total":189.0},
-  {"no":126,"nama":"AURAMINE JERMAN","kat":"Basis","sat":"kg","harga":130000,"total":193.0},
-  {"no":127,"nama":"RODHAMINE","kat":"Basis","sat":"kg","harga":240000,"total":231.0},
-  {"no":128,"nama":"BISMARK BROWN","kat":"Basis","sat":"kg","harga":105000,"total":32.0},
-  {"no":503,"nama":"METYL VIOLET PUDER","kat":"Basis","sat":"kg","harga":195000,"total":120.0},
-
-  // ===== Direct =====
-  {"no":129,"nama":"DIRECT BROWN M INDIA","kat":"Direct","sat":"kg","harga":130000,"total":164.0},
-  {"no":130,"nama":"BROWN M RRT","kat":"Direct","sat":"kg","harga":85000,"total":93.0},
-  {"no":131,"nama":"BROWN MN RRT","kat":"Direct","sat":"kg","harga":0,"total":0.0},
-  {"no":132,"nama":"BROWN MM 125%","kat":"Direct","sat":"kg","harga":80000,"total":3.0},
-  {"no":133,"nama":"BROWN GG","kat":"Direct","sat":"kg","harga":70000,"total":57.0},
-  {"no":134,"nama":"CONGGO RED (YUNITA)","kat":"Direct","sat":"kg","harga":0,"total":500.0},
-  {"no":135,"nama":"CONGGO RED (WI)","kat":"Direct","sat":"kg","harga":75000,"total":252.0},
-  {"no":136,"nama":"CONGGO RED (MTK)","kat":"Direct","sat":"kg","harga":0,"total":0.0},
-  {"no":137,"nama":"COPPER BLUE","kat":"Direct","sat":"kg","harga":100000,"total":229.0},
-  {"no":138,"nama":"IJO MUDA GCN","kat":"Direct","sat":"kg","harga":80000,"total":33.0},
-  {"no":139,"nama":"SCARLET 4BS","kat":"Direct","sat":"kg","harga":85000,"total":102.0},
-  {"no":140,"nama":"SKY BLUE","kat":"Direct","sat":"kg","harga":85000,"total":37.0},
-  {"no":141,"nama":"RED 12 B","kat":"Direct","sat":"kg","harga":75000,"total":12.0},
-  {"no":142,"nama":"KUNING MAS / GOLD GXA","kat":"Direct","sat":"kg","harga":50000,"total":128.0},
-  {"no":143,"nama":"DIRECT CHRYSHOPENIN G 100%","kat":"Direct","sat":"kg","harga":110000,"total":211.0},
-  {"no":144,"nama":"DIRECT CHRYSHOPENIN G 80%","kat":"Direct","sat":"kg","harga":0,"total":0.0},
-  {"no":145,"nama":"KUNING G H/C (MTK)","kat":"Direct","sat":"kg","harga":180000,"total":72.0},
-  {"no":146,"nama":"BLACK G","kat":"Direct","sat":"kg","harga":75000,"total":5.0},
-  {"no":147,"nama":"BLACK EX 170%","kat":"Direct","sat":"kg","harga":75000,"total":118.0},
-  {"no":148,"nama":"BLACK EX 200%","kat":"Direct","sat":"kg","harga":100000,"total":472.0},
-  {"no":149,"nama":"BLACK EX 300%","kat":"Direct","sat":"kg","harga":110000,"total":72.0},
-  {"no":150,"nama":"BLACK VSF","kat":"Direct","sat":"kg","harga":65000,"total":0.0},
-  {"no":151,"nama":"ORANGE S","kat":"Direct","sat":"kg","harga":95000,"total":111.0},
-  {"no":152,"nama":"GREY VGR","kat":"Direct","sat":"kg","harga":90000,"total":45.0},
-  {"no":153,"nama":"BORDO B RRT","kat":"Direct","sat":"kg","harga":90000,"total":39.0},
-  {"no":154,"nama":"VIOLET 5BL","kat":"Direct","sat":"kg","harga":105000,"total":66.0},
-  {"no":155,"nama":"BLUE 2B","kat":"Direct","sat":"kg","harga":80000,"total":37.0},
-  {"no":156,"nama":"IJO B /DARK GREEN B","kat":"Direct","sat":"kg","harga":87500,"total":473.0},
-  {"no":157,"nama":"TURQIS BLUE (WI)","kat":"Direct","sat":"kg","harga":65000,"total":175.0},
-  {"no":158,"nama":"TURKIS BLUE (MTK)","kat":"Direct","sat":"kg","harga":0,"total":450.0},
-  {"no":159,"nama":"PINK","kat":"Direct","sat":"kg","harga":70000,"total":75.0},
-
-  // ===== Garam =====
-  {"no":160,"nama":"GARAM BIRU B 27% LUTA","kat":"Garam","sat":"kg","harga":97500,"total":2327.0},
-  {"no":161,"nama":"GARAM BIRU B 27% WARIN","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":162,"nama":"GARAM BIRU B WI (MTK)","kat":"Garam","sat":"kg","harga":0,"total":25.0},
-  {"no":163,"nama":"GARAM BIRU B H/C","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":164,"nama":"GARAM BIRU B JP INDIA","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":165,"nama":"GARAM BIRU B JP","kat":"Garam","sat":"kg","harga":150000,"total":107.0},
-  {"no":166,"nama":"GARAM BIRU B GOLD","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":167,"nama":"GARAM BIRU BB JP","kat":"Garam","sat":"kg","harga":560000,"total":14.0},
-  {"no":168,"nama":"GARAM BIRU B BASE","kat":"Garam","sat":"kg","harga":175000,"total":105.0},
-  {"no":169,"nama":"GARAM MERAH B BASE","kat":"Garam","sat":"kg","harga":140000,"total":69.0},
-  {"no":170,"nama":"GARAM MERAH B 15%","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":171,"nama":"GARAM MERAH B 27% LUTA","kat":"Garam","sat":"kg","harga":105000,"total":2065.0},
-  {"no":172,"nama":"GARAM MERAH B 27% WARIN","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":173,"nama":"GARAM MERAH B WI (MTK)","kat":"Garam","sat":"kg","harga":0,"total":250.0},
-  {"no":174,"nama":"GARAM MERAH B H/C","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":175,"nama":"GARAM MERAH B JP","kat":"Garam","sat":"kg","harga":155000,"total":158.0},
-  {"no":176,"nama":"GARAM MERAH B GOLD","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":177,"nama":"GARAM MERAH B JP INDIA","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":178,"nama":"GARAM R 15%","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":179,"nama":"GARAM R 27% LUTA","kat":"Garam","sat":"kg","harga":75000,"total":1600.0},
-  {"no":180,"nama":"GARAM R 27% WARIN","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":181,"nama":"GARAM R 27% WI (MTK)","kat":"Garam","sat":"kg","harga":0,"total":209.0},
-  {"no":182,"nama":"GARAM R JP INDIA","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":183,"nama":"GARAM R JP","kat":"Garam","sat":"kg","harga":130000,"total":141.0},
-  {"no":184,"nama":"GARAM R H/C","kat":"Garam","sat":"kg","harga":90000,"total":38.0},
-  {"no":185,"nama":"GARAM GG H/C","kat":"Garam","sat":"kg","harga":100000,"total":42.0},
-  {"no":186,"nama":"GARAM GG JP","kat":"Garam","sat":"kg","harga":175000,"total":19.0},
-  {"no":187,"nama":"GARAM GG STD JP","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":188,"nama":"GARAM BORDO GP JP","kat":"Garam","sat":"kg","harga":195000,"total":86.0},
-  {"no":189,"nama":"GARAM BORDO GP BASE","kat":"Garam","sat":"kg","harga":235000,"total":71.0},
-  {"no":190,"nama":"GARAM BORDO GP H/C","kat":"Garam","sat":"kg","harga":90000,"total":99.0},
-  {"no":191,"nama":"GARAM BORDO GP STD JP","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":192,"nama":"GARAM GARNAT GBC","kat":"Garam","sat":"kg","harga":0,"total":95.0},
-  {"no":193,"nama":"GARAM GARNAT GBC SUPER","kat":"Garam","sat":"kg","harga":145000,"total":40.0},
-  {"no":194,"nama":"GARAM RC BASE","kat":"Garam","sat":"kg","harga":145000,"total":277.0},
-  {"no":195,"nama":"GARAM RED 3GL JP","kat":"Garam","sat":"kg","harga":0,"total":0.0},
-  {"no":196,"nama":"GARAM YELLOW GC JP","kat":"Garam","sat":"kg","harga":175000,"total":23.0},
-  {"no":197,"nama":"GARAM ORANGE GC BASE","kat":"Garam","sat":"kg","harga":160000,"total":18.0},
-  {"no":198,"nama":"GARAM ORANGE GC STD JP","kat":"Garam","sat":"kg","harga":155000,"total":10.0},
-  {"no":199,"nama":"GARAM HITAM B INDIA (YUNITA)","kat":"Garam","sat":"kg","harga":250000,"total":44.0},
-  {"no":200,"nama":"GARAM HITAM B JP (MTK)","kat":"Garam","sat":"kg","harga":345000,"total":77.0},
-
-  // ===== Sol =====
-  {"no":201,"nama":"SOL IJO IB","kat":"Sol","sat":"kg","harga":520000,"total":39.0},
-  {"no":202,"nama":"SOL YELLOW","kat":"Sol","sat":"kg","harga":640000,"total":17.0},
-  {"no":203,"nama":"SOL BLUE","kat":"Sol","sat":"kg","harga":490000,"total":71.0},
-  {"no":204,"nama":"SOL ORANGE HR","kat":"Sol","sat":"kg","harga":860000,"total":5.0},
-  {"no":205,"nama":"SOL VIOLET BL","kat":"Sol","sat":"kg","harga":650000,"total":7.0},
-  {"no":206,"nama":"SOL GREY IBL","kat":"Sol","sat":"kg","harga":450000,"total":15.0},
-  {"no":207,"nama":"SOL BROWN IRRD","kat":"Sol","sat":"kg","harga":490000,"total":11.0},
-  {"no":208,"nama":"SOL PINK IR","kat":"Sol","sat":"kg","harga":860000,"total":4.0},
-
-  // ===== Campuran =====
-  {"no":209,"nama":"SN MERAH","kat":"Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":210,"nama":"SN KUNING","kat":"Campuran","sat":"kg","harga":15000,"total":2441.0},
-  {"no":211,"nama":"SODIUM NITRITE","kat":"Campuran","sat":"kg","harga":18000,"total":423.0},
-  {"no":212,"nama":"SODIUM SULPHATE","kat":"Campuran","sat":"kg","harga":5000,"total":235.0},
-  {"no":213,"nama":"KAPORITE","kat":"Campuran","sat":"kg","harga":35000,"total":131.0},
-  {"no":214,"nama":"UVITEX CID","kat":"Campuran","sat":"kg","harga":290000,"total":51.0},
-  {"no":215,"nama":"HAKKOL","kat":"Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":216,"nama":"ACID BLACK ATT","kat":"Campuran","sat":"kg","harga":95000,"total":40.0},
-  {"no":217,"nama":"ACID ORANGE II","kat":"Campuran","sat":"kg","harga":75000,"total":39.0},
-  {"no":218,"nama":"SODA ASH","kat":"Campuran","sat":"kg","harga":11000,"total":403.0},
-  {"no":219,"nama":"CUKA","kat":"Campuran","sat":"kg","harga":27500,"total":470.0},
-  {"no":220,"nama":"KUSTIK SODA","kat":"Campuran","sat":"kg","harga":20000,"total":943.0},
-  {"no":221,"nama":"RAPID MERAH","kat":"Campuran","sat":"kg","harga":145000,"total":77.0},
-  {"no":222,"nama":"HYDROSULPHITE BASF","kat":"Campuran","sat":"kg","harga":68000,"total":54.0},
-  {"no":223,"nama":"HYDROSULPHITE RRT","kat":"Campuran","sat":"kg","harga":33000,"total":763.0},
-  {"no":224,"nama":"RAPID HITAM","kat":"Campuran","sat":"kg","harga":145000,"total":22.0},
-  {"no":225,"nama":"TRO POWDER","kat":"Campuran","sat":"kg","harga":14000,"total":51.0},
-  {"no":226,"nama":"MANOTEX","kat":"Campuran","sat":"kg","harga":90000,"total":174.0},
-  {"no":227,"nama":"PERSOFTAL FLAKE","kat":"Campuran","sat":"kg","harga":90000,"total":155.0},
-  {"no":228,"nama":"SOGA 91","kat":"Campuran","sat":"kg","harga":360000,"total":28.0},
-  {"no":229,"nama":"SUPER GLOW","kat":"Campuran","sat":"kg","harga":0,"total":10.0},
-  {"no":230,"nama":"KENFIX","kat":"Campuran","sat":"kg","harga":25000,"total":260.0},
-  {"no":231,"nama":"SODA KUE","kat":"Campuran","sat":"kg","harga":11000,"total":794.0},
-  {"no":232,"nama":"TUNJUNG","kat":"Campuran","sat":"kg","harga":10000,"total":84.0},
-  {"no":233,"nama":"GUN 30","kat":"Campuran","sat":"pcs","harga":160,"total":55.0},
-  {"no":234,"nama":"GUN 26","kat":"Campuran","sat":"pcs","harga":160,"total":462.5},
-  {"no":235,"nama":"TEROPONG","kat":"Campuran","sat":"pcs","harga":95000,"total":350.0},
-  {"no":236,"nama":"RELL GUN 140 CM","kat":"Campuran","sat":"pcs","harga":15000,"total":57.0},
-  {"no":237,"nama":"RELL GUN 150 CM (BEKAS)","kat":"Campuran","sat":"pcs","harga":11000,"total":123.0},
-  {"no":238,"nama":"RELL GUN 190 CM","kat":"Campuran","sat":"pcs","harga":19000,"total":56.0},
-  {"no":239,"nama":"KARET TANGAN ENGGAL","kat":"Campuran","sat":"pcs","harga":25000,"total":109.0},
-  {"no":240,"nama":"KARET TANGAN THOR","kat":"Campuran","sat":"pcs","harga":42500,"total":698.0},
-  {"no":513,"nama":"GLOVE B45 BLACK MTK","kat":"Campuran","sat":"pcs","harga":42500,"total":0.0},
-  {"no":241,"nama":"GLOVE K1 WHITE MTK","kat":"Campuran","sat":"pcs","harga":12500,"total":120.0},
-  {"no":242,"nama":"SILICON EMULSION","kat":"Campuran","sat":"kg","harga":70000,"total":62.0},
-  {"no":243,"nama":"WHITENING CN","kat":"Campuran","sat":"kg","harga":75000,"total":30.0},
-  {"no":244,"nama":"DISPERSING AGENT MF","kat":"Campuran","sat":"kg","harga":0,"total":150.0},
-  {"no":245,"nama":"DISPERSING AGENT NNO","kat":"Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":246,"nama":"TAWAS","kat":"Campuran","sat":"kg","harga":0,"total":54.0},
-  {"no":510,"nama":"TEEPOL","kat":"Campuran","sat":"kg","harga":8000,"total":500.0},
-  {"no":511,"nama":"JERIGEN","kat":"Campuran","sat":"kg","harga":6000,"total":300.0},
-  {"no":512,"nama":"Peti/Krat","kat":"Campuran","sat":"kg","harga":40000,"total":100.0},
-  {"no":512,"nama":"WHITENING AGENT","kat":"Campuran","sat":"kg","harga":0,"total":383.0},
-  // ===== Sablon/Campuran =====
-  {"no":247,"nama":"WATERGLASS / WATER GLASS","kat":"Sablon/Campuran","sat":"kg","harga":9000,"total":760.0},
-  {"no":248,"nama":"CALATAC / APPRETAN EM","kat":"Sablon/Campuran","sat":"kg","harga":70000,"total":171.0},
-  {"no":249,"nama":"BORDO FR","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":250,"nama":"PINK SP","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":251,"nama":"NEGROSIN","kat":"Sablon/Campuran","sat":"kg","harga":125000,"total":76.0},
-  {"no":252,"nama":"ORANGE TGR","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":30.0},
-  {"no":253,"nama":"GREEN L5G","kat":"Sablon/Campuran","sat":"kg","harga":170000,"total":10.0},
-  {"no":254,"nama":"YELLOW GSN","kat":"Sablon/Campuran","sat":"kg","harga":95000,"total":245.0},
-  {"no":255,"nama":"BINDER MTB / HELICRON B","kat":"Sablon/Campuran","sat":"kg","harga":45000,"total":60.0},
-  {"no":256,"nama":"SANDOFIX","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":257,"nama":"VIOLET BL","kat":"Sablon/Campuran","sat":"kg","harga":250000,"total":6.0},
-  {"no":258,"nama":"SUPER WHITE IG","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":259,"nama":"BLUE SIN","kat":"Sablon/Campuran","sat":"kg","harga":175000,"total":13.0},
-  {"no":260,"nama":"VIOLET SIN","kat":"Sablon/Campuran","sat":"kg","harga":335000,"total":16.0},
-  {"no":261,"nama":"PINK SIN","kat":"Sablon/Campuran","sat":"kg","harga":180000,"total":20.0},
-  {"no":262,"nama":"ORANGE SIN","kat":"Sablon/Campuran","sat":"kg","harga":175000,"total":16.0},
-  {"no":263,"nama":"GREEN SIN","kat":"Sablon/Campuran","sat":"kg","harga":200000,"total":25.0},
-  {"no":264,"nama":"LEMON SIN","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":265,"nama":"YELLOW SIN","kat":"Sablon/Campuran","sat":"kg","harga":180000,"total":155.0},
-  {"no":266,"nama":"PIKER BAGUS","kat":"Sablon/Campuran","sat":"pcs","harga":80000,"total":249.0},
-  {"no":267,"nama":"PIKER TIDAK BAGUS","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":100.0},
-  {"no":268,"nama":"LADY GUESS / RULO","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":269,"nama":"CANTING NO. 0","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":85.0},
-  {"no":270,"nama":"CANTING NO. 1","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":67.0},
-  {"no":271,"nama":"CANTING NO. 2","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":0.0},
-  {"no":272,"nama":"CANTING NO. 3","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":88.0},
-  {"no":273,"nama":"CANTING NO. 4","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":108.0},
-  {"no":274,"nama":"CANTING NO. 5","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":76.0},
-  {"no":275,"nama":"CANTING NO. 6","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":97.0},
-  {"no":276,"nama":"CANTING NO. 7","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":33.0},
-  {"no":277,"nama":"CANTING NO. 8","kat":"Sablon/Campuran","sat":"pcs","harga":5000,"total":16.0},
-  {"no":278,"nama":"CANTING LUBANG 2","kat":"Sablon/Campuran","sat":"pcs","harga":0,"total":0.0},
-  {"no":279,"nama":"CANTING LUBANG 3","kat":"Sablon/Campuran","sat":"pcs","harga":0,"total":0.0},
-  {"no":280,"nama":"TALI PUYUH","kat":"Sablon/Campuran","sat":"pcs","harga":400000,"total":80.0},
-  {"no":281,"nama":"PALET KAYU","kat":"Sablon/Campuran","sat":"pcs","harga":0,"total":0.0},
-  {"no":282,"nama":"PALET KERTAS","kat":"Sablon/Campuran","sat":"pcs","harga":0,"total":0.0},
-  {"no":283,"nama":"KLOSAN","kat":"Sablon/Campuran","sat":"pcs","harga":2000,"total":1535.0},
-  {"no":284,"nama":"CARIER","kat":"Sablon/Campuran","sat":"pcs","harga":50000,"total":10.0},
-  {"no":285,"nama":"PRIMA LEVEL","kat":"Sablon/Campuran","sat":"pcs","harga":30000,"total":0.0},
-  {"no":286,"nama":"LEAVANT","kat":"Sablon/Campuran","sat":"kg","harga":22500,"total":50.0},
-  {"no":287,"nama":"SCOT RUBINE","kat":"Sablon/Campuran","sat":"kg","harga":130000,"total":11.0},
-  {"no":288,"nama":"RED FFG","kat":"Sablon/Campuran","sat":"kg","harga":155000,"total":10.0},
-  {"no":289,"nama":"BROWN RR","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":290,"nama":"NAVY BLUE SABLON","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":291,"nama":"EVOSOFT","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-  {"no":292,"nama":"SISIR 52","kat":"Sablon/Campuran","sat":"pcs","harga":255000,"total":31.0},
-  {"no":293,"nama":"SISIR 60","kat":"Sablon/Campuran","sat":"pcs","harga":0,"total":0.0},
-  {"no":294,"nama":"SISIR 70","kat":"Sablon/Campuran","sat":"pcs","harga":240000,"total":2.0},
-  {"no":295,"nama":"SISIR 80 140 CM","kat":"Sablon/Campuran","sat":"pcs","harga":240000,"total":21.0},
-  {"no":296,"nama":"SISIR 80 160 CM","kat":"Sablon/Campuran","sat":"pcs","harga":255000,"total":1.0},
-  {"no":297,"nama":"SISIR 90 140 CM","kat":"Sablon/Campuran","sat":"pcs","harga":240000,"total":7.0},
-  {"no":298,"nama":"EMULSIFIER","kat":"Sablon/Campuran","sat":"kg","harga":90000,"total":18.0},
-  {"no":299,"nama":"BLACK K SABLON","kat":"Sablon/Campuran","sat":"kg","harga":65000,"total":21.0},
-  {"no":300,"nama":"YELLOW IR SABLON","kat":"Sablon/Campuran","sat":"kg","harga":100000,"total":21.0},
-  {"no":301,"nama":"BLUE FBL SABLON","kat":"Sablon/Campuran","sat":"kg","harga":160000,"total":25.0},
-  {"no":302,"nama":"GREEN LXB SABLON","kat":"Sablon/Campuran","sat":"kg","harga":145000,"total":20.0},
-  {"no":303,"nama":"RED KG3R SABLON","kat":"Sablon/Campuran","sat":"kg","harga":0,"total":0.0},
-];
+const MASTER=[{"no":1,"nama":"NAPHTOL ASBS","kat":"Naphtol","sat":"kg","harga":205000},{"no":2,"nama":"ASG DIAL","kat":"Naphtol","sat":"kg","harga":150000},{"no":3,"nama":"ASG SHANGHAI","kat":"Naphtol","sat":"kg","harga":275000},{"no":4,"nama":"AS","kat":"Naphtol","sat":"kg","harga":140000},{"no":5,"nama":"ASOL","kat":"Naphtol","sat":"kg","harga":155000},{"no":6,"nama":"ASD","kat":"Naphtol","sat":"kg","harga":140000},{"no":7,"nama":"ASBR","kat":"Naphtol","sat":"kg","harga":150000},{"no":8,"nama":"ASLB","kat":"Naphtol","sat":"kg","harga":950000},{"no":9,"nama":"ASBO PUTIH","kat":"Naphtol","sat":"kg","harga":150000},{"no":10,"nama":"ASBO 80% INDIA","kat":"Naphtol","sat":"kg","harga":160000},{"no":11,"nama":"ASBO 100% INDIA","kat":"Naphtol","sat":"kg","harga":200000},{"no":12,"nama":"ASBO 100% RRT","kat":"Naphtol","sat":"kg","harga":200000},{"no":13,"nama":"ASBO HC INDIA","kat":"Naphtol","sat":"kg","harga":165000},{"no":14,"nama":"ASBO 80% TONGLI","kat":"Naphtol","sat":"kg","harga":160000},{"no":15,"nama":"REACTIVE YELLOW M4R","kat":"Reactive/Remazol","sat":"kg","harga":100000},{"no":16,"nama":"REACTIVE YELLOW M4G","kat":"Reactive/Remazol","sat":"kg","harga":95000},{"no":17,"nama":"REACTIVE YELLOW M8G","kat":"Reactive/Remazol","sat":"kg","harga":110000},{"no":18,"nama":"REACTIVE YELLOW FG 100%","kat":"Reactive/Remazol","sat":"kg","harga":85000},{"no":19,"nama":"REACTIVE GOLD YELLOW RNL","kat":"Reactive/Remazol","sat":"kg","harga":130000},{"no":20,"nama":"REACTIVE YELLOW HD8G","kat":"Reactive/Remazol","sat":"kg","harga":95000},{"no":21,"nama":"REACTIVE YELLOW HE-4R","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":22,"nama":"REACTIVE YELLOW HE-4G","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":23,"nama":"REACTIVE BLUE M2R H/C SUPRA","kat":"Reactive/Remazol","sat":"kg","harga":165000},{"no":24,"nama":"REACTIVE BLUE M2R HA","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":25,"nama":"REACTIVE BLUE HE-GN","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":26,"nama":"REACTIVE BRILL BLUE R SPEC","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":27,"nama":"REACTIVE TURKIS BLUE","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":28,"nama":"REACTIVE NAVY BLUE HER","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":29,"nama":"REACTIVE BROWN RB","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":30,"nama":"REACTIVE BROWN GR","kat":"Reactive/Remazol","sat":"kg","harga":115000},{"no":31,"nama":"REACTIVE RED RB","kat":"Reactive/Remazol","sat":"kg","harga":185000},{"no":32,"nama":"REACTIVE RED K2BP","kat":"Reactive/Remazol","sat":"kg","harga":125000},{"no":33,"nama":"REACTIVE RED M5B","kat":"Reactive/Remazol","sat":"kg","harga":100000},{"no":34,"nama":"REACTIVE RED M8B","kat":"Reactive/Remazol","sat":"kg","harga":110000},{"no":35,"nama":"REACTIVE RED HE-3B","kat":"Reactive/Remazol","sat":"kg","harga":130000},{"no":36,"nama":"REACTIVE RED HE-7B","kat":"Reactive/Remazol","sat":"kg","harga":100000},{"no":37,"nama":"REACTIVE MAGENTA","kat":"Reactive/Remazol","sat":"kg","harga":100000},{"no":38,"nama":"REACTIVE BRILL VIOLET 5R","kat":"Reactive/Remazol","sat":"kg","harga":135000},{"no":39,"nama":"REACTIVE ORANGE HER","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":40,"nama":"REACTIVE ORANGE M2R","kat":"Reactive/Remazol","sat":"kg","harga":120000},{"no":41,"nama":"REACTIVE ORANGE 3R","kat":"Reactive/Remazol","sat":"kg","harga":300000},{"no":42,"nama":"REACTIVE BLACK B","kat":"Reactive/Remazol","sat":"kg","harga":110000},{"no":43,"nama":"REACTIVE BLACK KWNN","kat":"Reactive/Remazol","sat":"kg","harga":105000},{"no":44,"nama":"REACTIVE BLACK HF-GR","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":45,"nama":"REACTIVE BLACK HD","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":46,"nama":"REACTIVE GREEN HE-4BD","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":47,"nama":"SYNOSOL ULTRA BLACK DR","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":48,"nama":"POLKATIVE BLUE PX-2R","kat":"Reactive/Remazol","sat":"kg","harga":145000},{"no":49,"nama":"POLKATIVE VIOLET 2-BNH","kat":"Reactive/Remazol","sat":"kg","harga":155000},{"no":50,"nama":"REMAZOL GOLD YELLOW RNL","kat":"Reactive/Remazol","sat":"kg","harga":170000},{"no":51,"nama":"REMAZOL YELLOW FG (DYSTAR)","kat":"Reactive/Remazol","sat":"kg","harga":185000},{"no":52,"nama":"REMAZOL RED RB (DYSTAR)","kat":"Reactive/Remazol","sat":"kg","harga":185000},{"no":53,"nama":"REMAZOL TURKIS BLUE (DYSTAR)","kat":"Reactive/Remazol","sat":"kg","harga":145000},{"no":54,"nama":"REMAZOL DEEP BLACK N","kat":"Reactive/Remazol","sat":"kg","harga":170000},{"no":55,"nama":"POLKATIVE BROWN 3RD","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":56,"nama":"REACTIVE RED X3B","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":57,"nama":"REMAZOL YELLOW GL","kat":"Reactive/Remazol","sat":"kg","harga":0},{"no":58,"nama":"REMAZOL BLACK B (DYSTAR)","kat":"Reactive/Remazol","sat":"kg","harga":150000},{"no":59,"nama":"DISPERSE YELLOW 4GN (Y211)","kat":"Disperse","sat":"kg","harga":0},{"no":60,"nama":"BLUE E2BLN (BLUE 56)","kat":"Disperse","sat":"kg","harga":250000},{"no":61,"nama":"DARK BLUE 3RN (BLUE 148)","kat":"Disperse","sat":"kg","harga":200000},{"no":62,"nama":"BLUE SE-BR (BLUE 183)","kat":"Disperse","sat":"kg","harga":250000},{"no":63,"nama":"BRILL TURKIS BLUE SBG","kat":"Disperse","sat":"kg","harga":0},{"no":64,"nama":"NAVY BLUE SE-RF 400%","kat":"Disperse","sat":"kg","harga":125000},{"no":65,"nama":"NAVY BLUE S-2GL (BLUE 79)","kat":"Disperse","sat":"kg","harga":0},{"no":66,"nama":"RED FBB (RED 60)","kat":"Disperse","sat":"kg","harga":275000},{"no":67,"nama":"RED FTS","kat":"Disperse","sat":"kg","harga":0},{"no":68,"nama":"RUBINE RD-FLN (RED 73)","kat":"Disperse","sat":"kg","harga":190000},{"no":69,"nama":"RUBINE 2GFL","kat":"Disperse","sat":"kg","harga":0},{"no":70,"nama":"VIOLET S3R (VIOLET 63)","kat":"Disperse","sat":"kg","harga":200000},{"no":71,"nama":"SCARLET BRN","kat":"Disperse","sat":"kg","harga":140000},{"no":72,"nama":"YELLOW 5SGN","kat":"Disperse","sat":"kg","harga":0},{"no":73,"nama":"YELLOW BROWN GLH","kat":"Disperse","sat":"kg","harga":150000},{"no":74,"nama":"BLACK EX-SF","kat":"Disperse","sat":"kg","harga":110000},{"no":75,"nama":"YELLOW 3GE (YELLOW 54)","kat":"Disperse","sat":"kg","harga":150000},{"no":76,"nama":"BROWN 3RL","kat":"Disperse","sat":"kg","harga":140000},{"no":77,"nama":"SULPHUR BRILL YELLOW","kat":"Sulphur","sat":"kg","harga":75000},{"no":78,"nama":"SULPHUR DARK GREEN","kat":"Sulphur","sat":"kg","harga":90000},{"no":79,"nama":"SULPHUR LIGHT GREEN","kat":"Sulphur","sat":"kg","harga":150000},{"no":80,"nama":"SULPHUR BORDO 3B","kat":"Sulphur","sat":"kg","harga":105000},{"no":81,"nama":"SULPHUR BLUE BRN","kat":"Sulphur","sat":"kg","harga":110000},{"no":82,"nama":"SULPHUR BROWN GDR","kat":"Sulphur","sat":"kg","harga":65000},{"no":83,"nama":"SULPHUR BROWN MR","kat":"Sulphur","sat":"kg","harga":115000},{"no":84,"nama":"SULPHUR YELLOW BROWN 5G","kat":"Sulphur","sat":"kg","harga":65000},{"no":85,"nama":"SULPHUR OLIVE 2200","kat":"Sulphur","sat":"kg","harga":0},{"no":86,"nama":"SULPHUR OLIVE GREEN G","kat":"Sulphur","sat":"kg","harga":70000},{"no":87,"nama":"SULPHUR BLACK B 300% (T)","kat":"Sulphur","sat":"kg","harga":25000},{"no":88,"nama":"SULPHUR BLACK B 200% (IC)","kat":"Sulphur","sat":"kg","harga":44000},{"no":89,"nama":"SULPHUR BLACK B 200% SUPER A","kat":"Sulphur","sat":"kg","harga":58000},{"no":90,"nama":"SULPHUR BLACK B 200% (MTK)B","kat":"Sulphur","sat":"kg","harga":0},{"no":91,"nama":"SULPHUR YELLOW GC","kat":"Sulphur","sat":"kg","harga":65000},{"no":92,"nama":"SULPHUR BROWN M6R","kat":"Sulphur","sat":"kg","harga":105000},{"no":93,"nama":"SULPHUR BROWN FGR","kat":"Sulphur","sat":"kg","harga":105000},{"no":94,"nama":"INDANTHREN GREY M","kat":"Vat/Indanthren","sat":"kg","harga":320000},{"no":95,"nama":"GOLD ORANGE G","kat":"Vat/Indanthren","sat":"kg","harga":600000},{"no":96,"nama":"BLACK MD","kat":"Vat/Indanthren","sat":"kg","harga":375000},{"no":97,"nama":"OLIVE T","kat":"Vat/Indanthren","sat":"kg","harga":210000},{"no":98,"nama":"PINK RS","kat":"Vat/Indanthren","sat":"kg","harga":525000},{"no":99,"nama":"DARK BLUE BOA","kat":"Vat/Indanthren","sat":"kg","harga":290000},{"no":100,"nama":"OLIVE GREEN B","kat":"Vat/Indanthren","sat":"kg","harga":300000},{"no":101,"nama":"GREEN B / FFB","kat":"Vat/Indanthren","sat":"kg","harga":425000},{"no":102,"nama":"GREEN XBN (YUNITA)","kat":"Vat/Indanthren","sat":"kg","harga":455000},{"no":103,"nama":"GREEN XBN H/C GRANIS","kat":"Vat/Indanthren","sat":"kg","harga":350000},{"no":104,"nama":"BROWN BR (YUNITA)","kat":"Vat/Indanthren","sat":"kg","harga":370000},{"no":105,"nama":"BROWN BR (MTK)","kat":"Vat/Indanthren","sat":"kg","harga":500000},{"no":106,"nama":"BLUE RSN (MTK)","kat":"Vat/Indanthren","sat":"kg","harga":430000},{"no":107,"nama":"BLUE RSN GRANIS","kat":"Vat/Indanthren","sat":"kg","harga":350000},{"no":108,"nama":"BLUE RSN Y","kat":"Vat/Indanthren","sat":"kg","harga":190000},{"no":109,"nama":"BLUE RSN 200%","kat":"Vat/Indanthren","sat":"kg","harga":350000},{"no":110,"nama":"YELLOW GCN (MTK)","kat":"Vat/Indanthren","sat":"kg","harga":0},{"no":111,"nama":"YELLOW GCN 130%","kat":"Vat/Indanthren","sat":"kg","harga":290000},{"no":112,"nama":"VIOLET RR 100%","kat":"Vat/Indanthren","sat":"kg","harga":250000},{"no":113,"nama":"VIOLET 200% (Y)","kat":"Vat/Indanthren","sat":"kg","harga":440000},{"no":114,"nama":"VIOLET RR 150%","kat":"Vat/Indanthren","sat":"kg","harga":0},{"no":115,"nama":"VIOLET RR (MTK) 2","kat":"Vat/Indanthren","sat":"kg","harga":0},{"no":116,"nama":"RED R","kat":"Vat/Indanthren","sat":"kg","harga":520000},{"no":117,"nama":"INDIGO BLUE","kat":"Vat/Indanthren","sat":"kg","harga":340000},{"no":118,"nama":"BROWN BR (WI)","kat":"Vat/Indanthren","sat":"kg","harga":260000},{"no":119,"nama":"BROWN BR (HA)","kat":"Vat/Indanthren","sat":"kg","harga":0},{"no":120,"nama":"BASIS METHELENE BLUE","kat":"Basis","sat":"kg","harga":260000},{"no":121,"nama":"MAGENTA PUDER","kat":"Basis","sat":"kg","harga":235000},{"no":122,"nama":"MALACHITE GREEN","kat":"Basis","sat":"kg","harga":180000},{"no":123,"nama":"BRILL GREEN CRYSTAL","kat":"Basis","sat":"kg","harga":330000},{"no":124,"nama":"AURAMINE INDIA","kat":"Basis","sat":"kg","harga":0},{"no":125,"nama":"AURAMINE RRT","kat":"Basis","sat":"kg","harga":95000},{"no":126,"nama":"AURAMINE JERMAN","kat":"Basis","sat":"kg","harga":130000},{"no":127,"nama":"RODHAMINE","kat":"Basis","sat":"kg","harga":240000},{"no":128,"nama":"BISMARK BROWN","kat":"Basis","sat":"kg","harga":105000},{"no":129,"nama":"DIRECT BROWN M INDIA","kat":"Direct","sat":"kg","harga":130000},{"no":130,"nama":"BROWN M RRT","kat":"Direct","sat":"kg","harga":85000},{"no":131,"nama":"BROWN MN RRT","kat":"Direct","sat":"kg","harga":0},{"no":132,"nama":"BROWN MM 125%","kat":"Direct","sat":"kg","harga":80000},{"no":133,"nama":"BROWN GG","kat":"Direct","sat":"kg","harga":70000},{"no":134,"nama":"CONGGO RED (YUNITA)","kat":"Direct","sat":"kg","harga":0},{"no":135,"nama":"CONGGO RED (WI)","kat":"Direct","sat":"kg","harga":75000},{"no":136,"nama":"CONGGO RED (MTK)","kat":"Direct","sat":"kg","harga":0},{"no":137,"nama":"COPPER BLUE","kat":"Direct","sat":"kg","harga":100000},{"no":138,"nama":"IJO MUDA GCN","kat":"Direct","sat":"kg","harga":80000},{"no":139,"nama":"SCARLET 4BS","kat":"Direct","sat":"kg","harga":85000},{"no":140,"nama":"SKY BLUE","kat":"Direct","sat":"kg","harga":85000},{"no":141,"nama":"RED 12 B","kat":"Direct","sat":"kg","harga":75000},{"no":142,"nama":"KUNING MAS / GOLD GXA","kat":"Direct","sat":"kg","harga":50000},{"no":143,"nama":"DIRECT CHRYSHOPENIN G 100%","kat":"Direct","sat":"kg","harga":110000},{"no":144,"nama":"DIRECT CHRYSHOPENIN G 80%","kat":"Direct","sat":"kg","harga":0},{"no":145,"nama":"KUNING G H/C (MTK)","kat":"Direct","sat":"kg","harga":180000},{"no":146,"nama":"BLACK G","kat":"Direct","sat":"kg","harga":75000},{"no":147,"nama":"BLACK EX 170%","kat":"Direct","sat":"kg","harga":75000},{"no":148,"nama":"BLACK EX 200%","kat":"Direct","sat":"kg","harga":100000},{"no":149,"nama":"BLACK EX 300%","kat":"Direct","sat":"kg","harga":110000},{"no":150,"nama":"BLACK VSF","kat":"Direct","sat":"kg","harga":65000},{"no":151,"nama":"ORANGE S","kat":"Direct","sat":"kg","harga":95000},{"no":152,"nama":"GREY VGR","kat":"Direct","sat":"kg","harga":90000},{"no":153,"nama":"BORDO B RRT","kat":"Direct","sat":"kg","harga":90000},{"no":154,"nama":"VIOLET 5BL","kat":"Direct","sat":"kg","harga":105000},{"no":155,"nama":"BLUE 2B","kat":"Direct","sat":"kg","harga":80000},{"no":156,"nama":"IJO B /DARK GREEN B","kat":"Direct","sat":"kg","harga":87500},{"no":157,"nama":"TURQIS BLUE (WI)","kat":"Direct","sat":"kg","harga":65000},{"no":158,"nama":"TURKIS BLUE (MTK)","kat":"Direct","sat":"kg","harga":0},{"no":159,"nama":"PINK","kat":"Direct","sat":"kg","harga":70000},{"no":160,"nama":"GARAM BIRU B 27% LUTA","kat":"Garam","sat":"kg","harga":97500},{"no":161,"nama":"GARAM BIRU B 27% WARIN","kat":"Garam","sat":"kg","harga":0},{"no":162,"nama":"GARAM BIRU B WI (MTK)","kat":"Garam","sat":"kg","harga":0},{"no":163,"nama":"GARAM BIRU B H/C","kat":"Garam","sat":"kg","harga":0},{"no":164,"nama":"GARAM BIRU B JP INDIA","kat":"Garam","sat":"kg","harga":0},{"no":165,"nama":"GARAM BIRU B JP","kat":"Garam","sat":"kg","harga":150000},{"no":166,"nama":"GARAM BIRU B GOLD","kat":"Garam","sat":"kg","harga":0},{"no":167,"nama":"GARAM BIRU BB JP","kat":"Garam","sat":"kg","harga":560000},{"no":168,"nama":"GARAM BIRU B BASE","kat":"Garam","sat":"kg","harga":175000},{"no":169,"nama":"GARAM MERAH B BASE","kat":"Garam","sat":"kg","harga":140000},{"no":170,"nama":"GARAM MERAH B 15%","kat":"Garam","sat":"kg","harga":0},{"no":171,"nama":"GARAM MERAH B 27% LUTA","kat":"Garam","sat":"kg","harga":105000},{"no":172,"nama":"GARAM MERAH B 27% WARIN","kat":"Garam","sat":"kg","harga":0},{"no":173,"nama":"GARAM MERAH B WI (MTK)","kat":"Garam","sat":"kg","harga":0},{"no":174,"nama":"GARAM MERAH B H/C","kat":"Garam","sat":"kg","harga":0},{"no":175,"nama":"GARAM MERAH B JP","kat":"Garam","sat":"kg","harga":155000},{"no":176,"nama":"GARAM MERAH B GOLD","kat":"Garam","sat":"kg","harga":0},{"no":177,"nama":"GARAM MERAH B JP INDIA","kat":"Garam","sat":"kg","harga":0},{"no":178,"nama":"GARAM R 15%","kat":"Garam","sat":"kg","harga":0},{"no":179,"nama":"GARAM R 27% LUTA","kat":"Garam","sat":"kg","harga":75000},{"no":180,"nama":"GARAM R 27% WARIN","kat":"Garam","sat":"kg","harga":0},{"no":181,"nama":"GARAM R 27% WI (MTK)","kat":"Garam","sat":"kg","harga":0},{"no":182,"nama":"GARAM R JP INDIA","kat":"Garam","sat":"kg","harga":0},{"no":183,"nama":"GARAM R JP","kat":"Garam","sat":"kg","harga":130000},{"no":184,"nama":"GARAM R H/C","kat":"Garam","sat":"kg","harga":90000},{"no":185,"nama":"GARAM GG H/C","kat":"Garam","sat":"kg","harga":100000},{"no":186,"nama":"GARAM GG JP","kat":"Garam","sat":"kg","harga":175000},{"no":187,"nama":"GARAM GG STD JP","kat":"Garam","sat":"kg","harga":0},{"no":188,"nama":"GARAM BORDO GP JP","kat":"Garam","sat":"kg","harga":195000},{"no":189,"nama":"GARAM BORDO GP BASE","kat":"Garam","sat":"kg","harga":235000},{"no":190,"nama":"GARAM BORDO GP H/C","kat":"Garam","sat":"kg","harga":90000},{"no":191,"nama":"GARAM BORDO GP STD JP","kat":"Garam","sat":"kg","harga":0},{"no":192,"nama":"GARAM GARNAT GBC","kat":"Garam","sat":"kg","harga":0},{"no":193,"nama":"GARAM GARNAT GBC SUPER","kat":"Garam","sat":"kg","harga":145000},{"no":194,"nama":"GARAM RC BASE","kat":"Garam","sat":"kg","harga":145000},{"no":195,"nama":"GARAM RED 3GL JP","kat":"Garam","sat":"kg","harga":0},{"no":196,"nama":"GARAM YELLOW GC JP","kat":"Garam","sat":"kg","harga":175000},{"no":197,"nama":"GARAM ORANGE GC BASE","kat":"Garam","sat":"kg","harga":160000},{"no":198,"nama":"GARAM ORANGE GC STD JP","kat":"Garam","sat":"kg","harga":155000},{"no":199,"nama":"GARAM HITAM B INDIA (YUNITA)","kat":"Garam","sat":"kg","harga":250000},{"no":200,"nama":"GARAM HITAM B JP (MTK)","kat":"Garam","sat":"kg","harga":345000},{"no":201,"nama":"SOL IJO IB","kat":"Sol","sat":"kg","harga":520000},{"no":202,"nama":"SOL YELLOW","kat":"Sol","sat":"kg","harga":640000},{"no":203,"nama":"SOL BLUE","kat":"Sol","sat":"kg","harga":490000},{"no":204,"nama":"SOL ORANGE HR","kat":"Sol","sat":"kg","harga":860000},{"no":205,"nama":"SOL VIOLET BL","kat":"Sol","sat":"kg","harga":650000},{"no":206,"nama":"SOL GREY IBL","kat":"Sol","sat":"kg","harga":450000},{"no":207,"nama":"SOL BROWN IRRD","kat":"Sol","sat":"kg","harga":490000},{"no":208,"nama":"SOL PINK IR","kat":"Sol","sat":"kg","harga":860000},{"no":209,"nama":"SN MERAH","kat":"Campuran","sat":"kg","harga":0},{"no":210,"nama":"SN KUNING","kat":"Campuran","sat":"kg","harga":15000},{"no":211,"nama":"SODIUM NITRITE","kat":"Campuran","sat":"kg","harga":18000},{"no":212,"nama":"SODIUM SULPHATE","kat":"Campuran","sat":"kg","harga":5000},{"no":213,"nama":"KAPORITE","kat":"Campuran","sat":"kg","harga":35000},{"no":214,"nama":"UVITEX CID","kat":"Campuran","sat":"kg","harga":290000},{"no":215,"nama":"HAKKOL","kat":"Campuran","sat":"kg","harga":0},{"no":216,"nama":"ACID BLACK ATT","kat":"Campuran","sat":"kg","harga":95000},{"no":217,"nama":"ACID ORANGE II","kat":"Campuran","sat":"kg","harga":75000},{"no":218,"nama":"SODA ASH","kat":"Campuran","sat":"kg","harga":11000},{"no":219,"nama":"CUKA","kat":"Campuran","sat":"kg","harga":27500},{"no":220,"nama":"KUSTIK SODA","kat":"Campuran","sat":"kg","harga":20000},{"no":221,"nama":"RAPID MERAH","kat":"Campuran","sat":"kg","harga":145000},{"no":222,"nama":"HYDROSULPHITE BASF","kat":"Campuran","sat":"kg","harga":68000},{"no":223,"nama":"HYDROSULPHITE RRT","kat":"Campuran","sat":"kg","harga":33000},{"no":224,"nama":"RAPID HITAM","kat":"Campuran","sat":"kg","harga":145000},{"no":225,"nama":"TRO POWDER","kat":"Campuran","sat":"kg","harga":14000},{"no":226,"nama":"MANOTEX","kat":"Campuran","sat":"kg","harga":90000},{"no":227,"nama":"PERSOFTAL FLAKE","kat":"Campuran","sat":"kg","harga":90000},{"no":228,"nama":"SOGA 91","kat":"Campuran","sat":"kg","harga":360000},{"no":229,"nama":"SUPER GLOW","kat":"Campuran","sat":"kg","harga":0},{"no":230,"nama":"KENFIX","kat":"Campuran","sat":"kg","harga":25000},{"no":231,"nama":"SODA KUE","kat":"Campuran","sat":"kg","harga":11000},{"no":232,"nama":"TUNJUNG","kat":"Campuran","sat":"kg","harga":10000},{"no":233,"nama":"GUN 30","kat":"Campuran","sat":"pcs","harga":160},{"no":234,"nama":"GUN 26","kat":"Campuran","sat":"pcs","harga":160},{"no":235,"nama":"TEROPONG","kat":"Campuran","sat":"pcs","harga":95000},{"no":236,"nama":"RELL GUN 140 CM","kat":"Campuran","sat":"pcs","harga":15000},{"no":237,"nama":"RELL GUN 150 CM (BEKAS)","kat":"Campuran","sat":"pcs","harga":11000},{"no":238,"nama":"RELL GUN 190 CM","kat":"Campuran","sat":"pcs","harga":19000},{"no":239,"nama":"KARET TANGAN ENGGAL","kat":"Campuran","sat":"pcs","harga":25000},{"no":240,"nama":"GLOVE B45 BLACK MTK","kat":"Campuran","sat":"pcs","harga":42500},{"no":241,"nama":"GLOVE K1 WHITE MTK","kat":"Campuran","sat":"pcs","harga":12500},{"no":242,"nama":"SILICON EMULSION","kat":"Campuran","sat":"kg","harga":0},{"no":243,"nama":"WHITENING CN","kat":"Campuran","sat":"kg","harga":0},{"no":244,"nama":"DISPERSING AGENT MF","kat":"Campuran","sat":"kg","harga":0},{"no":245,"nama":"DISPERSING AGENT NNO","kat":"Campuran","sat":"kg","harga":0},{"no":246,"nama":"TAWAS","kat":"Campuran","sat":"kg","harga":0},{"no":247,"nama":"WATERGLASS / WATER GLASS","kat":"Sablon/Campuran","sat":"kg","harga":9000},{"no":248,"nama":"CALATAC / APPRETAN EM","kat":"Sablon/Campuran","sat":"kg","harga":70000},{"no":249,"nama":"BORDO FR","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":250,"nama":"PINK SP","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":251,"nama":"NEGROSIN","kat":"Sablon/Campuran","sat":"kg","harga":125000},{"no":252,"nama":"ORANGE TGR","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":253,"nama":"GREEN L5G","kat":"Sablon/Campuran","sat":"kg","harga":170000},{"no":254,"nama":"YELLOW GSN","kat":"Sablon/Campuran","sat":"kg","harga":95000},{"no":255,"nama":"BINDER MTB / HELICRON B","kat":"Sablon/Campuran","sat":"kg","harga":45000},{"no":256,"nama":"SANDOFIX","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":257,"nama":"VIOLET BL","kat":"Sablon/Campuran","sat":"kg","harga":250000},{"no":258,"nama":"SUPER WHITE IG","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":259,"nama":"BLUE SIN","kat":"Sablon/Campuran","sat":"kg","harga":175000},{"no":260,"nama":"VIOLET SIN","kat":"Sablon/Campuran","sat":"kg","harga":335000},{"no":261,"nama":"PINK SIN","kat":"Sablon/Campuran","sat":"kg","harga":180000},{"no":262,"nama":"ORANGE SIN","kat":"Sablon/Campuran","sat":"kg","harga":175000},{"no":263,"nama":"GREEN SIN","kat":"Sablon/Campuran","sat":"kg","harga":200000},{"no":264,"nama":"LEMON SIN","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":265,"nama":"YELLOW SIN","kat":"Sablon/Campuran","sat":"kg","harga":180000},{"no":266,"nama":"PIKER BAGUS","kat":"Sablon/Campuran","sat":"pcs","harga":80000},{"no":267,"nama":"PIKER TIDAK BAGUS","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":268,"nama":"LADY GUESS / RULO","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":269,"nama":"CANTING NO. 0","kat":"Sablon/Campuran","sat":"pcs","harga":5000},{"no":270,"nama":"CANTING NO. 1","kat":"Sablon/Campuran","sat":"pcs","harga":5000},{"no":271,"nama":"CANTING NO. 2","kat":"Sablon/Campuran","sat":"pcs","harga":5000},{"no":272,"nama":"CANTING NO. 3","kat":"Sablon/Campuran","sat":"pcs","harga":5000},{"no":273,"nama":"CANTING NO. 4","kat":"Sablon/Campuran","sat":"pcs","harga":5000},{"no":274,"nama":"CANTING NO. 5","kat":"Sablon/Campuran","sat":"pcs","harga":5000},{"no":275,"nama":"CANTING NO. 6","kat":"Sablon/Campuran","sat":"pcs","harga":5000},{"no":276,"nama":"CANTING NO. 7","kat":"Sablon/Campuran","sat":"pcs","harga":5000},{"no":277,"nama":"CANTING NO. 8","kat":"Sablon/Campuran","sat":"pcs","harga":0},{"no":278,"nama":"CANTING LUBANG 2","kat":"Sablon/Campuran","sat":"pcs","harga":0},{"no":279,"nama":"CANTING LUBANG 3","kat":"Sablon/Campuran","sat":"pcs","harga":0},{"no":280,"nama":"TALI PUYUH","kat":"Sablon/Campuran","sat":"pcs","harga":400000},{"no":281,"nama":"PALET KAYU","kat":"Sablon/Campuran","sat":"pcs","harga":0},{"no":282,"nama":"PALET KERTAS","kat":"Sablon/Campuran","sat":"pcs","harga":0},{"no":283,"nama":"KLOSAN","kat":"Sablon/Campuran","sat":"pcs","harga":2000},{"no":284,"nama":"CARIER","kat":"Sablon/Campuran","sat":"pcs","harga":50000},{"no":285,"nama":"PRIMA LEVEL","kat":"Sablon/Campuran","sat":"pcs","harga":30000},{"no":286,"nama":"LEAVANT","kat":"Sablon/Campuran","sat":"kg","harga":22500},{"no":287,"nama":"SCOT RUBINE","kat":"Sablon/Campuran","sat":"kg","harga":130000},{"no":288,"nama":"RED FFG","kat":"Sablon/Campuran","sat":"kg","harga":155000},{"no":289,"nama":"BROWN RR","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":290,"nama":"NAVY BLUE SABLON","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":291,"nama":"EVOSOFT","kat":"Sablon/Campuran","sat":"kg","harga":0},{"no":292,"nama":"SISIR 52","kat":"Sablon/Campuran","sat":"pcs","harga":255000},{"no":293,"nama":"SISIR 60","kat":"Sablon/Campuran","sat":"pcs","harga":0},{"no":294,"nama":"SISIR 70","kat":"Sablon/Campuran","sat":"pcs","harga":240000},{"no":295,"nama":"SISIR 80 140 CM","kat":"Sablon/Campuran","sat":"pcs","harga":240000},{"no":296,"nama":"SISIR 80 160 CM","kat":"Sablon/Campuran","sat":"pcs","harga":255000},{"no":297,"nama":"SISIR 90 140 CM","kat":"Sablon/Campuran","sat":"pcs","harga":240000},{"no":298,"nama":"EMULSIFIER","kat":"Sablon/Campuran","sat":"kg","harga":45000},{"no":299,"nama":"BLACK K SABLON","kat":"Sablon/Campuran","sat":"kg","harga":65000},{"no":300,"nama":"YELLOW IR SABLON","kat":"Sablon/Campuran","sat":"kg","harga":100000},{"no":301,"nama":"BLUE FBL SABLON","kat":"Sablon/Campuran","sat":"kg","harga":160000},{"no":302,"nama":"GREEN LXB SABLON","kat":"Sablon/Campuran","sat":"kg","harga":145000},{"no":303,"nama":"RED KG3R SABLON","kat":"Sablon/Campuran","sat":"kg","harga":0}];
 
 // ===================== STATE =====================
 const IDR = v => 'Rp ' + Math.round(v).toLocaleString('id-ID');
-const fmtTgl = d => { if(!d) return ''; const p=d.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; };
-let queue = [];       // [{file, data(base64), done, rot}]
-let queueIdx = -1;   // index yang sedang aktif
-let rows = [];
+const USD = v => '$' + (Math.round(v*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pad2 = n => String(n).padStart(2,'0');
+// Terima koma ATAU titik sebagai desimal: "4,5" dan "4.5" sama-sama valid
+const parseNum = v => parseFloat(String(v ?? '').replace(',', '.')) || 0;
+function getTglStr() {
+  const h = parseInt(document.getElementById('tglHari').value) || 0;
+  const b = parseInt(document.getElementById('tglBulan').value) || 0;
+  if(!h || !b) return '';
+  return pad2(h) + '/' + pad2(b) + '/2026';
+}
+function setTglToday() {
+  const now = new Date();
+  document.getElementById('tglHari').value = now.getDate();
+  document.getElementById('tglBulan').value = now.getMonth() + 1;
+}
+let queue = [];       // [{file, data(base64), done}]
+let queueIdx = -1;
+let rows = [];        // {id, nama, qty, sat, usd, harga(Rp), raw}
 let rowCounter = 0;
 let keyVis = false;
 let activeAcRow = null;
+
+function getKurs() { return parseFloat(document.getElementById('kurs').value) || 0; }
 
 function findMaster(nama) {
   if(!nama) return null;
   return MASTER.find(m => m.nama.toLowerCase() === nama.trim().toLowerCase()) || null;
 }
-function fuzzyMatch(nama) {
-  if(!nama || nama.trim().length < 2) return null;
-  const n = nama.trim().toLowerCase();
 
-  // Tier 1: contained (sama seperti sebelumnya)
-  const t1 = MASTER.find(m => {
-    const mn = m.nama.toLowerCase();
-    return mn.includes(n) || n.includes(mn);
-  });
-  if(t1) return t1;
+// ===================== KEY =====================
+function toggleKey() {
+  keyVis = !keyVis;
+  document.getElementById('apiKey').type = keyVis ? 'text' : 'password';
+  document.getElementById('eyeBtn').textContent = keyVis ? '🙈' : '👁';
+}
+function checkKey() {
+  const v = document.getElementById('apiKey').value.trim();
+  const ok = v.length > 10;
+  document.getElementById('keyStatus').textContent = ok ? '✔ Siap' : '⬤ Belum diisi';
+  document.getElementById('keyStatus').style.color = ok ? '#2d8a4e' : '#bbb';
+  updateExtBtn();
+}
 
-  // Tier 2: semua kata dari input ada di nama master (minimal 3 huruf per kata)
-  const words = n.split(/\s+/).filter(w => w.length >= 3);
-  if(words.length > 0) {
-    const t2 = MASTER.find(m => {
-      const mn = m.nama.toLowerCase();
-      return words.every(w => mn.includes(w));
+// ===================== KURS =====================
+function onKursChange() {
+  const kurs = getKurs();
+  if(kurs > 0) {
+    // Hitung ulang semua baris yang punya harga USD
+    rows.forEach(r => {
+      const usd = parseNum(r.usd);
+      if(usd > 0) r.harga = Math.round(usd * kurs);
     });
-    if(t2) return t2;
   }
+  renderTable();
+}
 
-  // Tier 3: normalisasi fonetik lalu trigram similarity
-  // Normalisasi: ganti variasi ejaan umum bahasa Indonesia/Inggris campur
-  function normalize(s) {
-    return s
-      .replace(/ou/g, 'u').replace(/ck/g, 'k').replace(/ph/g, 'f')
-      .replace(/oe/g, 'u').replace(/ae/g, 'e').replace(/ie/g, 'i')
-      .replace(/c(?=[aourlm])/g, 'k')  // "cou" -> "ku", "ca" -> "ka"
-      .replace(/c(?=[ei])/g, 's')       // "ce" -> "se"
-      .replace(/th/g, 't').replace(/sh/g, 's')
-      .replace(/[aeiou]+/g, 'a')        // vokal jadi satu (skeleton konsonan)
-      .replace(/(.)+/g, '$1');         // hapus dobel konsonan
-  }
-
-  function trigrams(s) {
-    const set = new Set();
-    const p = ' ' + s + ' ';
-    for(let i = 0; i < p.length - 2; i++) set.add(p.slice(i, i+3));
-    return set;
-  }
-  function similarity(a, b) {
-    const ta = trigrams(a), tb = trigrams(b);
-    let common = 0;
-    ta.forEach(t => { if(tb.has(t)) common++; });
-    return (2 * common) / (ta.size + tb.size);
-  }
-
-  // Cari master dengan trigram similarity tertinggi (raw dulu)
-  let best = null, bestScore = 0;
-  MASTER.forEach(m => {
-    const score = similarity(n, m.nama.toLowerCase());
-    if(score > bestScore) { bestScore = score; best = m; }
+// ===================== QUEUE =====================
+function addToQueue(inp) {
+  [...inp.files].forEach(f => {
+    const r = new FileReader();
+    r.onload = e => {
+      queue.push({file:f, data:e.target.result, done:false, rot:0});
+      renderQueue();
+    };
+    r.readAsDataURL(f);
   });
-  if(bestScore >= 0.25) return best;
-
-  // Tier 4: trigram di atas skeleton konsonan (lebih toleran typo parah)
-  const nNorm = normalize(n);
-  let best4 = null, bestScore4 = 0;
-  MASTER.forEach(m => {
-    const mNorm = normalize(m.nama.toLowerCase());
-    const score = similarity(nNorm, mNorm);
-    if(score > bestScore4) { bestScore4 = score; best4 = m; }
-  });
-  return bestScore4 >= 0.30 ? best4 : null;
+  inp.value = '';
 }
 
-function findBestMatch(namaMaster, namaNota, hargaNota) {
-  // Step 1: cari kandidat dari nama — catat cara menemukannya
-  let kandidat = null;
-  let matchType = 'exact';
-
-  if(findMaster(namaMaster) || findMaster(namaNota)) {
-    kandidat = findMaster(namaMaster) || findMaster(namaNota);
-    matchType = 'exact';
-  } else if(fuzzyMatch(namaMaster) || fuzzyMatch(namaNota)) {
-    kandidat = fuzzyMatch(namaMaster) || fuzzyMatch(namaNota);
-    matchType = 'fuzzy';
+function renderQueue() {
+  document.getElementById('queueBadge').textContent = queue.length + ' foto';
+  const box = document.getElementById('queueThumbs');
+  box.innerHTML = queue.map((q,i) => `
+    <div class="thumb${i===queueIdx?' active':''}${q.done?' done':''}" onclick="jumpTo(${i})" title="Nota ${i+1}">
+      <img src="${q.data}" alt="${i+1}">
+      <div class="num">${i+1}</div>
+      ${!q.done ? `<div class="del-th" onclick="event.stopPropagation();removeFromQueue(${i})">×</div>` : ''}
+    </div>`).join('');
+  const pw = document.getElementById('progressWrap');
+  if(queue.length > 0) {
+    pw.style.display = 'block';
+    const done = queue.filter(q=>q.done).length;
+    const pct = queue.length > 0 ? Math.round(done/queue.length*100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `${done} dari ${queue.length} nota selesai`;
+  } else {
+    pw.style.display = 'none';
   }
-
-  // Step 2: jika harga nota ada, cek apakah ada master lain yang harganya lebih dekat
-  if(hargaNota > 0) {
-    const selisihKandidat = kandidat ? Math.abs(kandidat.harga - hargaNota) : Infinity;
-    const words = (namaMaster + ' ' + namaNota).toLowerCase()
-      .split(/\s+/).filter(w => w.length >= 3);
-    const calonNama = MASTER.filter(m => {
-      const mn = m.nama.toLowerCase();
-      return words.some(w => mn.includes(w));
-    });
-
-    let bestHarga = null;
-    let selisihTerkecil = selisihKandidat;
-    calonNama.forEach(m => {
-      if(m.harga <= 0) return;
-      const selisih = Math.abs(m.harga - hargaNota);
-      const pctSelisih = selisih / hargaNota;
-      if(selisih < selisihTerkecil && pctSelisih < 0.10) {
-        selisihTerkecil = selisih;
-        bestHarga = m;
-      }
-    });
-
-    if(bestHarga) {
-      const wasExact = kandidat && matchType === 'exact';
-      return { master: bestHarga, matchType: wasExact ? 'harga' : 'fuzzy+harga' };
-    }
-  }
-
-  return kandidat ? { master: kandidat, matchType } : { master: null, matchType: 'none' };
+  updateExtBtn();
+  renderPreview();
 }
 
-// ===================== PREVIEW =====================
-let previewIdx = 0; // index dalam queue yg sedang ditampilkan
-
-function openPreview(idx) {
-  previewIdx = idx !== undefined ? idx : (queueIdx >= 0 ? queueIdx : 0);
-  refreshPreviewImg();
-  document.getElementById('previewPanel').classList.add('show');
-}
-
-function closePreview() {
-  document.getElementById('previewPanel').classList.remove('show');
-}
-
-function refreshPreviewImg() {
-  if(!queue.length) return;
-  previewIdx = Math.max(0, Math.min(previewIdx, queue.length-1));
-  const q = queue[previewIdx];
-  if(!q) return;
-  const img = document.getElementById('previewImg');
+// ===================== PREVIEW & ROTATE =====================
+function renderPreview() {
+  const card = document.getElementById('previewCard');
+  if(queueIdx < 0 || !queue[queueIdx]) { card.style.display = 'none'; return; }
+  card.style.display = 'block';
+  const q = queue[queueIdx];
   const deg = q.rot || 0;
-  img.src = q.data;
-  img.style.transform = `rotate(${deg}deg)`;
+  const pi = document.getElementById('previewImg');
   const mi = document.getElementById('modalImg');
+  pi.src = q.data; pi.style.transform = `rotate(${deg}deg)`;
   mi.src = q.data;
   applyModalTransform();
-  document.getElementById('previewPg').textContent = `${previewIdx+1}/${queue.length}`;
-  document.getElementById('previewPanel').classList.add('show');
+  document.getElementById('previewTitle').textContent = `🔍 Preview Nota ${queueIdx+1} dari ${queue.length}`;
 }
 
-function previewNav(dir) {
-  previewIdx = Math.max(0, Math.min(previewIdx + dir, queue.length-1));
-  resetZoom();
-  refreshPreviewImg();
-}
-
-// ===================== ROTATE =====================
 function rotatePreview(d) {
-  if(!queue.length || !queue[previewIdx]) return;
-  queue[previewIdx].rot = ((queue[previewIdx].rot || 0) + d + 360) % 360;
-  refreshPreviewImg();
+  if(queueIdx < 0 || !queue[queueIdx]) return;
+  queue[queueIdx].rot = ((queue[queueIdx].rot || 0) + d + 360) % 360;
+  renderPreview();
 }
 
 // ===================== ZOOM MODAL =====================
 let mScale = 1, mPanX = 0, mPanY = 0;
 
 function applyModalTransform() {
-  const q = queue[previewIdx];
+  const q = queue[queueIdx];
   const deg = q ? (q.rot || 0) : 0;
   document.getElementById('modalImg').style.transform =
     `translate(${mPanX}px, ${mPanY}px) rotate(${deg}deg) scale(${mScale})`;
@@ -986,10 +405,8 @@ function zoomModal(f) {
 function resetZoom() { mScale = 1; mPanX = 0; mPanY = 0; applyModalTransform(); }
 
 function openModal() {
-  if(!queue.length || !queue[previewIdx]) return;
+  if(queueIdx < 0 || !queue[queueIdx]) return;
   resetZoom();
-  document.getElementById('modalImg').src = queue[previewIdx].data;
-  applyModalTransform();
   document.getElementById('imgModal').classList.add('show');
 }
 function closeModal() {
@@ -1047,83 +464,10 @@ _mImg.addEventListener('touchmove', e => {
 }, {passive:false});
 _mImg.addEventListener('touchend', () => { _drag = false; _tDist = 0; });
 
-// ===================== PIUTANG =====================
-function onPiutangChange() {
-  const on = document.getElementById('piutang').checked;
-  document.getElementById('piutangRow').classList.toggle('on', on);
-  document.getElementById('badgePiutang').classList.toggle('show', on);
-}
-
-// ===================== TANGGAL =====================
-function syncTgl() {
-  const d = parseInt(document.getElementById('tglTgl').value) || 0;
-  const m = parseInt(document.getElementById('tglBln').value) || 0;
-  if(d > 0 && m > 0) {
-    const dd = String(d).padStart(2,'0');
-    const mm = String(m).padStart(2,'0');
-    document.getElementById('tgl').value = '2026-' + mm + '-' + dd;
-  } else {
-    document.getElementById('tgl').value = '';
-  }
-}
-
-// ===================== KEY =====================
-function toggleKey() {
-  keyVis = !keyVis;
-  document.getElementById('apiKey').type = keyVis ? 'text' : 'password';
-  document.getElementById('eyeBtn').textContent = keyVis ? '🙈' : '👁';
-}
-function checkKey() {
-  const v = document.getElementById('apiKey').value.trim();
-  const ok = v.length > 10;
-  document.getElementById('keyStatus').textContent = ok ? '✔ Siap' : '⬤ Belum diisi';
-  document.getElementById('keyStatus').style.color = ok ? '#2d8a4e' : '#bbb';
-  updateExtBtn();
-  if(typeof bmUpdateExtBtn === 'function') bmUpdateExtBtn();
-}
-
-// ===================== QUEUE =====================
-function addToQueue(inp) {
-  [...inp.files].forEach(f => {
-    const r = new FileReader();
-    r.onload = e => {
-      queue.push({file:f, data:e.target.result, done:false, rot:0});
-      renderQueue();
-      if(queue.length === 1) setTimeout(()=>openPreview(0), 100);
-    };
-    r.readAsDataURL(f);
-  });
-  inp.value = '';
-}
-
-function renderQueue() {
-  document.getElementById('queueBadge').textContent = queue.length + ' foto';
-  const box = document.getElementById('queueThumbs');
-  box.innerHTML = queue.map((q,i) => `
-    <div class="thumb${i===queueIdx?' active':''}${q.done?' done':''}" onclick="jumpTo(${i});openPreview(${i})" title="Nota ${i+1} (klik untuk preview)">
-      <img src="${q.data}" alt="${i+1}">
-      <div class="num">${i+1}</div>
-      ${!q.done ? `<div class="del-th" onclick="event.stopPropagation();removeFromQueue(${i})">×</div>` : ''}
-    </div>`).join('');
-  const pw = document.getElementById('progressWrap');
-  if(queue.length > 0) {
-    pw.style.display = 'block';
-    const done = queue.filter(q=>q.done).length;
-    const pct = queue.length > 0 ? Math.round(done/queue.length*100) : 0;
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressLabel').textContent = `${done} dari ${queue.length} nota selesai`;
-  } else {
-    pw.style.display = 'none';
-  }
-  updateExtBtn();
-}
-
 function removeFromQueue(i) {
   queue.splice(i, 1);
   if(queueIdx >= queue.length) queueIdx = queue.length - 1;
-  if(previewIdx >= queue.length) previewIdx = Math.max(0, queue.length - 1);
   renderQueue();
-  if(queue.length) refreshPreviewImg(); else closePreview();
 }
 
 function jumpTo(i) {
@@ -1160,8 +504,6 @@ async function processNext() {
   queueIdx = nextIdx;
   renderQueue();
   resetForm();
-  previewIdx = queueIdx;
-  refreshPreviewImg();
   await extractCurrent();
 }
 
@@ -1218,30 +560,25 @@ async function extractCurrent() {
     const parsed = JSON.parse(cleaned.substring(s, e2+1));
 
     if(parsed.tanggal) {
-      const parts = parsed.tanggal.split('-');
-      // parts = [YYYY, MM, DD]
-      if(parts.length === 3) {
-        document.getElementById('tglTgl').value = parseInt(parts[2]);
-        document.getElementById('tglBln').value = parseInt(parts[1]);
-        syncTgl();
+      const p = String(parsed.tanggal).split('-');
+      if(p.length === 3) {
+        document.getElementById('tglHari').value = parseInt(p[2]) || '';
+        document.getElementById('tglBulan').value = parseInt(p[1]) || '';
       }
     }
-    if(parsed.pelanggan) document.getElementById('pelanggan').value = parsed.pelanggan;
+    if(parsed.supplier) document.getElementById('supplier').value = parsed.supplier;
     if(parsed.kota) document.getElementById('kota').value = parsed.kota;
     if(parsed.no_nota) document.getElementById('noNota').value = parsed.no_nota;
+    if(parsed.kurs && parseFloat(parsed.kurs) > 0) document.getElementById('kurs').value = parsed.kurs;
 
+    const kurs = getKurs();
     rows = []; rowCounter = 0;
     (parsed.items||[]).forEach(item => {
-      // Auto-fix harga dulu sebelum matching
-      let harga = parseFloat(item.harga) || 0;
-      if(harga > 0 && harga < 500) harga = harga * 1000;
-
-      // Cari master terbaik: nama cocok + harga nota dipertimbangkan
-      const { master: m, matchType } = findBestMatch(item.nama_master, item.nama_nota, harga);
-
-      // Jika harga masih 0, pakai harga master
-      if(harga === 0 && m && m.harga > 0) harga = m.harga;
-      addRow(m?m.nama:item.nama_nota||'', item.qty||'', harga, item.satuan||'kg', item.nama_nota||'', matchType);
+      const m = findMaster(item.nama_master) || findMaster(item.nama_nota);
+      const usd = parseFloat(item.harga_usd) || 0;
+      let rp = parseFloat(item.harga_rp) || 0;
+      if(usd > 0 && rp === 0 && kurs > 0) rp = Math.round(usd * kurs);
+      addRow(m?m.nama:item.nama_nota||'', item.qty||'', usd, rp, item.satuan||(m?m.sat:'kg'), item.nama_nota||'');
     });
 
     btn.className = 'ext-btn success'; icon.textContent = '✔';
@@ -1256,634 +593,6 @@ async function extractCurrent() {
 
 function buildPrompt() {
   const masterNames = MASTER.map(m=>`${m.nama}|${m.kat}`).join('\n');
-  return `Kamu adalah asisten OCR nota penjualan pewarna tekstil Indonesia.
-Baca gambar nota dan ekstrak data berikut dalam format JSON.
-
-MASTER PRODUK:
-${masterNames}
-
-Aturan PENTING:
-- nama_master harus persis dari master list (case-insensitive). Cari padanan terbaik meski ejaan berbeda (contoh: "merah Byp" -> "GARAM MERAH B JP", "Custik" -> "KUSTIK SODA", "persoftal" -> "PERSOFTAL FLAKE")
-- Jika benar-benar tidak ada padanan sama sekali, isi nama_master dengan string kosong ""
-- qty adalah angka desimal
-- HARGA: semua harga di nota pewarna tekstil Indonesia selalu dalam satuan RUPIAH PENUH (bukan ribuan). Harga wajar berkisar 5.000 - 1.000.000. Jika kamu baca "155" di nota, kemungkinan besar itu 155.000. Jika subtotal atau konteks menunjukkan harga ratusan ribu, gunakan nilai penuh tersebut. Jangan potong nol di belakang.
-- Balas HANYA JSON tanpa penjelasan tanpa markdown
-
-{"tanggal":"YYYY-MM-DD","pelanggan":"","kota":"","no_nota":"","items":[{"nama_nota":"","nama_master":"","qty":0,"satuan":"kg","harga":0}]}`;
-}
-
-// ===================== NEXT NOTA =====================
-function goNext() {
-  if(queueIdx >= 0) queue[queueIdx].done = true;
-  renderQueue();
-  const nextIdx = queue.findIndex(q=>!q.done);
-  if(nextIdx < 0) {
-    document.getElementById('extLabel').textContent = '✔ Semua nota selesai!';
-    return;
-  }
-  queueIdx = nextIdx;
-  renderQueue();
-  resetForm();
-  previewIdx = queueIdx;
-  refreshPreviewImg();
-  extractCurrent();
-}
-
-// ===================== ROWS =====================
-function addRow(nama='', qty='', harga='', sat='kg', raw='', matchType='') {
-  const id = ++rowCounter;
-  const m = findMaster(nama);
-  const h = harga!=='' ? parseFloat(harga)||0 : (m?m.harga:0);
-  rows.push({id, nama:m?m.nama:nama, qty, harga:h, sat:sat||(m?m.sat:'kg'), raw, matchType});
-  renderTable();
-}
-
-function getKet(r) {
-  const m = findMaster(r.nama);
-  const msgs = [];
-
-  // Label metode pencocokan
-  if(r.matchType === 'fuzzy') {
-    msgs.push('🔀 Fuzzy match — cek nama');
-  } else if(r.matchType === 'harga') {
-    msgs.push('💰 Match by harga — cek nama');
-  } else if(r.matchType === 'fuzzy+harga') {
-    msgs.push('🔀💰 Fuzzy + match harga — cek nama & harga');
-  }
-
-  if(r.raw && r.nama && r.raw.toLowerCase() !== r.nama.toLowerCase()) {
-    msgs.push(`Nama nota: "${r.raw}"`);
-  }
-  if(!m && r.nama) msgs.push('⚠ Tidak ada di master');
-  if(m && r.harga > 0 && m.harga > 0 && r.harga !== m.harga) {
-    const selisih = r.harga - m.harga;
-    msgs.push(`Harga ${selisih>0?'+':''}${IDR(selisih)} vs master`);
-  }
-  return msgs.join(' | ');
-}
-
-function renderTable() {
-  const tbody = document.getElementById('tbody');
-  tbody.innerHTML = '';
-  rows.forEach((r,i) => {
-    const sub = (parseFloat(r.qty)||0)*(parseFloat(r.harga)||0);
-    const m = findMaster(r.nama);
-    const masterHarga = m ? m.harga : 0;
-    const hargaDiff = r.harga>0 && masterHarga>0 && parseFloat(r.harga)!==masterHarga;
-    const namaWarn = !m && r.nama;
-    const ket = getKet(r);
-    tbody.innerHTML += `<tr>
-      <td style="color:#ccc;text-align:center;font-size:11px">${i+1}</td>
-      <td>
-        <div class="ac-wrap">
-          <input class="nama-inp${namaWarn?' warn':m?' ok':''}" 
-            id="nama_${r.id}" value="${r.nama}" 
-            oninput="onNamaInput(${i},this)" 
-            onblur="hideAc()" 
-            onfocus="showAllAc(${i},this)"
-            placeholder="Ketik nama atau pilih...">
-        </div>
-      </td>
-      <td><input class="num" type="text" inputmode="decimal" id="qty_${r.id}" value="${r.qty}" oninput="onNumInput(${i},'qty',this)" placeholder="0"></td>
-      <td><input style="width:52px;padding:4px 5px;border:1px solid #ddd;border-radius:6px;font-size:12px" value="${r.sat}" oninput="rows[${i}].sat=this.value"></td>
-      <td><input class="num${hargaDiff?' price-diff':''}" type="text" inputmode="numeric" id="harga_${r.id}" value="${r.harga>0?r.harga:''}" oninput="onNumInput(${i},'harga',this)" placeholder="0" style="width:100px"></td>
-      <td class="master-price${hargaDiff?' diff':''}" id="mharga_${r.id}">
-        ${masterHarga>0 ? IDR(masterHarga) : (m?'<span style="color:#bbb">-</span>':'<span style="color:#ccc">tidak ada</span>')}
-        ${hargaDiff?'⚠':''}
-      </td>
-      <td class="sub-cell">${sub>0?IDR(sub):'-'}</td>
-      <td class="ket-cell" title="${ket}">${ket||''}</td>
-      <td><button class="del-btn" onclick="rows.splice(${i},1);renderTable()">✕</button></td>
-    </tr>`;
-  });
-  const grand = rows.reduce((s,r)=>(s+(parseFloat(r.qty)||0)*(parseFloat(r.harga)||0)),0);
-  document.getElementById('grandTotal').textContent = IDR(grand);
-}
-
-// ===================== AUTOCOMPLETE =====================
-function showAllAc(idx, inp) {
-  activeAcRow = idx;
-  positionAc(inp, MASTER, idx);
-}
-
-function onNamaInput(idx, inp) {
-  activeAcRow = idx;
-  const val = inp.value.trim().toLowerCase();
-  const list = document.getElementById('acList');
-
-  // Update data tanpa rebuild tabel
-  rows[idx].nama = inp.value;
-  const exactM = findMaster(inp.value);
-  if(exactM) {
-    // Hanya update sat & matchType, BUKAN harga nota
-    rows[idx].sat = exactM.sat;
-    rows[idx].matchType = 'exact';
-  }
-  // Selalu update sel master & status warna (termasuk saat nama tidak match)
-  updateMasterCell(rows[idx]);
-  refreshSubtotals();
-
-  const matches = val.length === 0
-    ? MASTER
-    : MASTER.filter(m => m.nama.toLowerCase().includes(val) || val.split(' ').every(w => m.nama.toLowerCase().includes(w)));
-
-  if(matches.length === 0) { list.classList.remove('show'); return; }
-  positionAc(inp, matches, idx);
-}
-
-function positionAc(inp, matches, idx) {
-  const list = document.getElementById('acList');
-  const rect = inp.getBoundingClientRect();
-  list.style.position = 'fixed';
-  list.style.top = (rect.bottom+2)+'px';
-  list.style.left = rect.left+'px';
-  list.style.width = Math.max(rect.width,220)+'px';
-  list.innerHTML = matches.map(m=>
-    `<div class="ac-item" onmousedown="selectAc(${idx},'${m.nama.replace(/'/g,"\\'")}')">
-      ${m.nama}<span class="kat">${m.kat}</span>
-    </div>`).join('');
-  list.classList.add('show');
-}
-
-function selectAc(idx, nama) {
-  rows[idx].nama = nama;
-  rows[idx].matchType = 'exact'; // reset matchType saat pilih manual
-  const m = findMaster(nama);
-  if(m) { rows[idx].sat = m.sat; } // BUKAN harga — harga nota tetap
-  document.getElementById('acList').classList.remove('show');
-  const r = rows[idx];
-  // Update input nama
-  const namaEl = document.getElementById('nama_'+r.id);
-  if(namaEl) namaEl.value = nama;
-  // Update sel Harga Master + status warna (harga nota tidak diubah)
-  updateMasterCell(r);
-  refreshSubtotals();
-}
-
-function hideAc() {
-  setTimeout(()=>document.getElementById('acList').classList.remove('show'), 150);
-}
-
-function updateKetCell(idx) {
-  // No-op: subtotals handled by refreshSubtotals
-}
-
-
-function updateMasterCell(r) {
-  const m = findMaster(r.nama);
-  const masterHarga = m ? m.harga : 0;
-  const hargaDiff = r.harga > 0 && masterHarga > 0 && parseFloat(r.harga) !== masterHarga;
-
-  // Update sel Harga Master
-  const mEl = document.getElementById('mharga_' + r.id);
-  if(mEl) {
-    mEl.className = 'master-price' + (hargaDiff ? ' diff' : '');
-    mEl.innerHTML = masterHarga > 0
-      ? IDR(masterHarga) + (hargaDiff ? ' ⚠' : '')
-      : (m ? '<span style="color:#bbb">-</span>' : '<span style="color:#ccc">tidak ada</span>');
-  }
-
-  // Update border warna nama input (ok/warn)
-  const namaEl = document.getElementById('nama_' + r.id);
-  if(namaEl) {
-    namaEl.className = 'nama-inp' + (!m && r.nama ? ' warn' : m ? ' ok' : '');
-  }
-
-  // Update border warna harga nota (price-diff)
-  const hEl = document.getElementById('harga_' + r.id);
-  if(hEl) {
-    hEl.className = 'num' + (hargaDiff ? ' price-diff' : '');
-  }
-
-  // Update keterangan
-  const ketEl = document.querySelector(`#tbody tr:nth-child(${rows.indexOf(r)+1}) .ket-cell`);
-  if(ketEl) {
-    const ket = getKet(r);
-    ketEl.textContent = ket;
-    ketEl.title = ket;
-  }
-}
-
-function onNumInput(idx, field, inp) {
-  const val = inp.value.replace(/[^0-9.]/g, '');
-  rows[idx][field] = parseFloat(val) || 0;
-  refreshSubtotals();
-}
-
-function refreshSubtotals() {
-  let grand = 0;
-  rows.forEach((r, i) => {
-    const sub = (parseFloat(r.qty)||0) * (parseFloat(r.harga)||0);
-    grand += sub;
-    // Update subtotal cell
-    const cells = document.getElementById('tbody').rows;
-    if(cells[i]) {
-      const subCell = cells[i].querySelector('.sub-cell');
-      if(subCell) subCell.textContent = sub > 0 ? IDR(sub) : '-';
-    }
-  });
-  document.getElementById('grandTotal').textContent = IDR(grand);
-}
-
-// ===================== COPY TO GOOGLE SHEET =====================
-function copyToClipboard() {
-  const tgl = document.getElementById('tgl').value;
-  const pel = document.getElementById('pelanggan').value.trim();
-  const kota = document.getElementById('kota').value.trim();
-  const noNota = document.getElementById('noNota').value.trim();
-  const ket = document.getElementById('ket').value.trim();
-  const isPiutang = document.getElementById('piutang').checked;
-  const valid = rows.filter(r=>r.nama && r.qty);
-  if(!valid.length) { alert('Tidak ada data barang.'); return; }
-
-  // Format: Tanggal \t Pelanggan \t Kota \t No.Nota \t Nama Barang \t Qty \t Sat \t Harga \t Subtotal \t Harga Master \t Status \t Keterangan
-  const lines = valid.map(r => {
-    const sub = (parseFloat(r.qty)||0)*(parseFloat(r.harga)||0);
-    const m = findMaster(r.nama);
-    const masterH = m ? m.harga : 0;
-    const ketRow = getKet(r);
-    return [
-      fmtTgl(tgl),
-      pel,
-      kota,
-      noNota,
-      r.nama,
-      r.qty,
-      r.sat,
-      parseFloat(r.harga)||0,
-      Math.round(sub),
-      masterH||'',
-      isPiutang ? 'PIUTANG' : 'LUNAS',
-      ketRow||''
-    ].join('\t');
-  });
-
-  // Header row
-  const header = ['Tanggal','Pelanggan','Kota','No.Nota','Nama Barang','Qty','Sat','Harga','Subtotal','Harga Master','Status','Keterangan'].join('\t');
-  const tsv = header + '\n' + lines.join('\n');
-
-  navigator.clipboard.writeText(tsv).then(() => {
-    const ok = document.getElementById('copyOk');
-    ok.style.display = 'block';
-    setTimeout(()=>ok.style.display='none', 3000);
-  }).catch(() => {
-    // Fallback
-    const ta = document.createElement('textarea');
-    ta.value = tsv; ta.style.position='fixed'; ta.style.opacity='0';
-    document.body.appendChild(ta); ta.select();
-    document.execCommand('copy'); document.body.removeChild(ta);
-    const ok = document.getElementById('copyOk');
-    ok.style.display = 'block';
-    setTimeout(()=>ok.style.display='none', 3000);
-  });
-}
-
-// ===================== RESET =====================
-function resetForm() {
-  (function(){
-  const now = new Date();
-  document.getElementById('tglTgl').value = now.getDate();
-  document.getElementById('tglBln').value = now.getMonth()+1;
-  syncTgl();
-})();
-  document.getElementById('pelanggan').value = '';
-  document.getElementById('kota').value = '';
-  document.getElementById('noNota').value = '';
-  document.getElementById('ket').value = '';
-  document.getElementById('piutang').checked = false;
-  onPiutangChange();
-  rows = []; rowCounter = 0;
-  renderTable();
-  document.getElementById('extBtn').className = 'ext-btn';
-  document.getElementById('extIcon').textContent = '✨';
-  document.getElementById('extErr').style.display = 'none';
-  document.getElementById('copyOk').style.display = 'none';
-  updateExtBtn();
-}
-
-// ===================== INIT =====================
-(function(){
-  const now = new Date();
-  document.getElementById('tglTgl').value = now.getDate();
-  document.getElementById('tglBln').value = now.getMonth()+1;
-  syncTgl();
-})();
-addRow();
-renderQueue();
-</script>
-<script>
-// ═══════════════════════════════════════════════════════
-//  TAB BARANG MASUK — kode ber-prefix "bm" agar tidak bentrok
-// ═══════════════════════════════════════════════════════
-
-// ===================== MASTER DATA BARANG MASUK =====================
-const BM_MASTER = MASTER; // satu master bersama untuk kedua tab
-
-// ===================== STATE BM =====================
-const USD = v => '$' + (Math.round(v*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-const pad2 = n => String(n).padStart(2,'0');
-// Terima koma ATAU titik sebagai desimal: "4,5" dan "4.5" sama-sama valid
-const parseNum = v => parseFloat(String(v ?? '').replace(',', '.')) || 0;
-function bmGetTglStr() {
-  const h = parseInt(document.getElementById('bmTglHari').value) || 0;
-  const b = parseInt(document.getElementById('bmTglBulan').value) || 0;
-  if(!h || !b) return '';
-  return pad2(h) + '/' + pad2(b) + '/2026';
-}
-function bmSetTglToday() {
-  const now = new Date();
-  document.getElementById('bmTglHari').value = now.getDate();
-  document.getElementById('bmTglBulan').value = now.getMonth() + 1;
-}
-let bmQueue = [];       // [{file, data(base64), done, rot}]
-let bmQueueIdx = -1;
-let bmRows = [];        // {id, nama, qty, sat, usd, harga(Rp), raw}
-let bmRowCounter = 0;
-let bmActiveAcRow = null;
-
-function bmGetKurs() { return parseFloat(document.getElementById('bmKurs').value) || 0; }
-
-function bmFindMaster(nama) {
-  if(!nama) return null;
-  return BM_MASTER.find(m => m.nama.toLowerCase() === nama.trim().toLowerCase()) || null;
-}
-
-// ===================== KURS =====================
-function bmOnKursChange() {
-  const kurs = bmGetKurs();
-  if(kurs > 0) {
-    // Hitung ulang semua baris yang punya harga USD
-    bmRows.forEach(r => {
-      const usd = parseNum(r.usd);
-      if(usd > 0) r.harga = Math.round(usd * kurs);
-    });
-  }
-  bmRenderTable();
-}
-
-// ===================== QUEUE BM =====================
-function bmAddToQueue(inp) {
-  [...inp.files].forEach(f => {
-    const r = new FileReader();
-    r.onload = e => {
-      bmQueue.push({file:f, data:e.target.result, done:false, rot:0});
-      bmRenderQueue();
-    };
-    r.readAsDataURL(f);
-  });
-  inp.value = '';
-}
-
-function bmRenderQueue() {
-  document.getElementById('bmQueueBadge').textContent = bmQueue.length + ' foto';
-  const box = document.getElementById('bmQueueThumbs');
-  box.innerHTML = bmQueue.map((q,i) => `
-    <div class="thumb${i===bmQueueIdx?' active-bm':''}${q.done?' done':''}" onclick="bmJumpTo(${i})" title="Nota ${i+1}">
-      <img src="${q.data}" alt="${i+1}">
-      <div class="num">${i+1}</div>
-      ${!q.done ? `<div class="del-th" onclick="event.stopPropagation();bmRemoveFromQueue(${i})">×</div>` : ''}
-    </div>`).join('');
-  const pw = document.getElementById('bmProgressWrap');
-  if(bmQueue.length > 0) {
-    pw.style.display = 'block';
-    const done = bmQueue.filter(q=>q.done).length;
-    const pct = bmQueue.length > 0 ? Math.round(done/bmQueue.length*100) : 0;
-    document.getElementById('bmProgressFill').style.width = pct + '%';
-    document.getElementById('bmProgressLabel').textContent = `${done} dari ${bmQueue.length} nota selesai`;
-  } else {
-    pw.style.display = 'none';
-  }
-  bmUpdateExtBtn();
-  bmRenderPreview();
-}
-
-// ===================== PREVIEW & ROTATE BM =====================
-function bmRenderPreview() {
-  const card = document.getElementById('bmPreviewCard');
-  if(bmQueueIdx < 0 || !bmQueue[bmQueueIdx]) { card.style.display = 'none'; return; }
-  card.style.display = 'block';
-  const q = bmQueue[bmQueueIdx];
-  const deg = q.rot || 0;
-  const pi = document.getElementById('bmPreviewImg');
-  const mi = document.getElementById('bmModalImg');
-  pi.src = q.data; pi.style.transform = `rotate(${deg}deg)`;
-  mi.src = q.data;
-  bmApplyModalTransform();
-  document.getElementById('bmPreviewTitle').textContent = `🔍 Preview Nota ${bmQueueIdx+1} dari ${bmQueue.length}`;
-}
-
-function bmRotatePreview(d) {
-  if(bmQueueIdx < 0 || !bmQueue[bmQueueIdx]) return;
-  bmQueue[bmQueueIdx].rot = ((bmQueue[bmQueueIdx].rot || 0) + d + 360) % 360;
-  bmRenderPreview();
-}
-
-// ===================== ZOOM MODAL BM =====================
-let bmScale = 1, bmPanX = 0, bmPanY = 0;
-
-function bmApplyModalTransform() {
-  const q = bmQueue[bmQueueIdx];
-  const deg = q ? (q.rot || 0) : 0;
-  document.getElementById('bmModalImg').style.transform =
-    `translate(${bmPanX}px, ${bmPanY}px) rotate(${deg}deg) scale(${bmScale})`;
-  document.getElementById('bmZoomLbl').textContent = Math.round(bmScale * 100) + '%';
-}
-function bmZoomModal(f) {
-  bmScale = Math.min(8, Math.max(1, bmScale * f));
-  if(bmScale <= 1.01) { bmScale = 1; bmPanX = 0; bmPanY = 0; }
-  bmApplyModalTransform();
-}
-function bmResetZoom() { bmScale = 1; bmPanX = 0; bmPanY = 0; bmApplyModalTransform(); }
-
-function bmOpenModal() {
-  if(bmQueueIdx < 0 || !bmQueue[bmQueueIdx]) return;
-  bmResetZoom();
-  document.getElementById('bmImgModal').classList.add('show');
-}
-function bmCloseModal() {
-  document.getElementById('bmImgModal').classList.remove('show');
-}
-document.addEventListener('keydown', e => { if(e.key === 'Escape') bmCloseModal(); });
-
-// Scroll mouse = zoom
-const _bmModal = document.getElementById('bmImgModal');
-_bmModal.addEventListener('wheel', e => {
-  if(!_bmModal.classList.contains('show')) return;
-  e.preventDefault();
-  bmZoomModal(e.deltaY < 0 ? 1.15 : 1/1.15);
-}, {passive:false});
-
-// Drag = geser gambar
-const _bmImg = document.getElementById('bmModalImg');
-let _bmDrag = false, _bmSx = 0, _bmSy = 0, _bmTDist = 0;
-_bmImg.addEventListener('mousedown', e => {
-  _bmDrag = true; _bmSx = e.clientX - bmPanX; _bmSy = e.clientY - bmPanY;
-  _bmImg.classList.add('dragging'); e.preventDefault();
-});
-window.addEventListener('mousemove', e => {
-  if(!_bmDrag) return;
-  bmPanX = e.clientX - _bmSx; bmPanY = e.clientY - _bmSy;
-  bmApplyModalTransform();
-});
-window.addEventListener('mouseup', () => { _bmDrag = false; _bmImg.classList.remove('dragging'); });
-
-// Double-click = zoom cepat 250% / kembali 100%
-_bmImg.addEventListener('dblclick', () => {
-  if(bmScale > 1) bmResetZoom();
-  else { bmScale = 2.5; bmApplyModalTransform(); }
-});
-
-// HP: 1 jari geser, 2 jari cubit untuk zoom
-_bmImg.addEventListener('touchstart', e => {
-  if(e.touches.length === 1) {
-    _bmDrag = true; _bmSx = e.touches[0].clientX - bmPanX; _bmSy = e.touches[0].clientY - bmPanY;
-  } else if(e.touches.length === 2) {
-    _bmDrag = false;
-    _bmTDist = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-  }
-}, {passive:true});
-_bmImg.addEventListener('touchmove', e => {
-  if(e.touches.length === 1 && _bmDrag) {
-    bmPanX = e.touches[0].clientX - _bmSx; bmPanY = e.touches[0].clientY - _bmSy;
-    bmApplyModalTransform();
-  } else if(e.touches.length === 2) {
-    const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
-    if(_bmTDist > 0) bmZoomModal(d / _bmTDist);
-    _bmTDist = d;
-  }
-  e.preventDefault();
-}, {passive:false});
-_bmImg.addEventListener('touchend', () => { _bmDrag = false; _bmTDist = 0; });
-
-function bmRemoveFromQueue(i) {
-  bmQueue.splice(i, 1);
-  if(bmQueueIdx >= bmQueue.length) bmQueueIdx = bmQueue.length - 1;
-  bmRenderQueue();
-}
-
-function bmJumpTo(i) {
-  if(i === bmQueueIdx) return;
-  if(!bmQueue[i].done) {
-    bmQueueIdx = i;
-    bmRenderQueue();
-    bmResetForm();
-  }
-}
-
-function bmUpdateExtBtn() {
-  const key = document.getElementById('apiKey').value.trim();
-  const hasKey = key.length > 10;
-  const hasQueue = bmQueue.length > 0 && bmQueue.some(q=>!q.done);
-  const btn = document.getElementById('bmExtBtn');
-  const lbl = document.getElementById('bmExtLabel');
-  btn.disabled = !(hasKey && hasQueue);
-  if(!hasKey) lbl.textContent = 'Isi API key dulu';
-  else if(bmQueue.length === 0) lbl.textContent = 'Upload foto dulu';
-  else if(!hasQueue) lbl.textContent = '✔ Semua nota sudah diproses';
-  else {
-    const next = bmQueue.findIndex(q=>!q.done);
-    lbl.textContent = `Proses nota ${next+1} dari ${bmQueue.length}`;
-  }
-  document.getElementById('bmBtnNext').disabled = !bmQueue.some(q=>!q.done) || bmQueueIdx < 0;
-  document.getElementById('bmNotaCounter').textContent = bmQueue.length > 0 ? `(${(bmQueueIdx>=0?bmQueueIdx:0)+1} / ${bmQueue.length})` : '';
-}
-
-// ===================== EXTRACT BM =====================
-async function bmProcessNext() {
-  const nextIdx = bmQueue.findIndex(q=>!q.done);
-  if(nextIdx < 0) return;
-  bmQueueIdx = nextIdx;
-  bmRenderQueue();
-  bmResetForm();
-  await bmExtractCurrent();
-}
-
-async function bmExtractCurrent() {
-  if(bmQueueIdx < 0 || !bmQueue[bmQueueIdx]) return;
-  const apiKey = document.getElementById('apiKey').value.trim();
-  const btn = document.getElementById('bmExtBtn');
-  const lbl = document.getElementById('bmExtLabel');
-  const icon = document.getElementById('bmExtIcon');
-  const errEl = document.getElementById('bmExtErr');
-  errEl.style.display = 'none';
-  btn.disabled = true;
-  icon.innerHTML = '<div class="spinner"></div>';
-  lbl.textContent = `Membaca nota ${bmQueueIdx+1}...`;
-
-  const img = bmQueue[bmQueueIdx];
-  const parts = [
-    { inline_data: { mime_type: img.file.type||'image/jpeg', data: img.data.split(',')[1] } },
-    { text: bmBuildPrompt() }
-  ];
-
-  const models = ['gemini-2.5-flash','gemini-2.5-flash-lite','gemini-3.5-flash'];
-  let data = null, lastErr = '';
-  for(const model of models) {
-    try {
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-        { method:'POST', headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({ contents:[{parts}], generationConfig:{temperature:0, maxOutputTokens:8192} }) }
-      );
-      const json = await res.json();
-      if(!res.ok){ lastErr = json.error?.message||'HTTP '+res.status; continue; }
-      data = json; break;
-    } catch(e){ lastErr = e.message; }
-  }
-
-  if(!data) {
-    btn.className = 'ext-btn err'; icon.textContent = '✕'; lbl.textContent = 'Gagal — coba lagi';
-    errEl.textContent = 'Error: ' + lastErr; errEl.style.display = 'block';
-    btn.disabled = false; return;
-  }
-
-  try {
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-    let cleaned = text.replace(/```json|```/g,"").trim();
-    const s = cleaned.indexOf("{");
-    if(s < 0) throw new Error("Tidak ada JSON");
-    let depth = 0, e2 = -1;
-    for(let ci = s; ci < cleaned.length; ci++) {
-      if(cleaned[ci] === "{") depth++;
-      else if(cleaned[ci] === "}") { depth--; if(depth === 0){ e2 = ci; break; } }
-    }
-    if(e2 < 0) throw new Error("JSON tidak lengkap");
-    const parsed = JSON.parse(cleaned.substring(s, e2+1));
-
-    if(parsed.tanggal) {
-      const p = String(parsed.tanggal).split('-');
-      if(p.length === 3) {
-        document.getElementById('bmTglHari').value = parseInt(p[2]) || '';
-        document.getElementById('bmTglBulan').value = parseInt(p[1]) || '';
-      }
-    }
-    if(parsed.supplier) document.getElementById('bmSupplier').value = parsed.supplier;
-    if(parsed.kota) document.getElementById('bmKota').value = parsed.kota;
-    if(parsed.no_nota) document.getElementById('bmNoNota').value = parsed.no_nota;
-    if(parsed.kurs && parseFloat(parsed.kurs) > 0) document.getElementById('bmKurs').value = parsed.kurs;
-
-    const kurs = bmGetKurs();
-    bmRows = []; bmRowCounter = 0;
-    (parsed.items||[]).forEach(item => {
-      const m = bmFindMaster(item.nama_master) || bmFindMaster(item.nama_nota);
-      const usd = parseFloat(item.harga_usd) || 0;
-      let rp = parseFloat(item.harga_rp) || 0;
-      if(usd > 0 && rp === 0 && kurs > 0) rp = Math.round(usd * kurs);
-      bmAddRow(m?m.nama:item.nama_nota||'', item.qty||'', usd, rp, item.satuan||(m?m.sat:'kg'), item.nama_nota||'');
-    });
-
-    btn.className = 'ext-btn success'; icon.textContent = '✔';
-    lbl.textContent = `Nota ${bmQueueIdx+1} berhasil diekstrak — ${bmRows.length} item`;
-    document.getElementById('bmBtnNext').disabled = false;
-  } catch(err) {
-    btn.className = 'ext-btn err'; icon.textContent = '✕'; lbl.textContent = 'Gagal parse — coba lagi';
-    errEl.textContent = 'Parse error: ' + err.message; errEl.style.display = 'block';
-  }
-  btn.disabled = false;
-}
-
-function bmBuildPrompt() {
-  const masterNames = BM_MASTER.map(m=>`${m.nama}|${m.kat}`).join('\n');
   return `Kamu adalah asisten OCR nota pembelian / surat jalan barang masuk untuk toko pewarna tekstil Indonesia.
 Baca gambar nota/surat jalan dari supplier dan ekstrak data berikut dalam format JSON.
 
@@ -1903,26 +612,26 @@ Aturan:
 {"tanggal":"YYYY-MM-DD","supplier":"","kota":"","no_nota":"","kurs":0,"items":[{"nama_nota":"","nama_master":"","qty":0,"satuan":"kg","harga_usd":0,"harga_rp":0}]}`;
 }
 
-// ===================== NEXT NOTA BM =====================
-function bmGoNext() {
-  if(bmQueueIdx >= 0) bmQueue[bmQueueIdx].done = true;
-  bmRenderQueue();
-  const nextIdx = bmQueue.findIndex(q=>!q.done);
+// ===================== NEXT NOTA =====================
+function goNext() {
+  if(queueIdx >= 0) queue[queueIdx].done = true;
+  renderQueue();
+  const nextIdx = queue.findIndex(q=>!q.done);
   if(nextIdx < 0) {
-    document.getElementById('bmExtLabel').textContent = '✔ Semua nota selesai!';
+    document.getElementById('extLabel').textContent = '✔ Semua nota selesai!';
     return;
   }
-  bmQueueIdx = nextIdx;
-  bmRenderQueue();
-  bmResetForm();
-  bmExtractCurrent();
+  queueIdx = nextIdx;
+  renderQueue();
+  resetForm();
+  extractCurrent();
 }
 
-// ===================== ROWS BM =====================
-function bmAddRow(nama='', qty='', usd='', harga='', sat='kg', raw='') {
-  const id = ++bmRowCounter;
-  const m = bmFindMaster(nama);
-  bmRows.push({
+// ===================== ROWS =====================
+function addRow(nama='', qty='', usd='', harga='', sat='kg', raw='') {
+  const id = ++rowCounter;
+  const m = findMaster(nama);
+  rows.push({
     id,
     nama: m ? m.nama : nama,
     qty,
@@ -1931,34 +640,34 @@ function bmAddRow(nama='', qty='', usd='', harga='', sat='kg', raw='') {
     sat: sat || (m ? m.sat : 'kg'),
     raw
   });
-  bmRenderTable();
+  renderTable();
 }
 
-function bmOnQtyInput(i, val) {
-  bmRows[i].qty = val;
-  bmUpdateRowCalc(i);
+function onQtyInput(i, val) {
+  rows[i].qty = val;
+  updateRowCalc(i);
 }
 
-function bmOnUsdInput(i, val) {
-  bmRows[i].usd = val;
+function onUsdInput(i, val) {
+  rows[i].usd = val;
   const usd = parseNum(val);
-  const kurs = bmGetKurs();
+  const kurs = getKurs();
   if(usd > 0 && kurs > 0) {
-    bmRows[i].harga = Math.round(usd * kurs);
-    const rpEl = document.getElementById('bmRp_' + bmRows[i].id);
-    if(rpEl) rpEl.value = bmRows[i].harga;
+    rows[i].harga = Math.round(usd * kurs);
+    const rpEl = document.getElementById('rp_' + rows[i].id);
+    if(rpEl) rpEl.value = rows[i].harga;
   }
-  bmUpdateRowCalc(i);
+  updateRowCalc(i);
 }
 
-function bmOnRpInput(i, val) {
-  bmRows[i].harga = val;
-  bmUpdateRowCalc(i);
+function onRpInput(i, val) {
+  rows[i].harga = val;
+  updateRowCalc(i);
 }
 
 // Sel harga jual master: tampilkan harga jual + margin vs harga beli
-function bmJualCellHtml(r) {
-  const m = bmFindMaster(r.nama);
+function jualCellHtml(r) {
+  const m = findMaster(r.nama);
   if(!m) return '<span style="color:#ccc">-</span>';
   if(!m.harga || m.harga <= 0) return '<span style="color:#ccc">belum ada</span>';
   const beli = parseNum(r.harga);
@@ -1977,25 +686,25 @@ function bmJualCellHtml(r) {
 }
 
 // Update subtotal, hint kurs & total tanpa render ulang tabel (agar kursor tidak hilang saat mengetik)
-function bmUpdateRowCalc(i) {
-  const r = bmRows[i]; if(!r) return;
+function updateRowCalc(i) {
+  const r = rows[i]; if(!r) return;
   const sub = parseNum(r.qty) * parseNum(r.harga);
-  const subEl = document.getElementById('bmSub_' + r.id);
+  const subEl = document.getElementById('sub_' + r.id);
   if(subEl) subEl.textContent = sub > 0 ? IDR(sub) : '-';
-  const usd = parseNum(r.usd), kurs = bmGetKurs();
-  const hintEl = document.getElementById('bmRphint_' + r.id);
+  const usd = parseNum(r.usd), kurs = getKurs();
+  const hintEl = document.getElementById('rphint_' + r.id);
   if(hintEl) hintEl.textContent = (usd > 0 && kurs > 0) ? `= ${USD(usd)} × ${kurs.toLocaleString('id-ID')}` : '';
-  const jualEl = document.getElementById('bmJual_' + r.id);
-  if(jualEl) jualEl.innerHTML = bmJualCellHtml(r);
-  bmUpdateTotals();
+  const jualEl = document.getElementById('jual_' + r.id);
+  if(jualEl) jualEl.innerHTML = jualCellHtml(r);
+  updateTotals();
 }
 
-function bmUpdateTotals() {
-  const kurs = bmGetKurs();
-  const grandRp = bmRows.reduce((s,r)=>(s + parseNum(r.qty) * parseNum(r.harga)), 0);
-  const grandUsd = bmRows.reduce((s,r)=>(s + parseNum(r.qty) * parseNum(r.usd)), 0);
-  document.getElementById('bmGrandTotal').textContent = IDR(grandRp);
-  const usdEl = document.getElementById('bmGrandTotalUsd');
+function updateTotals() {
+  const kurs = getKurs();
+  const grandRp = rows.reduce((s,r)=>(s + parseNum(r.qty) * parseNum(r.harga)), 0);
+  const grandUsd = rows.reduce((s,r)=>(s + parseNum(r.qty) * parseNum(r.usd)), 0);
+  document.getElementById('grandTotal').textContent = IDR(grandRp);
+  const usdEl = document.getElementById('grandTotalUsd');
   if(grandUsd > 0) {
     usdEl.style.display = 'block';
     usdEl.textContent = 'Total USD: ' + USD(grandUsd) + (kurs > 0 ? ` @ kurs ${kurs.toLocaleString('id-ID')}` : '');
@@ -2004,67 +713,67 @@ function bmUpdateTotals() {
   }
 }
 
-function bmGetKet(r) {
-  const m = bmFindMaster(r.nama);
+function getKet(r) {
+  const m = findMaster(r.nama);
   const msgs = [];
   if(r.raw && r.nama && r.raw.toLowerCase() !== r.nama.toLowerCase()) {
     msgs.push(`Nama di nota: "${r.raw}"`);
   }
   if(!m && r.nama) msgs.push('⚠ Tidak ada di master');
   const usd = parseNum(r.usd);
-  if(usd > 0 && bmGetKurs() <= 0) msgs.push('⚠ Kurs belum diisi');
+  if(usd > 0 && getKurs() <= 0) msgs.push('⚠ Kurs belum diisi');
   return msgs.join(' | ');
 }
 
-function bmRenderTable() {
-  const tbody = document.getElementById('bmTbody');
-  const kurs = bmGetKurs();
+function renderTable() {
+  const tbody = document.getElementById('tbody');
+  const kurs = getKurs();
   tbody.innerHTML = '';
-  bmRows.forEach((r,i) => {
+  rows.forEach((r,i) => {
     const usd = parseNum(r.usd);
     const rp = parseNum(r.harga);
     const sub = parseNum(r.qty) * rp;
-    const m = bmFindMaster(r.nama);
+    const m = findMaster(r.nama);
     const namaWarn = !m && r.nama;
     const isAuto = usd > 0 && kurs > 0;
-    const ket = bmGetKet(r);
+    const ket = getKet(r);
     tbody.innerHTML += `<tr>
       <td style="color:#ccc;text-align:center;font-size:11px">${i+1}</td>
       <td>
         <div class="ac-wrap">
           <input class="nama-inp${namaWarn?' warn':m?' ok':''}" 
-            id="bmNama_${r.id}" value="${r.nama}" 
-            oninput="bmOnNamaInput(${i},this)" 
-            onblur="bmHideAc()" 
-            onfocus="bmOnNamaInput(${i},this)"
+            id="nama_${r.id}" value="${r.nama}" 
+            oninput="onNamaInput(${i},this)" 
+            onblur="hideAc()" 
+            onfocus="onNamaInput(${i},this)"
             placeholder="Ketik nama atau pilih...">
         </div>
       </td>
-      <td><input class="num" type="text" inputmode="decimal" id="bmQty_${r.id}" value="${r.qty}" oninput="bmOnQtyInput(${i},this.value)" placeholder="0"></td>
-      <td><input style="width:52px;padding:4px 5px;border:1px solid #ddd;border-radius:6px;font-size:12px" value="${r.sat}" oninput="bmRows[${i}].sat=this.value"></td>
-      <td><input class="num usd-inp" type="text" inputmode="decimal" id="bmUsd_${r.id}" value="${usd>0?r.usd:''}" oninput="bmOnUsdInput(${i},this.value)" placeholder="0.00" style="width:82px"></td>
+      <td><input class="num" type="text" inputmode="decimal" id="qty_${r.id}" value="${r.qty}" oninput="onQtyInput(${i},this.value)" placeholder="0"></td>
+      <td><input style="width:52px;padding:4px 5px;border:1px solid #ddd;border-radius:6px;font-size:12px" value="${r.sat}" oninput="rows[${i}].sat=this.value"></td>
+      <td><input class="num usd-inp" type="text" inputmode="decimal" id="usd_${r.id}" value="${usd>0?r.usd:''}" oninput="onUsdInput(${i},this.value)" placeholder="0.00" style="width:82px"></td>
       <td>
-        <input class="num${isAuto?' rp-auto':''}" type="text" inputmode="numeric" id="bmRp_${r.id}" value="${rp>0?r.harga:''}" oninput="bmOnRpInput(${i},this.value)" placeholder="0" style="width:100px">
-        <span class="rp-hint" id="bmRphint_${r.id}">${isAuto?`= ${USD(usd)} × ${kurs.toLocaleString('id-ID')}`:''}</span>
+        <input class="num${isAuto?' rp-auto':''}" type="text" inputmode="numeric" id="rp_${r.id}" value="${rp>0?r.harga:''}" oninput="onRpInput(${i},this.value)" placeholder="0" style="width:100px">
+        <span class="rp-hint" id="rphint_${r.id}">${isAuto?`= ${USD(usd)} × ${kurs.toLocaleString('id-ID')}`:''}</span>
       </td>
-      <td class="sub-cell" id="bmSub_${r.id}">${sub>0?IDR(sub):'-'}</td>
-      <td class="jual-cell" id="bmJual_${r.id}">${bmJualCellHtml(r)}</td>
-      <td class="ket-cell ket-cell-bm" title="${ket}">${ket||''}</td>
-      <td><button class="del-btn" onclick="bmRows.splice(${i},1);bmRenderTable()">✕</button></td>
+      <td class="sub-cell" id="sub_${r.id}">${sub>0?IDR(sub):'-'}</td>
+      <td class="jual-cell" id="jual_${r.id}">${jualCellHtml(r)}</td>
+      <td class="ket-cell" title="${ket}">${ket||''}</td>
+      <td><button class="del-btn" onclick="rows.splice(${i},1);renderTable()">✕</button></td>
     </tr>`;
   });
-  bmUpdateTotals();
+  updateTotals();
 }
 
-// ===================== AUTOCOMPLETE BM =====================
-function bmOnNamaInput(idx, inp) {
-  bmActiveAcRow = idx;
+// ===================== AUTOCOMPLETE =====================
+function onNamaInput(idx, inp) {
+  activeAcRow = idx;
   const val = inp.value.trim().toLowerCase();
-  const list = document.getElementById('bmAcList');
+  const list = document.getElementById('acList');
 
   const matches = val.length === 0
-    ? BM_MASTER.slice(0,30)
-    : BM_MASTER.filter(m => m.nama.toLowerCase().includes(val)).slice(0,20);
+    ? MASTER.slice(0,30)
+    : MASTER.filter(m => m.nama.toLowerCase().includes(val)).slice(0,20);
 
   if(matches.length === 0) { list.classList.remove('show'); return; }
 
@@ -2074,48 +783,48 @@ function bmOnNamaInput(idx, inp) {
   list.style.left = rect.left+'px';
   list.style.width = Math.max(rect.width,220)+'px';
   list.innerHTML = matches.map(m=>
-    `<div class="ac-item" onmousedown="bmSelectAc(${idx},'${m.nama.replace(/'/g,"\\'")}')">
+    `<div class="ac-item" onmousedown="selectAc(${idx},'${m.nama.replace(/'/g,"\\'")}')">
       ${m.nama}<span class="kat">${m.kat}</span>
     </div>`).join('');
   list.classList.add('show');
 
   // Update row nama langsung saat ketik
-  bmRows[idx].nama = inp.value;
-  const exactM = bmFindMaster(inp.value);
-  if(exactM) { bmRows[idx].sat = exactM.sat; }
+  rows[idx].nama = inp.value;
+  const exactM = findMaster(inp.value);
+  if(exactM) { rows[idx].sat = exactM.sat; }
 }
 
-function bmSelectAc(idx, nama) {
-  bmRows[idx].nama = nama;
-  const m = bmFindMaster(nama);
-  if(m) { bmRows[idx].sat = m.sat; }
-  document.getElementById('bmAcList').classList.remove('show');
-  bmRenderTable();
-  setTimeout(()=>{ const el=document.getElementById(`bmNama_${bmRows[idx]?.id}`); if(el) el.blur(); },50);
+function selectAc(idx, nama) {
+  rows[idx].nama = nama;
+  const m = findMaster(nama);
+  if(m) { rows[idx].sat = m.sat; }
+  document.getElementById('acList').classList.remove('show');
+  renderTable();
+  setTimeout(()=>{ const el=document.getElementById(`nama_${rows[idx]?.id}`); if(el) el.blur(); },50);
 }
 
-function bmHideAc() {
-  setTimeout(()=>document.getElementById('bmAcList').classList.remove('show'), 150);
+function hideAc() {
+  setTimeout(()=>document.getElementById('acList').classList.remove('show'), 150);
 }
 
-// ===================== COPY TO GOOGLE SHEET BM =====================
-function bmCopyToClipboard() {
-  const tglStr = bmGetTglStr();
-  const sup = document.getElementById('bmSupplier').value.trim();
-  const kota = document.getElementById('bmKota').value.trim();
-  const noNota = document.getElementById('bmNoNota').value.trim();
-  const ket = document.getElementById('bmKet').value.trim();
-  const kurs = bmGetKurs();
-  const valid = bmRows.filter(r=>r.nama && r.qty);
+// ===================== COPY TO GOOGLE SHEET =====================
+function copyToClipboard() {
+  const tglStr = getTglStr();
+  const sup = document.getElementById('supplier').value.trim();
+  const kota = document.getElementById('kota').value.trim();
+  const noNota = document.getElementById('noNota').value.trim();
+  const ket = document.getElementById('ket').value.trim();
+  const kurs = getKurs();
+  const valid = rows.filter(r=>r.nama && r.qty);
   if(!valid.length) { alert('Tidak ada data barang.'); return; }
 
-  // Format: Tanggal \t Supplier \t Kota \t No.Nota \t Nama Barang \t Qty \t Sat \t Harga USD \t Kurs \t Harga Rp \t Subtotal Rp \t Harga Jual Master \t Keterangan
+  // Format: Tanggal \t Supplier \t Kota \t No.Nota \t Nama Barang \t Qty \t Sat \t Harga USD \t Kurs \t Harga Rp \t Subtotal Rp \t Keterangan
   const lines = valid.map(r => {
     const usd = parseNum(r.usd);
     const rp = parseNum(r.harga);
     const sub = parseNum(r.qty) * rp;
-    const ketRow = bmGetKet(r);
-    const m = bmFindMaster(r.nama);
+    const ketRow = getKet(r);
+    const m = findMaster(r.nama);
     const hJual = m && m.harga > 0 ? m.harga : '';
     return [
       tglStr,
@@ -2139,7 +848,7 @@ function bmCopyToClipboard() {
   const tsv = header + '\n' + lines.join('\n');
 
   navigator.clipboard.writeText(tsv).then(() => {
-    const ok = document.getElementById('bmCopyOk');
+    const ok = document.getElementById('copyOk');
     ok.style.display = 'block';
     setTimeout(()=>ok.style.display='none', 3000);
   }).catch(() => {
@@ -2148,49 +857,33 @@ function bmCopyToClipboard() {
     ta.value = tsv; ta.style.position='fixed'; ta.style.opacity='0';
     document.body.appendChild(ta); ta.select();
     document.execCommand('copy'); document.body.removeChild(ta);
-    const ok = document.getElementById('bmCopyOk');
+    const ok = document.getElementById('copyOk');
     ok.style.display = 'block';
     setTimeout(()=>ok.style.display='none', 3000);
   });
 }
 
-// ===================== RESET BM =====================
-function bmResetForm() {
-  bmSetTglToday();
-  document.getElementById('bmSupplier').value = '';
-  document.getElementById('bmKota').value = '';
-  document.getElementById('bmNoNota').value = '';
-  document.getElementById('bmKet').value = '';
+// ===================== RESET =====================
+function resetForm() {
+  setTglToday();
+  document.getElementById('supplier').value = '';
+  document.getElementById('kota').value = '';
+  document.getElementById('noNota').value = '';
+  document.getElementById('ket').value = '';
   // Kurs sengaja TIDAK direset — biasanya sama untuk beberapa nota berturut-turut
-  bmRows = []; bmRowCounter = 0;
-  bmRenderTable();
-  document.getElementById('bmExtBtn').className = 'ext-btn';
-  document.getElementById('bmExtIcon').textContent = '✨';
-  document.getElementById('bmExtErr').style.display = 'none';
-  document.getElementById('bmCopyOk').style.display = 'none';
-  bmUpdateExtBtn();
+  rows = []; rowCounter = 0;
+  renderTable();
+  document.getElementById('extBtn').className = 'ext-btn';
+  document.getElementById('extIcon').textContent = '✨';
+  document.getElementById('extErr').style.display = 'none';
+  document.getElementById('copyOk').style.display = 'none';
+  updateExtBtn();
 }
 
-// ===================== TAB SWITCHING =====================
-function switchTab(t) {
-  const isJual = t === 'jual';
-  document.getElementById('tabPenjualan').style.display = isJual ? '' : 'none';
-  document.getElementById('tabBM').style.display = isJual ? 'none' : '';
-  document.getElementById('tabBtnJual').classList.toggle('active', isJual);
-  document.getElementById('tabBtnBM').classList.toggle('active', !isJual);
-  document.getElementById('appTitle').textContent = isJual ? 'Input Nota Penjualan' : 'Input Nota Barang Masuk';
-  document.getElementById('queueBadge').style.display = isJual ? '' : 'none';
-  // Tutup dropdown & modal yang mungkin masih terbuka
-  document.getElementById('acList').classList.remove('show');
-  document.getElementById('bmAcList').classList.remove('show');
-  closeModal(); bmCloseModal();
-}
-
-// ===================== INIT BM =====================
-bmSetTglToday();
-bmAddRow();
-bmRenderQueue();
+// ===================== INIT =====================
+setTglToday();
+addRow();
+renderQueue();
 </script>
-
 </body>
 </html>
